@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Key pressed! Spawning babushka!");
             Instantiate(babushkaPrefab, transform.position, Quaternion.identity);
         }
     }
