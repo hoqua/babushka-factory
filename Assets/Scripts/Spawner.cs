@@ -14,5 +14,11 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(babushkaPrefab, transform.position, Quaternion.identity);
         }
+        
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            Destroy(GameObject.Find("Babushka Purple(Clone)"));
+        }
+        
     }
 }
