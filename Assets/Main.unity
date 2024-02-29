@@ -528,7 +528,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1971434990}
   - component: {fileID: 1971434992}
-  - component: {fileID: 1971434991}
   m_Layer: 6
   m_Name: Trigger
   m_TagString: Conveyor
@@ -545,35 +544,12 @@ Transform:
   m_GameObject: {fileID: 1971434989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 889237397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1971434991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971434989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fe978721135d4246bee1a9589dd6003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 3418148027718207742, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}, m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine, m_MethodName: Play, m_Mode: 5, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: Babushka Walking, m_BoolArgument: 0}, m_CallState: 2}
-      - {m_Target: {fileID: 3418148027718207742, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}, m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine, m_MethodName: set_enabled, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: Babushka Walking, m_BoolArgument: 1}, m_CallState: 2}
-    m_CallsDirty: 1
-  onTriggerExit:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 3418148027718207742, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}, m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine, m_MethodName: Play, m_Mode: 5, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: Babushka Idle, m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
 --- !u!61 &1971434992
 BoxCollider2D:
   m_ObjectHideFlags: 0
