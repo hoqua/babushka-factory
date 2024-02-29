@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5403731815563219988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2383164683544874849}
   - component: {fileID: 3418148027718207742}
   - component: {fileID: 5864672332325307619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Babushka Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,10 +139,10 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 364ba48bdb5e9c446bdf6cb113457eba, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
