@@ -5,25 +5,32 @@ using UnityEngine;
 public class Claw : MonoBehaviour
 {
     public float speed = 5f;
-    private Vector3 target;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        target = transform.position;
-    }
+    bool isMoving = false; // Флаг, указывающий, двигается ли объект в данный момент
+    Vector3 targetPosition; // Позиция, к которой объект должен двигаться
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isMoving) 
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
-            target.y = transform.position.y;
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            targetPosition.y = transform.position.y; // Блокируем изменение по y
+            targetPosition.z = transform.position.z; // Блокируем изменение по Z 
+
+            isMoving = true;
+            
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (isMoving)
+        {
+            
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
+
+            
+            if (transform.position == targetPosition)
+            {
+                isMoving = false; 
+            }
+        }
     }
-    
 }
