@@ -190,7 +190,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.8}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!95 &3418148027718207742
 Animator:
@@ -225,7 +225,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7ef1660eccf248b7e168012b202ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 5403731815563219988}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  animation: {fileID: 0}
