@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BabushkaMovement : MonoBehaviour
 {
-    public Animator animation;
-    
+    public new Animator animation;
+    private static readonly int IsPushed = Animator.StringToHash("isPushed");
+
     void Start()
     {
         animation = GetComponent<Animator>();
@@ -15,19 +13,19 @@ public class BabushkaMovement : MonoBehaviour
     //This triggers babushka's animations if she collides with conveyor
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Deleter")
+        if (other.CompareTag("Deleter"))
         {
             Destroy(GameObject.Find("Babushka Purple(Clone)"));
         }
         
-        else if (other.tag == "Conveyor")
+        else if (other.CompareTag("Conveyor"))
         {
-            animation.SetBool("isPushed", true);
+            animation.SetBool(IsPushed, true);
         }
         
         else
         {
-            animation.SetBool("isPushed", false);
+            animation.SetBool(IsPushed, false);
         }
 
         
