@@ -13,22 +13,8 @@ public class BabushkaMovement : MonoBehaviour
     //This triggers babushka's animations if she collides with conveyor
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Deleter"))
-        {
-            Destroy(GameObject.Find("Babushka Purple(Clone)"));
-        }
-        
-        else if (other.CompareTag("Conveyor"))
-        {
-            animation.SetBool(IsPushed, true);
-        }
-        
-        else
-        {
-            animation.SetBool(IsPushed, false);
-        }
-
-        
+        var isAnimationEnabled = other.CompareTag("Conveyor");
+        animation.SetBool(IsPushed, isAnimationEnabled);
     }
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -40,7 +26,6 @@ public class BabushkaMovement : MonoBehaviour
             Debug.Log("Gotcha!");
             animation.SetBool(IsPushed, false);
             transform.parent = GameObject.Find("Claw").transform;
-            transform.parent.gameObject.SetActive(true);
         }
         
     }
