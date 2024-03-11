@@ -4,7 +4,7 @@ public class BabushkaMovement : MonoBehaviour
 {
     public new Animator animation;
     private static readonly int IsPushed = Animator.StringToHash("isPushed");
-
+    public Rigidbody2D babushka;
     void Start()
     {
         animation = GetComponent<Animator>();
@@ -29,6 +29,29 @@ public class BabushkaMovement : MonoBehaviour
         }
 
         
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Claw"))
+        {
+            babushka = GetComponent<Rigidbody2D>();
+            babushka.isKinematic = true;
+            Debug.Log("Gotcha!");
+            animation.SetBool(IsPushed, false);
+            transform.parent = GameObject.Find("Claw").transform;
+            transform.parent.gameObject.SetActive(true);
+        }
+        
+    }
+    
+    //Отключает анимацию пока бабушка в клешне
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Claw"))
+        {
+            animation.SetBool(IsPushed, false);
+        }
     }
 
 }
