@@ -13,6 +13,7 @@ public class Claw : MonoBehaviour
     private void Start()
     {
         initialPosition = transform.position;
+       
     }
 
     void Update()

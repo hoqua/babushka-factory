@@ -7,6 +7,7 @@ TagManager:
   - Conveyor
   - Deleter
   - Claw
+  - Babushka
   layers:
   - Default
   - TransparentFX
