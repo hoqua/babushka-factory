@@ -6,8 +6,13 @@ using TMPro;
 
 public class Counter : MonoBehaviour
 {
-    private int currentNum = 0;
+    private int currentNumOfBabushkas = 0;
     public TMP_Text counter;
+    
+    public TMP_Text playerLevelText;
+    private int expRequired = 2;
+    private int experience = 0;
+    private int playerLevel = 0;
     // Update is called once per frame
     void Update()
     {
@@ -19,8 +24,31 @@ public class Counter : MonoBehaviour
         if (other.CompareTag("Babushka"))
         {
             Destroy(other.GameObject());
-            currentNum += 1;
-            counter.text = currentNum.ToString();
+            GainExp();
+            
+            currentNumOfBabushkas += 1;
+            counter.text = currentNumOfBabushkas.ToString();
+        }
+    }
+
+    private void GainExp()
+    {
+        experience += 1;
+        Debug.Log("You gained" + experience + " experience points!");
+        
+        CheckLvlUp();
+    }
+
+    private void CheckLvlUp()
+    {
+        if (experience >= expRequired)
+        {
+            playerLevel++;
+            experience -= expRequired;
+            expRequired = (int)(expRequired * 1.5f);
+            playerLevelText.text = "Level " + playerLevel.ToString();
+            
+            Debug.Log("Congratulations! You reached level " + playerLevel);
         }
     }
 }
