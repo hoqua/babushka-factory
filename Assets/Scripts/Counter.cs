@@ -10,7 +10,7 @@ public class Counter : MonoBehaviour
     public TMP_Text counter;
     
     public TMP_Text playerLevelText;
-    private int expRequired = 2;
+    private int expRequired = 5;
     private int experience = 0;
     private int playerLevel = 0;
     // Update is called once per frame
@@ -27,14 +27,13 @@ public class Counter : MonoBehaviour
             GainExp();
             
             currentNumOfBabushkas += 1;
-            counter.text = currentNumOfBabushkas.ToString();
+            counter.text = "Babushkas Collected " + currentNumOfBabushkas.ToString();
         }
     }
 
     private void GainExp()
     {
         experience += 1;
-        Debug.Log("You gained" + experience + " experience points!");
         
         CheckLvlUp();
     }
