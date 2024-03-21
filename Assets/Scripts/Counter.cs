@@ -13,12 +13,29 @@ public class Counter : MonoBehaviour
     private int expRequired = 5;
     private int experience = 0;
     private int playerLevel = 0;
-    // Update is called once per frame
+
+    private bool isPaused = false;
+    public GameObject upgradeOverlay;
+
+    void Start()
+    {
+        upgradeOverlay.SetActive(false);
+    }
     void Update()
     {
-        
-    }
-    
+        if (Input.GetKeyDown(KeyCode.P)) 
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+                
+            }
+        }
+    } 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Babushka"))
@@ -49,5 +66,23 @@ public class Counter : MonoBehaviour
             
             Debug.Log("Congratulations! You reached level " + playerLevel);
         }
+    }
+    
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+        upgradeOverlay.SetActive(true);
+        Debug.Log("Game paused");
+    }
+
+    void ResumeGame()
+    {
+        
+        Time.timeScale = 1f;
+        isPaused = false;
+        upgradeOverlay.SetActive(false);
+        Debug.Log("Game resumed");
+        
     }
 }
