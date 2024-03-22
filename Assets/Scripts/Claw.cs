@@ -48,7 +48,7 @@ public class Claw : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Conveyor"))
+        if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))
         {
             movingDirection = MovingDirection.Up;
         }
@@ -85,7 +85,7 @@ public class Claw : MonoBehaviour
 
     void MoveDown()
     {
-        var verticalTarget = new Vector2(transform.position.x, targetPosition.y);
+        var verticalTarget = new Vector2(transform.position.x, targetPosition.y - 100000);
         transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * speed);
 
         if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)

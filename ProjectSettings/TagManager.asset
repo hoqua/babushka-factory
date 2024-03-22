@@ -8,6 +8,7 @@ TagManager:
   - Deleter
   - Claw
   - Babushka
+  - Claw Stopper
   layers:
   - Default
   - TransparentFX
