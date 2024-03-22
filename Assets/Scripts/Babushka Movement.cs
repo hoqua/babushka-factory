@@ -21,6 +21,12 @@ public class BabushkaMovement : MonoBehaviour
         
         
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        var isAnimationEnabled = other.CompareTag("Conveyor");
+        animation.SetBool(IsPushed, !isAnimationEnabled);
+    }
     
     private void OnCollisionEnter2D(Collision2D other)
     {
