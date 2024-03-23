@@ -16,13 +16,17 @@ public class Counter : MonoBehaviour
 
     private bool isPaused = false;
     public GameObject upgradeOverlay;
-
+    
+    BabushkaMovement babushkaMovement;
     void Start()
     {
         upgradeOverlay.SetActive(false);
+       
     }
     void Update()
     {
+        
+        
         if (Input.GetKeyDown(KeyCode.P)) 
         {
             if (isPaused)
@@ -38,7 +42,9 @@ public class Counter : MonoBehaviour
     } 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Babushka"))
+        babushkaMovement = GameObject.FindGameObjectWithTag("Babushka").GetComponent<BabushkaMovement>();
+        
+        if (other.CompareTag("Babushka") && babushkaMovement.canBeDeleted)
         {
             Destroy(other.GameObject());
             GainExp();

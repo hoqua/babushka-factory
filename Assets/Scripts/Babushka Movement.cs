@@ -5,8 +5,8 @@ public class BabushkaMovement : MonoBehaviour
     public new Animator animation;
     private static readonly int IsPushed = Animator.StringToHash("isPushed");
     private Rigidbody2D babushka;
-    Collider2D myCollider;
-   
+    
+    public bool canBeDeleted = false;
     void Start()
     {
         animation = GetComponent<Animator>();
@@ -18,8 +18,7 @@ public class BabushkaMovement : MonoBehaviour
     {
         var isAnimationEnabled = other.CompareTag("Conveyor");
         animation.SetBool(IsPushed, isAnimationEnabled);
-        
-        
+          
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -36,6 +35,12 @@ public class BabushkaMovement : MonoBehaviour
             babushka.isKinematic = true;
             animation.SetBool(IsPushed, false);
             transform.parent = GameObject.Find("Claw").transform;
+
+            canBeDeleted = true;
+        }
+        else
+        {
+            canBeDeleted = false;
         }
         
     }
