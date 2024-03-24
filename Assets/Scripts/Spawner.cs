@@ -25,12 +25,6 @@ public class Spawner : MonoBehaviour
             
             _timer = 0f;
         }
-
-        //Позволяет удалять бабушек нажатием на delete
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            Destroy(GameObject.Find("Babushka Purple(Clone)"));
-        }
         
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BabushkaMovement : MonoBehaviour
+public class BabushkaMain : MonoBehaviour
 {
     public new Animator animation;
     private static readonly int IsPushed = Animator.StringToHash("isPushed");
