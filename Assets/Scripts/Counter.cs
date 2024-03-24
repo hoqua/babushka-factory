@@ -16,8 +16,8 @@ public class Counter : MonoBehaviour
 
     private bool isPaused = false;
     public GameObject upgradeOverlay;
-    
-    BabushkaMovement babushkaMovement;
+
+    private BabushkaMain babushkaMain;
     void Start()
     {
         upgradeOverlay.SetActive(false);
@@ -25,26 +25,16 @@ public class Counter : MonoBehaviour
     }
     void Update()
     {
-        
-        
-        if (Input.GetKeyDown(KeyCode.P)) 
+        if (Input.GetMouseButtonDown(0) && isPaused)
         {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-                
-            }
+            ResumeGame();
         }
     } 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        babushkaMovement = GameObject.FindGameObjectWithTag("Babushka").GetComponent<BabushkaMovement>();
-        
-        if (other.CompareTag("Babushka") && babushkaMovement.canBeDeleted)
+
+        babushkaMain = other.GetComponent<BabushkaMain>();
+        if (other.CompareTag("Babushka") && babushkaMain.canBeDeleted)
         {
             Destroy(other.GameObject());
             GainExp();
@@ -67,10 +57,12 @@ public class Counter : MonoBehaviour
         {
             playerLevel++;
             experience -= expRequired;
-            expRequired = (int)(expRequired * 1.5f);
-            playerLevelText.text = "Level " + playerLevel.ToString();
+            expRequired = (int)(expRequired * 1.5f); 
             
+            PauseGame();
+            playerLevelText.text = "Level " + playerLevel.ToString();
             Debug.Log("Congratulations! You reached level " + playerLevel);
+            
         }
     }
     
@@ -79,6 +71,7 @@ public class Counter : MonoBehaviour
         Time.timeScale = 0;
         isPaused = true;
         upgradeOverlay.SetActive(true);
+        
         Debug.Log("Game paused");
     }
 
@@ -88,6 +81,7 @@ public class Counter : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         upgradeOverlay.SetActive(false);
+        
         Debug.Log("Game resumed");
         
     }
