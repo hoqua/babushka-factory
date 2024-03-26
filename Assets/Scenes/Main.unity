@@ -550,7 +550,6 @@ GameObject:
   - component: {fileID: 595828389}
   - component: {fileID: 595828386}
   - component: {fileID: 595828385}
-  - component: {fileID: 595828388}
   - component: {fileID: 595828387}
   m_Layer: 5
   m_Name: Counter Text
@@ -716,18 +715,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &595828388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595828384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05be7c8b56d8bbd4bb4ec1640f8625b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &595828389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1523,7 +1510,6 @@ GameObject:
   - component: {fileID: 1299635542}
   - component: {fileID: 1299635540}
   - component: {fileID: 1299635539}
-  - component: {fileID: 1299635541}
   - component: {fileID: 1299635543}
   m_Layer: 5
   m_Name: Player Level Text
@@ -1666,18 +1652,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1299635541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299635538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05be7c8b56d8bbd4bb4ec1640f8625b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1299635542
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1786,7 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
-  babushkaPrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
+  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
 --- !u!4 &1688270002
 Transform:
   m_ObjectHideFlags: 0
