@@ -226,3 +226,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animation: {fileID: 0}
+  canBeDeleted: 0
