@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,8 @@ using TMPro;
 
 public class Counter : MonoBehaviour
 {
+    public Claw clawScript;
+    
     private int currentNumOfBabushkas = 0;
     public TMP_Text counter;
     
@@ -23,13 +26,7 @@ public class Counter : MonoBehaviour
         upgradeOverlay.SetActive(false);
        
     }
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && isPaused)
-        {
-            ResumeGame();
-        }
-    } 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -44,6 +41,7 @@ public class Counter : MonoBehaviour
         }
     }
 
+    
     private void GainExp()
     {
         experience += 1;
@@ -66,7 +64,7 @@ public class Counter : MonoBehaviour
         }
     }
     
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
         isPaused = true;
@@ -75,7 +73,7 @@ public class Counter : MonoBehaviour
         Debug.Log("Game paused");
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         
         Time.timeScale = 1f;
@@ -85,4 +83,7 @@ public class Counter : MonoBehaviour
         Debug.Log("Game resumed");
         
     }
+    
+    
+    
 }
