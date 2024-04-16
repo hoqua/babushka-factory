@@ -3329,7 +3329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
-  babushkaPrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
+  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
 --- !u!4 &1688270002
 Transform:
   m_ObjectHideFlags: 0

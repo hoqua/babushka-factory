@@ -34,8 +34,7 @@ public class BabushkaMain : MonoBehaviour
             babushka = GetComponent<Rigidbody2D>();
             babushka.isKinematic = true;
             animation.SetBool(IsPushed, false);
-            transform.parent = GameObject.Find("Claw").transform;
-
+            
             canBeDeleted = true;
         }
         else
