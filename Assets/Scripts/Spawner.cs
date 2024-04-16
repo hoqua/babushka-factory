@@ -6,12 +6,13 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private float _timer;
-    public float interval = 2f;
+    public float interval;
     public GameObject babushkaPrefab;
     
     private void Start()
     {
         _timer = 0f;
+        interval = 2f;
     }
 
     // Update is called once per frame

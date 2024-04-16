@@ -4,27 +4,31 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class Counter : MonoBehaviour
 {
     public Claw clawScript;
+    private BabushkaMain babushkaMain;
     
-    private int currentNumOfBabushkas = 0;
+    private int currentNumOfBabushkas;
+    public float chanceToDouble;
     public TMP_Text counter;
     
     public TMP_Text playerLevelText;
     private int expRequired = 5;
-    private int experience = 0;
-    private int playerLevel = 0;
+    private int experience;
+    private int playerLevel;
 
-    private bool isPaused = false;
+    private bool isPaused;
     public GameObject upgradeOverlay;
-
-    private BabushkaMain babushkaMain;
+    
+    
     void Start()
     {
         upgradeOverlay.SetActive(false);
-       
+        
+        chanceToDouble = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,6 +41,14 @@ public class Counter : MonoBehaviour
             GainExp();
             
             currentNumOfBabushkas += 1;
+            
+            float randomValue = Random.Range(0f, 100f);
+
+            if (randomValue <= chanceToDouble)
+            {
+                currentNumOfBabushkas += 1;
+            }
+            
             counter.text = "Babushkas Collected " + currentNumOfBabushkas.ToString();
         }
     }
@@ -83,7 +95,18 @@ public class Counter : MonoBehaviour
         Debug.Log("Game resumed");
         
     }
-    
+
+
+    public void RandomMultiply()
+    {
+        float randomValue = Random.Range(0f, 100f);
+
+        if (randomValue <= chanceToDouble)
+        {
+            currentNumOfBabushkas += 1;
+        }
+        
+    }
     
     
 }
