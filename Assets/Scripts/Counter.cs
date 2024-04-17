@@ -8,7 +8,6 @@ using Random = UnityEngine.Random;
 
 public class Counter : MonoBehaviour
 {
-    public Claw clawScript;
     private BabushkaMain babushkaMain;
     
     private int currentNumOfBabushkas;
@@ -42,8 +41,9 @@ public class Counter : MonoBehaviour
             
             currentNumOfBabushkas += 1;
             
+            //Шанс на умножение бабушек, если взято определенное улучшение
             float randomValue = Random.Range(0f, 100f);
-
+            
             if (randomValue <= chanceToDouble)
             {
                 currentNumOfBabushkas += 1;
@@ -95,18 +95,5 @@ public class Counter : MonoBehaviour
         Debug.Log("Game resumed");
         
     }
-
-
-    public void RandomMultiply()
-    {
-        float randomValue = Random.Range(0f, 100f);
-
-        if (randomValue <= chanceToDouble)
-        {
-            currentNumOfBabushkas += 1;
-        }
-        
-    }
-    
     
 }
