@@ -3,7 +3,8 @@ guid: 639d37f7ce526a34ca2a139512757c62
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

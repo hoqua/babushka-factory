@@ -552,7 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a745c12e616e65c45944b659e98f1951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clawScript: {fileID: 0}
   chanceToDouble: 100
   counter: {fileID: 595828385}
   playerLevelText: {fileID: 1299635539}
@@ -2059,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &917657806
 RectTransform:
   m_ObjectHideFlags: 0

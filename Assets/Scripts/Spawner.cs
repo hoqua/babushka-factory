@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     private float _timer;
     public float interval;
     
-    public GameObject babushkaPrefab;
+    public GameObject babushkaPurplePrefab;
 
     private void Start()
     {
@@ -23,8 +23,8 @@ public class Spawner : MonoBehaviour
         
         if (_timer >= interval)
         {
-            babushkaPurplePrefab.name = "Babushka Purple";
-            Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
+            GameObject newBabushka = Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
+            newBabushka.name = "Babushka Purple";
             
             _timer = 0f;
         }
