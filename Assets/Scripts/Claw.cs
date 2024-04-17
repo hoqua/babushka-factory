@@ -56,10 +56,14 @@ public class Claw : MonoBehaviour
 
         if (other.gameObject.CompareTag("Babushka"))
         {
+            var babushka = other;
+            babushka.transform.parent = transform;
+           
             babushkaGrabbed= 5.5f;
             movingDirection = MovingDirection.Up;
             MoveUp();
         }
+       
     }
 
     private void OnCollisionExit2D(Collision2D other)
