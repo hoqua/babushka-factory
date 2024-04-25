@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Claw : MonoBehaviour
 {
     private Vector2 initialPosition;
-    public float speed = 5f;
+    public float clawSpeed = 5f;
     private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
     private MovingDirection? movingDirection = null;
     private float babushkaGrabbed;
@@ -79,7 +80,7 @@ public class Claw : MonoBehaviour
     void MoveHorizontal()
     {
         var horizontalTarget = new Vector2(targetPosition.x, transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, horizontalTarget, Time.deltaTime * speed);
+        transform.position = Vector2.MoveTowards(transform.position, horizontalTarget, Time.deltaTime * clawSpeed);
 
         if (Math.Abs(transform.position.x - horizontalTarget.x) < 0.0001f)
         {
@@ -90,7 +91,7 @@ public class Claw : MonoBehaviour
     void MoveDown()
     {
         var verticalTarget = new Vector2(transform.position.x, targetPosition.y - 100000);
-        transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * clawSpeed);
 
         if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
         {
@@ -101,7 +102,7 @@ public class Claw : MonoBehaviour
     void MoveUp()
     {
         var verticalTarget = new Vector2(transform.position.x, initialPosition.y + babushkaGrabbed);
-        transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * clawSpeed);
 
         if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
         {

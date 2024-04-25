@@ -1,35 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class Counter : MonoBehaviour
 {
-    private int currentNumOfBabushkas = 0;
+    private BabushkaMain babushkaMain;
+    
+    private int currentNumOfBabushkas;
+    public float chanceToDouble;
     public TMP_Text counter;
     
     public TMP_Text playerLevelText;
     private int expRequired = 5;
-    private int experience = 0;
-    private int playerLevel = 0;
+    private int experience;
+    private int playerLevel;
 
-    private bool isPaused = false;
+    private bool isPaused;
     public GameObject upgradeOverlay;
-
-    private BabushkaMain babushkaMain;
+    
+    
     void Start()
     {
         upgradeOverlay.SetActive(false);
-       
+        
+        chanceToDouble = 0;
     }
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && isPaused)
-        {
-            ResumeGame();
-        }
-    } 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -40,10 +40,20 @@ public class Counter : MonoBehaviour
             GainExp();
             
             currentNumOfBabushkas += 1;
+            
+            //Шанс на умножение бабушек, если взято определенное улучшение
+            float randomValue = Random.Range(0f, 100f);
+            
+            if (randomValue <= chanceToDouble)
+            {
+                currentNumOfBabushkas += 1;
+            }
+            
             counter.text = "Babushkas Collected " + currentNumOfBabushkas.ToString();
         }
     }
 
+    
     private void GainExp()
     {
         experience += 1;
@@ -66,7 +76,7 @@ public class Counter : MonoBehaviour
         }
     }
     
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
         isPaused = true;
@@ -75,7 +85,7 @@ public class Counter : MonoBehaviour
         Debug.Log("Game paused");
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         
         Time.timeScale = 1f;
@@ -85,4 +95,5 @@ public class Counter : MonoBehaviour
         Debug.Log("Game resumed");
         
     }
+    
 }

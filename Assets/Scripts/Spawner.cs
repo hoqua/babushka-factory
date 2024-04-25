@@ -6,12 +6,14 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private float _timer;
-    public float interval = 2f;
-    public GameObject babushkaPurplePrefab;
+    public float interval;
     
+    public GameObject babushkaPurplePrefab;
+
     private void Start()
     {
         _timer = 0f;
+        interval = 2f;
     }
 
     // Update is called once per frame
@@ -21,8 +23,8 @@ public class Spawner : MonoBehaviour
         
         if (_timer >= interval)
         {
-            babushkaPurplePrefab.name = "Babushka Purple";
-            Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
+            GameObject newBabushka = Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
+            newBabushka.name = "Babushka Purple";
             
             _timer = 0f;
         }

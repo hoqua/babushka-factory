@@ -9,6 +9,7 @@ TagManager:
   - Claw
   - Babushka
   - Claw Stopper
+  - Upgrade Card
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Claw
   - 
   - 
-  - 
-  - 
+  - Upgrade UI
+  - Upgrade UI Text
   - 
   - 
   - 
@@ -47,5 +48,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: UI
-    uniqueID: 3723351303
+    uniqueID: 2613781289
+    locked: 0
+  - name: Upgrade UI
+    uniqueID: 354817453
+    locked: 0
+  - name: Upgrade UI Text
+    uniqueID: 3079993105
     locked: 0
