@@ -66,6 +66,8 @@ public class Counter : MonoBehaviour
         if (experience >= expRequired)
         {
             playerLevel++;
+            LevelBonus();
+            
             experience -= expRequired;
             expRequired = (int)(expRequired * 1.5f); 
             
@@ -73,6 +75,16 @@ public class Counter : MonoBehaviour
             playerLevelText.text = "Level " + playerLevel.ToString();
             Debug.Log("Congratulations! You reached level " + playerLevel);
             
+        }
+    }
+
+    private void LevelBonus()
+    {
+        if (playerLevel % 5 == 0)
+        {
+            var multiplier = 1.5f;
+            var currentNumOfBabushkasFloat = currentNumOfBabushkas * multiplier;
+            currentNumOfBabushkas = Mathf.RoundToInt(Mathf.FloorToInt(currentNumOfBabushkasFloat));
         }
     }
     
