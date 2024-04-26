@@ -1,30 +1,39 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BabushkaMain : MonoBehaviour
 {
     public new Animator animation;
-    private static readonly int IsPushed = Animator.StringToHash("isPushed");
     private Rigidbody2D babushka;
     
-    public bool canBeDeleted = false;
+        
+    public bool canBeDeleted;
+    private static readonly int IsPushed = Animator.StringToHash("isPushed");
+
     void Start()
     {
         animation = GetComponent<Animator>();
         
     } 
     
-    //This triggers babushka's animations if she collides with conveyor
+    //Триггерит анимацию ходьбы пока бабушка на конвейере
     void OnTriggerEnter2D(Collider2D other)
     {
-        var isAnimationEnabled = other.CompareTag("Conveyor");
-        animation.SetBool(IsPushed, isAnimationEnabled);
-          
+        if (other.CompareTag("Conveyor"))
+        {
+            animation.SetBool(IsPushed, true);
+            
+        }
+
+       
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        var isAnimationEnabled = other.CompareTag("Conveyor");
-        animation.SetBool(IsPushed, !isAnimationEnabled);
+        if (other.CompareTag("Conveyor"))
+        {
+            animation.SetBool(IsPushed, false);
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D other)

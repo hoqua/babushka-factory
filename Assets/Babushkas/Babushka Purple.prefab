@@ -225,5 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7ef1660eccf248b7e168012b202ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation: {fileID: 0}
+  animation: {fileID: 3418148027718207742}
+  boxCollider: {fileID: 2383164683544874849}
   canBeDeleted: 0
