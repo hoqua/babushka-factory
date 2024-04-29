@@ -1,33 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace Game
 {
-    private float _timer;
-    public float interval;
+    public class Spawner : MonoBehaviour
+    {
+        private float _timer;
+        public float interval;
     
-    public GameObject babushkaPurplePrefab;
+        public GameObject babushkaPurplePrefab;
 
-    private void Start()
-    {
-        _timer = 0f;
-        interval = 2f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _timer += Time.deltaTime;
-        
-        if (_timer >= interval)
+        private void Start()
         {
-            GameObject newBabushka = Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
-            newBabushka.name = "Babushka Purple";
-            
             _timer = 0f;
+            interval = 2f;
         }
+
+        // Update is called once per frame
+        void Update()
+        {
+            _timer += Time.deltaTime;
         
+            if (_timer >= interval)
+            {
+                GameObject newBabushka = Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
+                newBabushka.name = "Babushka Purple";
+            
+                _timer = 0f;
+            }
+        
+        }
     }
 }

@@ -9,11 +9,12 @@ TagManager:
   - Claw
   - Babushka
   - Claw Stopper
+  - Upgrade Card
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - No Collision
   - Water
   - UI
   - Ground

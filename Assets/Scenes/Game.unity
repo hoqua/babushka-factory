@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a745c12e616e65c45944b659e98f1951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceToDouble: 100
+  chanceToDouble: 0
   counter: {fileID: 595828385}
   playerLevelText: {fileID: 1299635539}
   upgradeOverlay: {fileID: 917657805}
@@ -2058,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &917657806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2253,8 +2253,8 @@ Transform:
   m_GameObject: {fileID: 1159710472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.18, y: -4.3752, z: 0}
-  m_LocalScale: {x: 20.831299, y: 0.2904, z: 1}
+  m_LocalPosition: {x: 1.2517, y: -4.3752, z: 0}
+  m_LocalScale: {x: 22.411976, y: 0.2904, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 33115337}

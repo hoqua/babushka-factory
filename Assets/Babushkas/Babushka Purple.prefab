@@ -226,5 +226,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animation: {fileID: 3418148027718207742}
-  boxCollider: {fileID: 2383164683544874849}
   canBeDeleted: 0

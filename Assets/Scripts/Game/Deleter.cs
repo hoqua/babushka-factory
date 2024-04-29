@@ -1,16 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Deleter : MonoBehaviour
+namespace Game
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class Deleter : MonoBehaviour
     {
-        if (other.CompareTag("Babushka"))
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Destroy(other.GameObject());
+            if (other.CompareTag("Babushka"))
+            {
+                Destroy(other.GameObject());
+            }
         }
     }
 }
