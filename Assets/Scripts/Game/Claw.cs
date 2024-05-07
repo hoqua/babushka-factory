@@ -5,9 +5,11 @@ namespace Game
 {
     public class Claw : MonoBehaviour
     {
+        public string objectToIgnoreTag = "UI";
         
+        public float clawSpeed = 5f; 
         private Vector2 initialPosition;
-        public float clawSpeed = 5f;
+        
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
         private float babushkaGrabbed;
@@ -24,6 +26,13 @@ namespace Game
             if (Input.GetMouseButtonDown(0) && movingDirection == null)
             {
                 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                
+                //Игнорирует нажатия на объекты с тэгом UI (если у них есть коллайдер)
+                RaycastHit2D hit = Physics2D.Raycast(targetPosition, Vector2.zero);
+                if (hit.collider != null && hit.collider.CompareTag(objectToIgnoreTag))
+                {
+                    return;
+                }
 
                 movingDirection = MovingDirection.Horizontal;
             }
@@ -46,9 +55,7 @@ namespace Game
             }
 
         }
-
         
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))

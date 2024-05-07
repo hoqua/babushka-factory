@@ -28,8 +28,6 @@ namespace Game
                 
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
             }
-        
-            Debug.Log("Триггер задет");
         }
 
         void OnTriggerExit2D(Collider2D other)
