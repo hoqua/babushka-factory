@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class SideMenuButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public GameObject SideMenu;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
+
+   public void ShowHideMenu()
+   {
+      if (SideMenu != null)
+      {
+         Animator animator = SideMenu.GetComponent<Animator>();
+         if (animator != null)
+         {
+            bool isShown = animator.GetBool("Show");
+            animator.SetBool("Show", !isShown);
+         }
+      }
+   }
 }

@@ -5,6 +5,7 @@ namespace Game
 {
     public class Claw : MonoBehaviour
     {
+        
         private Vector2 initialPosition;
         public float clawSpeed = 5f;
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
@@ -45,6 +46,8 @@ namespace Game
             }
 
         }
+
+        
 
         private void OnCollisionEnter2D(Collision2D other)
         {
