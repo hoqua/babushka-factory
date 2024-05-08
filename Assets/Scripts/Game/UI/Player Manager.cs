@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameManager gameManager;
-    public GameObject upgradeOverlay;
     
     public int playerLevel = 1;
     private int currentExp = 0;
