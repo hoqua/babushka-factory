@@ -1,7 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 
 namespace Game
 {

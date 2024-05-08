@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 471723880}
-  upgradeOverlay: {fileID: 917657805}
   clawScript: {fileID: 617702428}
   spawnerScript: {fileID: 1688270001}
 --- !u!1 &200003998
@@ -892,7 +891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 471723880}
-  upgradeOverlay: {fileID: 917657805}
   clawScript: {fileID: 617702428}
   spawnerScript: {fileID: 1688270001}
 --- !u!212 &434620536
@@ -991,6 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0994b56a35ee0f5418dc7d0794a253ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeOverlay: {fileID: 917657805}
 --- !u!1 &531003322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,7 +2915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 471723880}
-  upgradeOverlay: {fileID: 917657805}
   clawScript: {fileID: 617702428}
   spawnerScript: {fileID: 1688270001}
 --- !u!212 &1225020164

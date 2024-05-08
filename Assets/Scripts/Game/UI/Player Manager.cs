@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -33,7 +31,7 @@ public class Player : MonoBehaviour
             playerLevelText.text = "Уровень " + playerLevel.ToString();
 
             gameManager.PauseGame();
-            upgradeOverlay.SetActive(true);
+            gameManager.ShowUpgradeOverlay();
         }
     }
     

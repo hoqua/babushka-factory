@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 namespace Game
 {
     public class UpgradeCard : MonoBehaviour
     {
         public GameManager gameManager;
-        public GameObject upgradeOverlay;
         
         public Claw clawScript;
         public Spawner spawnerScript;
@@ -28,18 +27,18 @@ namespace Game
                 case "Card - FastClaw":
                     clawScript.clawSpeed += _clawSpeedInitial * 0.1f;
                     gameManager.ResumeGame();
-                    upgradeOverlay.SetActive(false);
+                    gameManager.HideUpgradeOverlay();
                     break;
                 //Пока ничего не делает
                 case "Card - DoubleBabushkas":
                     gameManager.ResumeGame();
-                    upgradeOverlay.SetActive(false);
+                    gameManager.HideUpgradeOverlay();
                     break;
             
                 case "Card - SpawnRate":
                     spawnerScript.interval -= _intervalInitial * 0.05f;
                     gameManager.ResumeGame();
-                    upgradeOverlay.SetActive(false);
+                    gameManager.HideUpgradeOverlay();
                     break;
             }
         
