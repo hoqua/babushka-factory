@@ -7,8 +7,6 @@ using UnityEngine.UIElements;
 
 public class SideMenuButton : MonoBehaviour
 {
-   private bool isClawEnabled = true;
-   
    public GameObject SideMenu;
    
    public void ShowHideMenu()

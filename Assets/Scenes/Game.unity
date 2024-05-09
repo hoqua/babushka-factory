@@ -361,8 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4d73a039ef4154cb29dd7010649f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 471723880}
   clawScript: {fileID: 617702428}
-  upgradeScript: {fileID: 343084204}
   spawnerScript: {fileID: 1688270001}
 --- !u!1 &200003998
 GameObject:
@@ -655,10 +655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a745c12e616e65c45944b659e98f1951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceToDouble: 0
-  counter: {fileID: 595828385}
-  playerLevelText: {fileID: 1299635539}
-  upgradeOverlay: {fileID: 917657805}
+  playerManager: {fileID: 1235536085}
+  counterText: {fileID: 595828385}
 --- !u!61 &343084205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -892,8 +890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4d73a039ef4154cb29dd7010649f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 471723880}
   clawScript: {fileID: 617702428}
-  upgradeScript: {fileID: 343084204}
   spawnerScript: {fileID: 1688270001}
 --- !u!212 &434620536
 SpriteRenderer:
@@ -947,6 +945,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &471723878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471723879}
+  - component: {fileID: 471723880}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471723879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471723878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1444788031}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471723880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471723878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0994b56a35ee0f5418dc7d0794a253ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeOverlay: {fileID: 917657805}
 --- !u!1 &531003322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1213,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Babushkas Collected 0
+  m_text: "\u0421\u043E\u0431\u0440\u0430\u043D\u043E \u0411\u0430\u0431\u0443\u0448\u0435\u043A
+    0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2870,8 +2914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4d73a039ef4154cb29dd7010649f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 471723880}
   clawScript: {fileID: 617702428}
-  upgradeScript: {fileID: 343084204}
   spawnerScript: {fileID: 1688270001}
 --- !u!212 &1225020164
 SpriteRenderer:
@@ -2925,6 +2969,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1235536083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235536084}
+  - component: {fileID: 1235536085}
+  m_Layer: 0
+  m_Name: Player Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1235536084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235536083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1444788031}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1235536085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235536083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bee3c457d31fa468a5799ab15f6edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 471723880}
+  upgradeOverlay: {fileID: 917657805}
+  playerLevel: 1
+  playerLevelText: {fileID: 1299635539}
 --- !u!1 &1299635538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,7 +3056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 0
+  m_text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3744,6 +3836,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 471723879}
+  - {fileID: 1235536084}
   - {fileID: 917657806}
   - {fileID: 200003999}
   m_Father: {fileID: 0}
@@ -3904,7 +3998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6d7d07bba552c44bb90822223bc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clawScriptControl: {fileID: 617702428}
   SideMenu: {fileID: 1815732252}
 --- !u!1 &1936003162
 GameObject:

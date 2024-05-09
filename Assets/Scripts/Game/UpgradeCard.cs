@@ -1,20 +1,22 @@
 using UnityEngine;
 
+
 namespace Game
 {
     public class UpgradeCard : MonoBehaviour
     {
+        public GameManager gameManager;
+        
         public Claw clawScript;
-        public Counter upgradeScript;
         public Spawner spawnerScript;
     
-        private float clawSpeedInitial;
-        private float intervalInitial;
+        private float _clawSpeedInitial;
+        private float _intervalInitial;
 
         private void Start()
         {
-            clawSpeedInitial = clawScript.clawSpeed;
-            intervalInitial = spawnerScript.interval;
+            _clawSpeedInitial = clawScript.clawSpeed;
+            _intervalInitial = spawnerScript.interval;
         }
 
         private void OnMouseDown()
@@ -23,18 +25,20 @@ namespace Game
             switch (gameObject.name)
             {
                 case "Card - FastClaw":
-                    clawScript.clawSpeed += clawSpeedInitial * 0.1f;
-                    upgradeScript.ResumeGame();
+                    clawScript.clawSpeed += _clawSpeedInitial * 0.1f;
+                    gameManager.ResumeGame();
+                    gameManager.HideUpgradeOverlay();
                     break;
-            
+                //Пока ничего не делает
                 case "Card - DoubleBabushkas":
-                    upgradeScript.chanceToDouble += 1f;
-                    upgradeScript.ResumeGame();
+                    gameManager.ResumeGame();
+                    gameManager.HideUpgradeOverlay();
                     break;
             
                 case "Card - SpawnRate":
-                    spawnerScript.interval -= intervalInitial * 0.05f;
-                    upgradeScript.ResumeGame();
+                    spawnerScript.interval -= _intervalInitial * 0.05f;
+                    gameManager.ResumeGame();
+                    gameManager.HideUpgradeOverlay();
                     break;
             }
         
