@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -6,7 +9,8 @@ namespace Game
     public class UpgradeCard : MonoBehaviour
     {
         public GameManager gameManager;
-        
+
+        public Conveyor conveyorScript;
         public Claw clawScript;
         public Spawner spawnerScript;
     
@@ -19,30 +23,49 @@ namespace Game
             _intervalInitial = spawnerScript.interval;
         }
 
+        private readonly Dictionary<string, System.Action> cardActions;
+
+        public UpgradeCard()
+        {
+            cardActions = new Dictionary<string, System.Action>
+            {
+                { "Card - FastClaw", () => {
+                    clawScript.clawSpeed += _clawSpeedInitial * 0.05f;
+                }},
+                
+                { "Card - SpawnRate", () => {
+                    spawnerScript.interval -= _intervalInitial * 0.05f;
+                }},
+               
+                { "Card - FreezeConveyor", () => {
+                    
+                    StartCoroutine(DisableScriptForTime(5f));
+
+                    IEnumerator DisableScriptForTime(float time)
+                    {
+                        conveyorScript.enabled = false;
+                        yield return new WaitForSeconds(time);
+
+                        conveyorScript.enabled = true;
+                    }
+                    
+                }},
+                
+                { "Card - DoubleBabushkas", () => {
+                    
+                }},
+                
+            };
+        }
+
         private void OnMouseDown()
         {
-        
-            switch (gameObject.name)
+            if (cardActions.ContainsKey(gameObject.name))
             {
-                case "Card - FastClaw":
-                    clawScript.clawSpeed += _clawSpeedInitial * 0.1f;
-                    gameManager.ResumeGame();
-                    gameManager.HideUpgradeOverlay();
-                    break;
-                //Пока ничего не делает
-                case "Card - DoubleBabushkas":
-                    gameManager.ResumeGame();
-                    gameManager.HideUpgradeOverlay();
-                    break;
-            
-                case "Card - SpawnRate":
-                    spawnerScript.interval -= _intervalInitial * 0.05f;
-                    gameManager.ResumeGame();
-                    gameManager.HideUpgradeOverlay();
-                    break;
+                cardActions[gameObject.name]?.Invoke();
+                gameManager.ResumeGame();
+                gameManager.HideUpgradeOverlay();
             }
-        
-       
         }
     }
 }
