@@ -9,6 +9,7 @@ namespace Game
         
         public float clawSpeed = 5f; 
         private Vector2 initialPosition;
+        private Collider2D clawCollider;
         
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
@@ -17,7 +18,7 @@ namespace Game
         private void Start()
         {
             initialPosition = transform.position;
-
+            clawCollider = GetComponent<BoxCollider2D>();
         }
 
         void Update()
@@ -67,22 +68,19 @@ namespace Game
             {
                 var babushka = other;
                 babushka.transform.parent = transform;
-           
+                clawCollider.enabled = false;
+                
                 babushkaGrabbed= 5.5f;
                 movingDirection = MovingDirection.Up;
-                MoveUp();
             }
        
         }
-
-        private void OnCollisionExit2D(Collision2D other)
+        
+        private void OnTransformChildrenChanged()
         {
-            if (other.gameObject.CompareTag("Babushka"))
-            {
-                babushkaGrabbed = 0;
-                movingDirection = MovingDirection.Up;
-                MoveUp();
-            }
+            babushkaGrabbed = 0;
+            movingDirection = MovingDirection.Up;
+            MoveUp();
         }
 
 
@@ -116,6 +114,7 @@ namespace Game
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
                 movingDirection = null;
+                clawCollider.enabled = true;
             }
         }
 
