@@ -43,7 +43,8 @@ namespace Game
             if (other.gameObject.CompareTag("Claw"))
             {
                 babushka = GetComponent<Rigidbody2D>();
-                babushka.isKinematic = true;
+                babushka.constraints = RigidbodyConstraints2D.FreezePositionX; //Замораживает позицию по X во время подъема
+                babushka.isKinematic = true;    
                 animation.SetBool(IsPushed, false);
             
                 canBeDeleted = true;
