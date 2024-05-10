@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
    public GameObject upgradeOverlay;
+   public CardManager cardManager;
    public void PauseGame()
    {
       Time.timeScale = 0;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
    public void ShowUpgradeOverlay()
    {
       upgradeOverlay.SetActive(true);
+      cardManager.ShowUpgradeCards();
    }
    
    public void HideUpgradeOverlay()

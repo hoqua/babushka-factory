@@ -19,6 +19,11 @@ namespace Game
 
         private void Start()
         {
+            gameManager = FindObjectOfType<GameManager>();
+            clawScript = FindObjectOfType<Claw>();
+            spawnerScript = FindObjectOfType<Spawner>();
+            conveyorScript = FindObjectOfType<Conveyor>();
+            
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
         }
@@ -29,15 +34,15 @@ namespace Game
         {
             cardActions = new Dictionary<string, System.Action>
             {
-                { "Card - FastClaw", () => {
+                { "Card - FastClaw(Clone)", () => {
                     clawScript.clawSpeed += _clawSpeedInitial * 0.05f;
                 }},
                 
-                { "Card - SpawnRate", () => {
+                { "Card - SpawnRate(Clone)", () => {
                     spawnerScript.interval -= _intervalInitial * 0.05f;
                 }},
                
-                { "Card - FreezeConveyor", () => {
+                { "Card - FreezeConveyor(Clone)", () => {
                     
                     StartCoroutine(DisableScriptForTime(5f));
 
@@ -51,7 +56,7 @@ namespace Game
                     
                 }},
                 
-                { "Card - DoubleBabushkas", () => {
+                { "Card - DoubleBabushkas(Clone)", () => {
                     
                 }},
                 
@@ -65,6 +70,15 @@ namespace Game
                 cardActions[gameObject.name]?.Invoke();
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
+                RemoveCards();
+            }
+        }
+
+        private void RemoveCards()
+        {
+            foreach (GameObject card in GameObject.FindGameObjectsWithTag("Upgrade Card"))
+            {
+                Destroy(card);
             }
         }
     }
