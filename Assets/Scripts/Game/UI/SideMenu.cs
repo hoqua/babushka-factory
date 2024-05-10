@@ -1,23 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Game;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class SideMenuButton : MonoBehaviour
+namespace Game.UI
 {
-   public GameObject SideMenu;
-   
-   public void ShowHideMenu()
+   public class SideMenuButton : MonoBehaviour
    {
-      if (SideMenu != null)
+      public GameObject SideMenu;
+   
+      public void ShowHideMenu()
       {
-         Animator animator = SideMenu.GetComponent<Animator>();
-         if (animator != null)
+         if (SideMenu != null)
          {
-            bool isShown = animator.GetBool("Show");
-            animator.SetBool("Show", !isShown);
+            Animator animator = SideMenu.GetComponent<Animator>();
+            if (animator != null)
+            {
+               bool isShown = animator.GetBool("Show");
+               animator.SetBool("Show", !isShown);
+            }
          }
       }
    }

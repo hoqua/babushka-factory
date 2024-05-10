@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.UI;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -57,6 +58,10 @@ namespace Game
                 }},
                 
                 { "Card - DoubleBabushkas(Clone)", () => {
+                    
+                }},
+                
+                { "Card - Test(Clone)", () => {
                     
                 }},
                 

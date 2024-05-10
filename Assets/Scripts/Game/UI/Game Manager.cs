@@ -1,30 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Game.UI
 {
-   public GameObject upgradeOverlay;
-   public CardManager cardManager;
-   public void PauseGame()
+   public class GameManager : MonoBehaviour
    {
-      Time.timeScale = 0;
+      public GameObject upgradeOverlay;
+      public CardManager cardManager;
+      public void PauseGame()
+      {
+         Time.timeScale = 0;
       
-   }
+      }
 
-   public void ResumeGame()
-   {
-      Time.timeScale = 1;
-   }
+      public void ResumeGame()
+      {
+         Time.timeScale = 1;
+      }
 
-   public void ShowUpgradeOverlay()
-   {
-      upgradeOverlay.SetActive(true);
-      cardManager.ShowUpgradeCards();
-   }
+      public void ShowUpgradeOverlay()
+      {
+         upgradeOverlay.SetActive(true);
+         cardManager.ShowUpgradeCards();
+      }
    
-   public void HideUpgradeOverlay()
-   {
-      upgradeOverlay.SetActive(false);
+      public void HideUpgradeOverlay()
+      {
+         upgradeOverlay.SetActive(false);
+      }
    }
 }
