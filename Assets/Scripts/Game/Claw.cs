@@ -13,7 +13,9 @@ namespace Game
         
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
+        
         private float babushkaGrabbed;
+        private bool isBabushkaGrabbed = false;
 
         private void Start()
         {
@@ -59,6 +61,8 @@ namespace Game
         
         private void OnCollisionEnter2D(Collision2D other)
         {
+            if (isBabushkaGrabbed) return; //Если бабушка схвачена, метод не выполняется
+                
             if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))
             {
                 movingDirection = MovingDirection.Up;
@@ -66,18 +70,24 @@ namespace Game
 
             if (other.gameObject.CompareTag("Babushka"))
             {
-                var babushka = other;
-                babushka.transform.parent = transform;
-                clawCollider.enabled = false;
+                var babushka = other.gameObject;
+                if (!babushka.transform.IsChildOf(transform)) //Проверка. Является ли бабушка дочерним элементом клешни
+                {
+                    babushka.transform.parent = transform;
+                    clawCollider.enabled = false;
+                    
+                    isBabushkaGrabbed = true; //Ставится флаг, что является дочерним элементом клешни
+                    babushkaGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                    movingDirection = MovingDirection.Up;
+                }
                 
-                babushkaGrabbed= 5.5f;
-                movingDirection = MovingDirection.Up;
             }
        
         }
         
         private void OnTransformChildrenChanged()
         {
+            isBabushkaGrabbed = false;
             babushkaGrabbed = 0;
             movingDirection = MovingDirection.Up;
             MoveUp();

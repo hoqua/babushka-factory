@@ -35,26 +35,20 @@ namespace Game
         {
             cardActions = new Dictionary<string, System.Action>
             {
-                { "Card - FastClaw", () => { 
+                { "Card - FastClaw", () => { //Ускоряет клешню на 5%
                     clawScript.clawSpeed += _clawSpeedInitial * 0.05f;
                 }},
                 
-                { "Card - SpawnRate", () => {
+                { "Card - SpawnRate", () => { //Ускоряет спавн бабушек на 5%
                     spawnerScript.interval -= _intervalInitial * 0.05f;
                 }},
                
-                { "Card - FreezeConveyor", () => {
-                    
-                    StartCoroutine(DisableScriptForTime(5f));
-
-                    IEnumerator DisableScriptForTime(float time)
+                { "Card - FreezeConveyor", () => { //Замораживает конвейер на 5 секунд
+                    if (!conveyorScript.IsInvoking(nameof(Conveyor.DisableConveyor)))
                     {
                         conveyorScript.enabled = false;
-                        yield return new WaitForSeconds(time);
-
-                        conveyorScript.enabled = true;
+                        conveyorScript.Invoke(nameof(Conveyor.EnableConveyor), 5f);
                     }
-                    
                 }},
                 
                 { "Card - DoubleBabushkas", () => {
@@ -68,6 +62,8 @@ namespace Game
             };
         }
 
+        
+        
         private void OnMouseDown()
         {
             if (cardActions.ContainsKey(gameObject.name))
@@ -86,5 +82,6 @@ namespace Game
                 Destroy(card);
             }
         }
+        
     }
 }
