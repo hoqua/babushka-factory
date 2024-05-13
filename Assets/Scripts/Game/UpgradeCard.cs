@@ -35,15 +35,15 @@ namespace Game
         {
             cardActions = new Dictionary<string, System.Action>
             {
-                { "Card - FastClaw(Clone)", () => {
+                { "Card - FastClaw", () => { 
                     clawScript.clawSpeed += _clawSpeedInitial * 0.05f;
                 }},
                 
-                { "Card - SpawnRate(Clone)", () => {
+                { "Card - SpawnRate", () => {
                     spawnerScript.interval -= _intervalInitial * 0.05f;
                 }},
                
-                { "Card - FreezeConveyor(Clone)", () => {
+                { "Card - FreezeConveyor", () => {
                     
                     StartCoroutine(DisableScriptForTime(5f));
 
@@ -57,11 +57,11 @@ namespace Game
                     
                 }},
                 
-                { "Card - DoubleBabushkas(Clone)", () => {
+                { "Card - DoubleBabushkas", () => {
                     
                 }},
                 
-                { "Card - Test(Clone)", () => {
+                { "Card - Test", () => {
                     
                 }},
                 
