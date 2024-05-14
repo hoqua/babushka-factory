@@ -9,11 +9,14 @@ namespace Game
         
         public bool canBeDeleted;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
+        
+       
+
+      
 
         void Start()
         {
             animation = GetComponent<Animator>();
-            
             gameObject.layer = LayerMask.NameToLayer("No Collision");
         }
 
@@ -25,7 +28,6 @@ namespace Game
             if (other.CompareTag("Conveyor"))
             {
                 animation.SetBool(IsPushed, true);
-                
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
             }
         }
@@ -37,14 +39,30 @@ namespace Game
                 animation.SetBool(IsPushed, false);
             }
         }
-    
+
+        private void Update()
+        {
+            if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
+            {
+                babushka.constraints = RigidbodyConstraints2D.FreezePositionX;
+            }
+            else //Если не является дочерним элементом, возвращает физику 
+            {
+                babushka = GetComponent<Rigidbody2D>();
+                babushka.bodyType = RigidbodyType2D.Dynamic;
+            }
+           
+            
+        }
         private void OnCollisionEnter2D(Collision2D other)
         {
+            babushka = GetComponent<Rigidbody2D>();
+            
             if (other.gameObject.CompareTag("Claw"))
             {
                 babushka = GetComponent<Rigidbody2D>();
-                babushka.constraints = RigidbodyConstraints2D.FreezePositionX; //Замораживает позицию по X во время подъема
-                babushka.isKinematic = true;    
+
+                babushka.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
                 canBeDeleted = true;
@@ -59,6 +77,7 @@ namespace Game
         //Отключает анимацию пока бабушка в клешне
         private void OnCollisionStay2D(Collision2D other)
         {
+            
             if (other.gameObject.CompareTag("Claw"))
             {
                 animation.SetBool(IsPushed, false);

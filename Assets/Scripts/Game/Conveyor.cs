@@ -21,5 +21,15 @@ namespace Game
             rBody.position += Vector2.left * (speed * Time.fixedDeltaTime);
             rBody.MovePosition(pos);
         }
+
+        public void DisableConveyor()
+        {
+            enabled = false;
+        }
+
+        public void EnableConveyor()
+        {
+            enabled = true;
+        }
     }
 }

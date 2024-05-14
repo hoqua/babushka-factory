@@ -38,9 +38,8 @@ namespace Game.UI
 
             for (int i = 0; i < selectedIndices.Count; i++)
             {
-                GameObject cardInstance = Instantiate(cardPrefabs[selectedIndices[i]]);
-            
-                cardInstance.transform.position = cardPositions[i].position;
+                GameObject cardInstance = Instantiate(cardPrefabs[selectedIndices[i]], cardPositions[i].position, Quaternion.identity);
+                cardInstance.name = cardInstance.name.Replace("(Clone)", ""); //Убирает (Clone) из имени карточки
             }
         }
         
