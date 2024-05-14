@@ -6,7 +6,8 @@ namespace Game
     {
         public new Animator animation;
         private Rigidbody2D babushka;
-        
+
+        public float walkingSpeed;
         public bool canBeDeleted;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         
@@ -18,6 +19,8 @@ namespace Game
         {
             animation = GetComponent<Animator>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
+
+            walkingSpeed = Random.Range(0.5f, 2.5f);
         }
 
   
@@ -29,9 +32,19 @@ namespace Game
             {
                 animation.SetBool(IsPushed, true);
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
+                
             }
         }
 
+        void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Conveyor"))
+            {
+                transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево c скоростью walkingSpeed
+            }
+            
+        }
+        
         void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Conveyor"))
