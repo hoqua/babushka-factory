@@ -60,6 +60,10 @@ namespace Game
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
+                { "Card - GatherAll", () => {
+                    
+                }},
+                
                 { "Card - Test", () => {
                     
                 }},

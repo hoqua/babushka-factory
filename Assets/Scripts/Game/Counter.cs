@@ -1,3 +1,4 @@
+using System;
 using Game.UI;
 using TMPro;
 using Unity.VisualScripting;
@@ -8,11 +9,13 @@ namespace Game
 {
     public class Counter : MonoBehaviour
     {
+        public Deleter deleterScript;
+        
         private BabushkaMain babushkaMain;
         public Player playerManager;
 
         public TMP_Text counterText;
-        private int currentNumOfBabushkas = 0;
+        public int currentNumOfBabushkas = 0;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -24,6 +27,9 @@ namespace Game
             
                 currentNumOfBabushkas += 1;
                 counterText.text = "Собрано Бабушек " + currentNumOfBabushkas.ToString();
+                
+                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
+                deleterScript.deletedCounterText.text = "Бабушек было упущено " + deleterScript.deletedBabushkasRatio + "%"; 
             }
         }
         
