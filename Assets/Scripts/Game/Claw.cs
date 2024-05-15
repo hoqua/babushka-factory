@@ -9,7 +9,8 @@ namespace Game
         
         public float clawSpeed = 5f; 
         private Vector2 initialPosition;
-        private Collider2D clawCollider;
+        public  BoxCollider2D clawCollider;
+        public Transform clawObject;
         
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
@@ -20,7 +21,6 @@ namespace Game
         private void Start()
         {
             initialPosition = transform.position;
-            clawCollider = GetComponent<BoxCollider2D>();
         }
 
         void Update()

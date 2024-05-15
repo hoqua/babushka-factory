@@ -68,6 +68,13 @@ namespace Game
                     GatherAllBabushkas();
                 }},
                 
+                { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
+                    clawScript.clawCollider.size += new Vector2(0.05f, 0);
+                    
+                    Vector3 additionalScale = new Vector3(0.05f, 0.05f, 0.05f);
+                    clawScript.clawObject.localScale += additionalScale;
+                }},
+                
                 { "Card - Test", () => {
                     
                 }},
@@ -78,7 +85,9 @@ namespace Game
                 
             };
         }
-
+        
+        
+        
         void GatherAllBabushkas()
         {
             GameObject[] babushkas = GameObject.FindGameObjectsWithTag("Babushka");
