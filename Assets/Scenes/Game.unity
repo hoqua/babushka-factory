@@ -156,7 +156,6 @@ Transform:
   - {fileID: 889237397}
   - {fileID: 424875522}
   - {fileID: 617702425}
-  - {fileID: 848781233}
   - {fileID: 1159710473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -880,8 +879,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 362.05, y: 182.74}
-  m_SizeDelta: {x: 8.6569, y: 0.97}
+  m_AnchoredPosition: {x: 364.8, y: 182.74}
+  m_SizeDelta: {x: 8.7624, y: 0.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &617702424
 GameObject:
@@ -1259,7 +1258,7 @@ RectTransform:
   - {fileID: 1299635542}
   - {fileID: 595828389}
   - {fileID: 343084203}
-  m_Father: {fileID: 33115337}
+  m_Father: {fileID: 1235536084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1340,8 +1339,8 @@ GameObject:
   - component: {fileID: 889237397}
   - component: {fileID: 889237398}
   - component: {fileID: 889237400}
-  - component: {fileID: 889237401}
   - component: {fileID: 889237402}
+  - component: {fileID: 889237403}
   m_Layer: 6
   m_Name: ConveyorBelt
   m_TagString: Conveyor
@@ -1444,8 +1443,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &889237401
-BoxCollider2D:
+--- !u!114 &889237402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889237396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7bc77f7fc0f2541b53f0a891289562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+--- !u!70 &889237403
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1477,31 +1489,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &889237402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889237396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7bc77f7fc0f2541b53f0a891289562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
+  m_Direction: 1
 --- !u!1 &917657805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2050,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 848781233}
   m_Father: {fileID: 1444788031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1235536085
@@ -2248,8 +2238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 471.24, y: 234.47}
-  m_SizeDelta: {x: 4.4736, y: 1.02}
+  m_AnchoredPosition: {x: 475.52, y: 235}
+  m_SizeDelta: {x: 4.5201, y: 1.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1299635543
 Canvas:
@@ -2380,6 +2370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 2
   babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
+  babushkas: []
 --- !u!4 &1688270002
 Transform:
   m_ObjectHideFlags: 0
@@ -2674,7 +2665,7 @@ Transform:
   m_GameObject: {fileID: 1971434989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2712,7 +2703,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2723,7 +2714,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2033570878
 GameObject:

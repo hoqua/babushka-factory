@@ -12,15 +12,12 @@ namespace Game
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         
        
-
-      
-
+        
         void Start()
         {
             animation = GetComponent<Animator>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
-
-            walkingSpeed = Random.Range(0.5f, 2.5f);
+            
         }
 
   
@@ -40,7 +37,7 @@ namespace Game
         {
             if (other.CompareTag("Conveyor"))
             {
-                transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево c скоростью walkingSpeed
+                transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
             }
             
         }

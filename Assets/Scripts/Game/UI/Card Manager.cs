@@ -56,13 +56,19 @@ namespace Game.UI
         //Добавляет новые карточки, если игрок достиг нужного уровня
         private void AddNewCards()
         {
-            if (playerManager.playerLevel == 5)
+            if (playerManager.playerLevel == 2)
             {
                 GameObject[] prefabs5 = Resources.LoadAll<GameObject>("Cards/5 level"); //Добавляет в пулл карточки 5 уровня
                 cardPrefabs.AddRange(prefabs5);
             }
+
+            if (playerManager.playerLevel == 10)
+            {
+                GameObject[] prefabs10 = Resources.LoadAll<GameObject>("Cards/10 level"); //Добавляет в пулл карточки 10 уровня
+                cardPrefabs.AddRange(prefabs10);
+            }
+         
         }
-    
         
     }
 }
