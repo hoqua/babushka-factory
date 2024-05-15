@@ -14,6 +14,8 @@ namespace Game
         public Conveyor conveyorScript;
         public Claw clawScript;
         public Spawner spawnerScript;
+        public Counter counterScript;
+        public Deleter deleterScript;
         public BabushkaMain babushkaMainScript;
     
         private float _clawSpeedInitial;
@@ -25,7 +27,9 @@ namespace Game
             clawScript = FindObjectOfType<Claw>();
             spawnerScript = FindObjectOfType<Spawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
+            counterScript = FindObjectOfType<Counter>();
             babushkaMainScript = FindObjectOfType<BabushkaMain>();
+            deleterScript = FindObjectOfType<Deleter>();
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -56,12 +60,12 @@ namespace Game
                     }
                 }},
                 
-                { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек
+                { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек на 50% в течение 30 секунд
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - GatherAll", () => {
-                    
+                { "Card - GatherAll", () => { //Собирает всех бабушек на экране
+                    GatherAllBabushkas();
                 }},
                 
                 { "Card - Test", () => {
@@ -75,6 +79,27 @@ namespace Game
             };
         }
 
+        void GatherAllBabushkas()
+        {
+            GameObject[] babushkas = GameObject.FindGameObjectsWithTag("Babushka");
+
+            foreach (GameObject babushka in babushkas)
+            {
+                if (babushka.activeSelf)
+                {
+                    Destroy(babushka);
+                    
+                    counterScript.currentNumOfBabushkas++;
+                    counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas.ToString();
+                    
+                    deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
+                    deleterScript.deletedCounterText.text = "Бабушек было упущено " + deleterScript.deletedBabushkasRatio + "%"; 
+                }
+            }
+                
+            spawnerScript.babushkas.Clear();
+        }
+        
         private IEnumerator SlowDownBabushkaTemporary(float duration)
         {
             foreach (BabushkaMain babushka in spawnerScript.babushkas)

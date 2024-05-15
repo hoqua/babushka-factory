@@ -7,6 +7,7 @@ namespace Game
     public class Deleter : MonoBehaviour
     {
         public Counter counterScript;
+        public Spawner spawnerScript;
         
         public TextMeshProUGUI deletedCounterText;
         public float deletedBabushkasCount = 0;
@@ -15,7 +16,8 @@ namespace Game
         {
             if (other.CompareTag("Babushka"))
             {
-                Destroy(other.GameObject());
+                Destroy(other.gameObject);
+                
                 deletedBabushkasCount += 1;
                 deletedBabushkasRatio = (int)((deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
                 deletedCounterText.text = "Бабушек было упущено " + deletedBabushkasRatio + "%"; 

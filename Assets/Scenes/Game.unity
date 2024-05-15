@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterScript: {fileID: 343084204}
+  spawnerScript: {fileID: 1688270001}
   deletedCounterText: {fileID: 1838816730}
   deletedBabushkasCount: 0
   deletedBabushkasRatio: 0
