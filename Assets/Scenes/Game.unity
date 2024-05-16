@@ -990,6 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToIgnoreTag: UI
   clawSpeed: 5
+  maxGrabbedBabushkas: 2
   clawCollider: {fileID: 617702429}
   clawObject: {fileID: 617702425}
 --- !u!61 &617702429

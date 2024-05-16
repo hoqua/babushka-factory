@@ -10,7 +10,7 @@ namespace Game
         public string objectToIgnoreTag = "UI";
         
         public float clawSpeed = 5f;
-        public int maxGrabbedBabushkas = 2;
+        public int maxGrabbedBabushkas = 1;
         private Vector2 initialPosition;
         public  BoxCollider2D clawCollider;
         public Transform clawObject;
@@ -64,7 +64,7 @@ namespace Game
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; //Если бабушка схвачена, метод не выполняется
+             
                 
             if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))
             {
@@ -73,12 +73,15 @@ namespace Game
 
             if (other.gameObject.CompareTag("Babushka"))
             {
+                if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; //Если бабушка схвачена, метод не выполняется
+                
                 var babushka = other.gameObject;
-                if (!babushka.transform.IsChildOf(transform) && grabbedBabushkas.Count < maxGrabbedBabushkas) //Проверка. Является ли бабушка дочерним элементом клешни
+                if (!babushka.transform.IsChildOf(transform) && grabbedBabushkas.Count < maxGrabbedBabushkas) 
                 {
-                    babushka.transform.parent = transform;
+                    
                     if (!grabbedBabushkas.Contains(babushka)) 
                     {
+                        babushka.transform.parent = transform;
                         grabbedBabushkas.Add(babushka);
                     }
                     clawCollider.enabled = false;

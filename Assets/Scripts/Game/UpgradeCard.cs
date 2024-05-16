@@ -51,8 +51,7 @@ namespace Game
                     spawnerScript.interval -= _intervalInitial * 0.05f;
                 }},
                
-                { "Card - FreezeConveyor", () => 
-                { //Замораживает конвейер на 5 секунд
+                { "Card - FreezeConveyor", () => { //Замораживает конвейер на 5 секунд
                     if (!conveyorScript.IsInvoking(nameof(Conveyor.DisableConveyor)))
                     {
                         conveyorScript.enabled = false;
@@ -74,8 +73,12 @@ namespace Game
                     Vector3 additionalScale = new Vector3(0.05f, 0.05f, 0.05f);
                     clawScript.clawObject.localScale += additionalScale;
                 }},
+                    
+                { "Card - GrabCapacity", () => { //Увеличивает число подбираемых бабушек на один
+                    clawScript.maxGrabbedBabushkas += 1;
+                }},
                 
-                { "Card - Test", () => {
+                { "Card - Test", () => { //Ничего не делает, Duh 
                     
                 }},
                 
