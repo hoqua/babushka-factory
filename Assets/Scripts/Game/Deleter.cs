@@ -20,7 +20,7 @@ namespace Game
                 
                 deletedBabushkasCount += 1;
                 deletedBabushkasRatio = (int)((deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
-                deletedCounterText.text = "Бабушек было упущено " + deletedBabushkasRatio + "%"; 
+                deletedCounterText.text = "Упущено бабушек " + deletedBabushkasRatio + "%"; 
             }
         }
     }
