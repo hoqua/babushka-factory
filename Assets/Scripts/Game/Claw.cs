@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game
@@ -7,7 +9,8 @@ namespace Game
     {
         public string objectToIgnoreTag = "UI";
         
-        public float clawSpeed = 5f; 
+        public float clawSpeed = 5f;
+        public int maxGrabbedBabushkas = 2;
         private Vector2 initialPosition;
         public  BoxCollider2D clawCollider;
         public Transform clawObject;
@@ -16,7 +19,7 @@ namespace Game
         private MovingDirection? movingDirection = null;
         
         private float babushkaGrabbed;
-        private bool isBabushkaGrabbed = false;
+        private List<GameObject> grabbedBabushkas = new List<GameObject>();
 
         private void Start()
         {
@@ -61,7 +64,7 @@ namespace Game
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (isBabushkaGrabbed) return; //Если бабушка схвачена, метод не выполняется
+            if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; //Если бабушка схвачена, метод не выполняется
                 
             if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))
             {
@@ -71,12 +74,15 @@ namespace Game
             if (other.gameObject.CompareTag("Babushka"))
             {
                 var babushka = other.gameObject;
-                if (!babushka.transform.IsChildOf(transform)) //Проверка. Является ли бабушка дочерним элементом клешни
+                if (!babushka.transform.IsChildOf(transform) && grabbedBabushkas.Count < maxGrabbedBabushkas) //Проверка. Является ли бабушка дочерним элементом клешни
                 {
                     babushka.transform.parent = transform;
+                    if (!grabbedBabushkas.Contains(babushka)) 
+                    {
+                        grabbedBabushkas.Add(babushka);
+                    }
                     clawCollider.enabled = false;
                     
-                    isBabushkaGrabbed = true; //Ставится флаг, что является дочерним элементом клешни
                     babushkaGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                     movingDirection = MovingDirection.Up;
                 }
@@ -87,10 +93,22 @@ namespace Game
         
         private void OnTransformChildrenChanged()
         {
-            isBabushkaGrabbed = false;
-            babushkaGrabbed = 0;
-            movingDirection = MovingDirection.Up;
-            MoveUp();
+            grabbedBabushkas.RemoveAll(obj => obj == null);
+            grabbedBabushkas.Clear();
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("Babushka") && !grabbedBabushkas.Contains(child.gameObject))
+                {
+                    grabbedBabushkas.Add(child.gameObject);
+                }
+            }
+
+            if (grabbedBabushkas.Count == 0)
+            {
+                babushkaGrabbed = 0;
+                movingDirection = MovingDirection.Up;
+                MoveUp();
+            }
         }
 
 
@@ -123,6 +141,7 @@ namespace Game
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
+          
                 movingDirection = null;
                 clawCollider.enabled = true;
             }
