@@ -78,11 +78,11 @@ namespace Game
                     clawScript.maxGrabbedBabushkas += 1;
                 }},
                 
-                { "Card - Test", () => { //Ничего не делает, Duh 
-                    
+                { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
+                    spawnerScript.CloneBabushkas();
                 }},
                 
-                { "Card - DoubleBabushkas", () => {
+                { "Card - Test", () => { //Ничего не делает, Duh 
                     
                 }},
                 

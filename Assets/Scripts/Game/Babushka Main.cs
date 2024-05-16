@@ -20,8 +20,11 @@ namespace Game
             
         }
 
-  
-    
+        private void OnDestroy()
+        {
+            Spawner.Instance.RemoveBabushka(this);
+        }
+        
         //Триггерит анимацию ходьбы пока бабушка на конвейере
         void OnTriggerEnter2D(Collider2D other)
         {
