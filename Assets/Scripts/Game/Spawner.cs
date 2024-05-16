@@ -15,20 +15,7 @@ namespace Game
             
         public GameObject babushkaPurplePrefab;
         public List<BabushkaMain> babushkas = new List<BabushkaMain>();
-        public static Spawner Instance { get; private set; }
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
+    
         private void Start()
         {
             _timer = 0f;
