@@ -69,8 +69,7 @@ namespace Game
             {
                 Vector2 spawnPosition = babushka.transform.position;
                 GameObject clonedBabushka = Instantiate(babushkaPurplePrefab, spawnPosition, Quaternion.identity);
-                clonedBabushka.name = "Babushka Purple Clone";
-
+            
                 BabushkaMain clonedBabushkaMainScript = clonedBabushka.GetComponent<BabushkaMain>();
                 if (clonedBabushkaMainScript != null)
                 {
