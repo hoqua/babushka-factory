@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
@@ -13,7 +15,7 @@ namespace Game
             
         public GameObject babushkaPurplePrefab;
         public List<BabushkaMain> babushkas = new List<BabushkaMain>();
-        
+    
         private void Start()
         {
             _timer = 0f;
@@ -43,7 +45,33 @@ namespace Game
                 
                 _timer = 0f;
             }
-        
+            
+        }
+
+        public void CloneBabushkas()
+        {
+            List<BabushkaMain> newBabushkas = new List<BabushkaMain>();
+
+            foreach (BabushkaMain babushka in babushkas)
+            {
+                Vector2 spawnPosition = babushka.transform.position;
+                GameObject clonedBabushka = Instantiate(babushkaPurplePrefab, spawnPosition, Quaternion.identity);
+            
+                BabushkaMain clonedBabushkaMainScript = clonedBabushka.GetComponent<BabushkaMain>();
+                if (clonedBabushkaMainScript != null)
+                {
+                    clonedBabushkaMainScript.walkingSpeed = babushka.walkingSpeed;
+                    newBabushkas.Add(clonedBabushkaMainScript);
+                }
+            }
+        }
+
+        public void RemoveBabushka(BabushkaMain babushka)
+        {
+            if (babushkas.Contains(babushka))
+            {
+                babushkas.Remove(babushka);
+            }
         }
         
     }

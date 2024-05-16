@@ -14,7 +14,7 @@ namespace Game
         private BabushkaMain babushkaMain;
         public Player playerManager;
 
-        public TMP_Text counterText;
+        public TextMeshProUGUI counterText;
         public int currentNumOfBabushkas = 0;
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +29,7 @@ namespace Game
                 counterText.text = "Собрано Бабушек " + currentNumOfBabushkas.ToString();
                 
                 deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
-                deleterScript.deletedCounterText.text = "Бабушек было упущено " + deleterScript.deletedBabushkasRatio + "%"; 
+                deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%"; 
             }
         }
         

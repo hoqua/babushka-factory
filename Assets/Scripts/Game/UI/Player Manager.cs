@@ -11,7 +11,7 @@ namespace Game.UI
         private int currentExp = 0;
         private int requiredExp = 5;    
 
-        public TMP_Text playerLevelText;
+        public TextMeshProUGUI playerLevelText;
     
         public void GainExp()
         {
