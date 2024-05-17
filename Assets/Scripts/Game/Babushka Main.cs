@@ -4,6 +4,8 @@ namespace Game
 {
     public class BabushkaMain : MonoBehaviour
     {
+        public Spawner spawnerScript;
+        
         public new Animator animation;
         private Rigidbody2D babushka;
 
@@ -17,12 +19,12 @@ namespace Game
         {
             animation = GetComponent<Animator>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
-            
+            spawnerScript = FindObjectOfType<Spawner>();
         }
 
         private void OnDestroy()
         {
-            Spawner.Instance.RemoveBabushka(this);
+            spawnerScript.RemoveBabushka(this);
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере

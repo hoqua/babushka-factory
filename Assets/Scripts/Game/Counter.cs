@@ -29,6 +29,7 @@ namespace Game
                 counterText.text = "Собрано Бабушек " + currentNumOfBabushkas.ToString();
                 
                 deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
+                if (currentNumOfBabushkas == 0) return;
                 deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%"; 
             }
         }

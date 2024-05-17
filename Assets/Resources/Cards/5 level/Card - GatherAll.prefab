@@ -292,6 +292,8 @@ MonoBehaviour:
   conveyorScript: {fileID: 0}
   clawScript: {fileID: 0}
   spawnerScript: {fileID: 0}
+  counterScript: {fileID: 0}
+  deleterScript: {fileID: 0}
   babushkaMainScript: {fileID: 0}
 --- !u!61 &3930586535511787273
 BoxCollider2D:
