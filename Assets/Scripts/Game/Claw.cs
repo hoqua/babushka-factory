@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game
 {
     public class Claw : MonoBehaviour
     {
+        
         public string objectToIgnoreTag = "UI";
         
         public float clawSpeed = 5f;
         public int maxGrabbedBabushkas = 1;
+        
         private Vector2 initialPosition;
         public  BoxCollider2D clawCollider;
+        public GameObject magnetCollider;
         public Transform clawObject;
         
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
@@ -24,6 +29,7 @@ namespace Game
         private void Start()
         {
             initialPosition = transform.position;
+            
         }
 
         void Update()
@@ -43,6 +49,8 @@ namespace Game
                 movingDirection = MovingDirection.Horizontal;
             }
 
+            magnetCollider.SetActive(movingDirection != null);
+
             if (movingDirection == MovingDirection.Horizontal)
             {
                 MoveHorizontal();
@@ -60,7 +68,10 @@ namespace Game
                 MoveUp();
             }
 
+            
+
         }
+        
         
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -150,8 +161,7 @@ namespace Game
             }
         }
 
-   
-    
+       
     }
 
 

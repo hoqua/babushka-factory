@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game
@@ -6,14 +7,42 @@ namespace Game
     {
         public Spawner spawnerScript;
         
-        public new Animator animation;
         private Rigidbody2D babushka;
-
-        public float walkingSpeed;
+        public bool isMagnetized;
+        private Vector3 targetPosition;
+        public float magneticForce = 1;
+        
+        public float walkingSpeed; 
         public bool canBeDeleted;
+        
+        public new Animator animation;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         
-       
+        void Awake()
+        {
+            babushka = GetComponent<Rigidbody2D>();
+        }
+
+        private void FixedUpdate()
+        {
+            if (isMagnetized)
+            {
+                Vector2 targetDirection = (targetPosition - transform.position).normalized;
+                babushka.velocity = new Vector2(targetDirection.x, targetDirection.y) * magneticForce;
+            }
+        }
+
+        public void SetTarget(Vector3 position)
+        {
+            targetPosition = position;
+            isMagnetized = true;
+        }
+
+        public void ClearTarget()
+        {
+            targetPosition = transform.position;
+            isMagnetized = false;
+        }
         
         void Start()
         {
@@ -71,12 +100,10 @@ namespace Game
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
-            babushka = GetComponent<Rigidbody2D>();
             
             if (other.gameObject.CompareTag("Claw"))
             {
-                babushka = GetComponent<Rigidbody2D>();
-
+                
                 babushka.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
