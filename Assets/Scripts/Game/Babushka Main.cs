@@ -28,7 +28,7 @@ namespace Game
             if (isMagnetized)
             {
                 Vector2 targetDirection = (targetPosition - transform.position).normalized;
-                babushka.velocity = new Vector2(targetDirection.x, targetDirection.y) * magneticForce;
+                babushka.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
             }
         }
 

@@ -85,11 +85,20 @@ namespace Game
                     spawnerScript.CloneBabushkas();
                 }},
                 
-                { "Card - MagnetClaw", () => { //Добавляет магнит клешне (пока что только включает и всё)
+                { "Card - MagnetClaw", () => { //Добавляет магнит клешне. Последующие взятия карточки увеличевают радиус
                     magnetCollider = GameObject.Find("MagnetCollider");
                     CircleCollider2D magnetCircleCollider = magnetCollider.GetComponent<CircleCollider2D>();
+
+                    if (magnetCircleCollider.enabled == true)
+                    {
+                        magnetCircleCollider.radius += 0.1f;
+                    }
+                    else
+                    {
+                        magnetCircleCollider.enabled = true; 
+                    }
                     
-                    magnetCircleCollider.enabled = true;
+                    
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 

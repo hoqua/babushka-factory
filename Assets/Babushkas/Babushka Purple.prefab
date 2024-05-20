@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerScript: {fileID: 0}
   isMagnetized: 0
-  magneticForce: 5
+  magneticForce: 2
   walkingSpeed: 1
   canBeDeleted: 0
   animation: {fileID: 0}
