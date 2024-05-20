@@ -10,7 +10,7 @@ namespace Game.UI
 {
     public class CardManager : MonoBehaviour
     {
-        public Player playerManager;
+        public PlayerManager playerManager;
     
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;

@@ -22,7 +22,14 @@ namespace Game
         {
             babushka = GetComponent<Rigidbody2D>();
         }
-
+        
+        void Start()
+        {
+            animation = GetComponent<Animator>();
+            gameObject.layer = LayerMask.NameToLayer("No Collision");
+            spawnerScript = FindObjectOfType<Spawner>();
+        }
+        
         private void FixedUpdate()
         {
             if (isMagnetized)
@@ -44,12 +51,7 @@ namespace Game
             isMagnetized = false;
         }
         
-        void Start()
-        {
-            animation = GetComponent<Animator>();
-            gameObject.layer = LayerMask.NameToLayer("No Collision");
-            spawnerScript = FindObjectOfType<Spawner>();
-        }
+       
 
         private void OnDestroy()
         {

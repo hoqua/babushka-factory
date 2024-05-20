@@ -11,6 +11,7 @@ namespace Game
     {
         
         public string objectToIgnoreTag = "UI";
+        public PlayerManager playerManager; 
         
         public float clawSpeed = 5f;
         public int maxGrabbedBabushkas = 1;
@@ -45,7 +46,8 @@ namespace Game
                 {
                     return;
                 }
-
+                
+                playerManager.CheckDurability();
                 movingDirection = MovingDirection.Horizontal;
             }
 

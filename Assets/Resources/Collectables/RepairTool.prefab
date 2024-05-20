@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3028798180941739899}
   - component: {fileID: 6087019884616133970}
   - component: {fileID: 4771128972913592791}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RepairTool
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMagnetized: 0
   magneticForce: 2
+  canBeDeleted: 0

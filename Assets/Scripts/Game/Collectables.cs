@@ -17,26 +17,11 @@ namespace Game
             collectable = GetComponent<Rigidbody2D>();
         }
 
-        private void FixedUpdate()
+        private void Start()
         {
-            if (isMagnetized)
-            {
-                Vector2 targetDirection = (targetPosition - transform.position).normalized;
-                collectable.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
-            }
+            gameObject.layer = LayerMask.NameToLayer("No Collision");
         }
-
-        public void SetTarget(Vector3 position)
-        {
-            targetPosition = position;
-            isMagnetized = true;
-        }
-
-        public void ClearTarget()
-        {
-            targetPosition = transform.position;
-        }
-
+        
         private void Update()
         {
             if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
@@ -63,6 +48,34 @@ namespace Game
             {
                 canBeDeleted = false;
             }
+        }
+        
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Conveyor"))
+            {
+                gameObject.layer = LayerMask.NameToLayer("Collectables");
+            }
+        }
+        
+        private void FixedUpdate()
+        {
+            if (isMagnetized)
+            {
+                Vector2 targetDirection = (targetPosition - transform.position).normalized;
+                collectable.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
+            }
+        }
+
+        public void SetTarget(Vector3 position)
+        {
+            targetPosition = position;
+            isMagnetized = true;
+        }
+
+        public void ClearTarget()
+        {
+            targetPosition = transform.position;
         }
 
     }
