@@ -11,12 +11,17 @@ namespace Game
     {
         public Deleter deleterScript;
         
+        private Collectables collectablesScript;
         private BabushkaMain babushkaMain;
         public Player playerManager;
 
         public TextMeshProUGUI counterText;
         public int currentNumOfBabushkas = 0;
-        
+
+        private void Start()
+        {
+            collectablesScript = FindObjectOfType<Collectables>();
+        }
         private void OnTriggerEnter2D(Collider2D other)
         {
             babushkaMain = other.GetComponent<BabushkaMain>();
@@ -30,7 +35,14 @@ namespace Game
                 
                 deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
                 if (currentNumOfBabushkas == 0) return;
-                deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%"; 
+                deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%";
+                return;
+            }
+
+            collectablesScript = other.GetComponent<Collectables>();
+            if (other.CompareTag("Collectable") && collectablesScript.canBeDeleted)
+            {
+                Destroy(other.GameObject());
             }
         }
         

@@ -2636,6 +2636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 2
   babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
+  repairTool: {fileID: 8216340602676571802, guid: e167268cab14e2647829d3f03360035a, type: 3}
   babushkas: []
 --- !u!4 &1688270002
 Transform:

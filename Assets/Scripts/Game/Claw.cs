@@ -23,7 +23,7 @@ namespace Game
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
         
-        private float babushkaGrabbed;
+        private float ifObjectGrabbed;
         private List<GameObject> grabbedBabushkas = new List<GameObject>();
 
         private void Start()
@@ -82,9 +82,20 @@ namespace Game
                 movingDirection = MovingDirection.Up;
             }
 
+            if (other.gameObject.CompareTag("Collectable"))
+            {
+                var collectable = other.gameObject;
+                collectable.transform.parent = transform;
+                
+                clawCollider.enabled = false;
+                
+                ifObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                movingDirection = MovingDirection.Up;
+            }
+
             if (other.gameObject.CompareTag("Babushka"))
             {
-                if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; //Если бабушка схвачена, метод не выполняется
+                if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
                 
                 var babushka = other.gameObject;
                 if (!babushka.transform.IsChildOf(transform) && grabbedBabushkas.Count < maxGrabbedBabushkas) 
@@ -97,7 +108,7 @@ namespace Game
                     }
                     clawCollider.enabled = false;
                     
-                    babushkaGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                    ifObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                     movingDirection = MovingDirection.Up;
                 }
                 
@@ -119,7 +130,7 @@ namespace Game
 
             if (grabbedBabushkas.Count == 0)
             {
-                babushkaGrabbed = 0;
+                ifObjectGrabbed = 0;
                 movingDirection = MovingDirection.Up;
                 MoveUp();
             }
@@ -150,7 +161,7 @@ namespace Game
 
         void MoveUp()
         {
-            var verticalTarget = new Vector2(transform.position.x, initialPosition.y + babushkaGrabbed);
+            var verticalTarget = new Vector2(transform.position.x, initialPosition.y + ifObjectGrabbed);
             transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * clawSpeed);
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)

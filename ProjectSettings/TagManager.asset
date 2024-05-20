@@ -11,6 +11,7 @@ TagManager:
   - Claw Stopper
   - Upgrade Card
   - UI
+  - Collectable
   layers:
   - Default
   - TransparentFX

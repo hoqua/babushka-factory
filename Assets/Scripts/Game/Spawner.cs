@@ -14,6 +14,7 @@ namespace Game
         private const float MaxX = -1f;
             
         public GameObject babushkaPurplePrefab;
+        public GameObject repairTool;
         public List<BabushkaMain> babushkas = new List<BabushkaMain>();
     
         private void Start()
@@ -32,12 +33,13 @@ namespace Game
             {
                 float randomSpawnPosition = Random.Range(MinX, MaxX);
                 transform.position = new Vector2(randomSpawnPosition, transform.position.y);
+
+                GameObject prefabToSpawn = GetRandomPrefab();
+                GameObject newPrefab = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+                newPrefab.name = prefabToSpawn.name;
                 
-                GameObject newBabushka = Instantiate(babushkaPurplePrefab, transform.position, Quaternion.identity);
-                newBabushka.name = "Babushka Purple";
-                
-                BabushkaMain babushkaMainScript = newBabushka.GetComponent<BabushkaMain>();
-                if (babushkaMainScript != null)
+                BabushkaMain babushkaMainScript = newPrefab.GetComponent<BabushkaMain>();
+                if (babushkaMainScript != null && prefabToSpawn == babushkaPurplePrefab)
                 {
                     babushkaMainScript.walkingSpeed = Random.Range(0.5f, 2.5f);
                     babushkas.Add(babushkaMainScript);
@@ -48,9 +50,24 @@ namespace Game
             
         }
 
+        private GameObject GetRandomPrefab()
+        {
+            var randomValue = Random.value;
+
+            if (randomValue < 0.1f)
+            {
+                return repairTool;
+            }
+            else
+            {
+                return babushkaPurplePrefab;
+            }
+        }
+
         public void CloneBabushkas()
         {
-            List<BabushkaMain> newBabushkas = new List<BabushkaMain>();
+            var newBabushkas = new List<BabushkaMain>();
+            if (newBabushkas == null) throw new ArgumentNullException(nameof(newBabushkas));
 
             foreach (BabushkaMain babushka in babushkas)
             {
