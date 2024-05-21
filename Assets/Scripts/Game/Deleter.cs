@@ -20,7 +20,13 @@ namespace Game
                 
                 deletedBabushkasCount += 1;
                 deletedBabushkasRatio = (int)((deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
+                if (counterScript.currentNumOfBabushkas == 0) return;
                 deletedCounterText.text = "Упущено бабушек " + deletedBabushkasRatio + "%"; 
+            }
+
+            if (other.CompareTag("Collectable"))
+            {
+                Destroy(other.gameObject);
             }
         }
     }

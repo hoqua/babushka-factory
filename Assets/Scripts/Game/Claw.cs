@@ -1,29 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game
 {
     public class Claw : MonoBehaviour
     {
+        
         public string objectToIgnoreTag = "UI";
+        public PlayerManager playerManager; 
         
         public float clawSpeed = 5f;
         public int maxGrabbedBabushkas = 1;
+        
         private Vector2 initialPosition;
         public  BoxCollider2D clawCollider;
+        public GameObject magnetCollider;
         public Transform clawObject;
         
         private Vector2 targetPosition; // Позиция, к которой объект должен двигаться
         private MovingDirection? movingDirection = null;
         
-        private float babushkaGrabbed;
+        private float ifObjectGrabbed;
         private List<GameObject> grabbedBabushkas = new List<GameObject>();
 
         private void Start()
         {
             initialPosition = transform.position;
+            
         }
 
         void Update()
@@ -39,9 +46,12 @@ namespace Game
                 {
                     return;
                 }
-
+                
+                playerManager.CheckDurability();
                 movingDirection = MovingDirection.Horizontal;
             }
+
+            magnetCollider.SetActive(movingDirection != null);
 
             if (movingDirection == MovingDirection.Horizontal)
             {
@@ -60,7 +70,10 @@ namespace Game
                 MoveUp();
             }
 
+            
+
         }
+        
         
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -71,9 +84,20 @@ namespace Game
                 movingDirection = MovingDirection.Up;
             }
 
+            if (other.gameObject.CompareTag("Collectable"))
+            {
+                var collectable = other.gameObject;
+                collectable.transform.parent = transform;
+                
+                clawCollider.enabled = false;
+                
+                ifObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                movingDirection = MovingDirection.Up;
+            }
+
             if (other.gameObject.CompareTag("Babushka"))
             {
-                if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; //Если бабушка схвачена, метод не выполняется
+                if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
                 
                 var babushka = other.gameObject;
                 if (!babushka.transform.IsChildOf(transform) && grabbedBabushkas.Count < maxGrabbedBabushkas) 
@@ -86,7 +110,7 @@ namespace Game
                     }
                     clawCollider.enabled = false;
                     
-                    babushkaGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                    ifObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                     movingDirection = MovingDirection.Up;
                 }
                 
@@ -108,7 +132,7 @@ namespace Game
 
             if (grabbedBabushkas.Count == 0)
             {
-                babushkaGrabbed = 0;
+                ifObjectGrabbed = 0;
                 movingDirection = MovingDirection.Up;
                 MoveUp();
             }
@@ -139,7 +163,7 @@ namespace Game
 
         void MoveUp()
         {
-            var verticalTarget = new Vector2(transform.position.x, initialPosition.y + babushkaGrabbed);
+            var verticalTarget = new Vector2(transform.position.x, initialPosition.y + ifObjectGrabbed);
             transform.position = Vector3.MoveTowards(transform.position, verticalTarget, Time.deltaTime * clawSpeed);
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
@@ -150,8 +174,7 @@ namespace Game
             }
         }
 
-   
-    
+       
     }
 
 

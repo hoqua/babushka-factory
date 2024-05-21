@@ -1,28 +1,61 @@
+using System;
 using UnityEngine;
 
 namespace Game
 {
     public class BabushkaMain : MonoBehaviour
     {
-        public new Animator animation;
+        public Spawner spawnerScript;
+        
         private Rigidbody2D babushka;
-
-        public float walkingSpeed;
+        public bool isMagnetized;
+        private Vector3 targetPosition;
+        public float magneticForce = 1;
+        
+        public float walkingSpeed; 
         public bool canBeDeleted;
+        
+        public new Animator animation;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         
-       
+        void Awake()
+        {
+            babushka = GetComponent<Rigidbody2D>();
+        }
         
         void Start()
         {
             animation = GetComponent<Animator>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
-            
+            spawnerScript = FindObjectOfType<Spawner>();
         }
+        
+        private void FixedUpdate()
+        {
+            if (isMagnetized)
+            {
+                Vector2 targetDirection = (targetPosition - transform.position).normalized;
+                babushka.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
+            }
+        }
+
+        public void SetTarget(Vector3 position)
+        {
+            targetPosition = position;
+            isMagnetized = true;
+        }
+
+        public void ClearTarget()
+        {
+            targetPosition = transform.position;
+            isMagnetized = false;
+        }
+        
+       
 
         private void OnDestroy()
         {
-            Spawner.Instance.RemoveBabushka(this);
+            spawnerScript.RemoveBabushka(this);
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере
@@ -69,12 +102,10 @@ namespace Game
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
-            babushka = GetComponent<Rigidbody2D>();
             
             if (other.gameObject.CompareTag("Claw"))
             {
-                babushka = GetComponent<Rigidbody2D>();
-
+                
                 babushka.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             

@@ -17,6 +17,7 @@ namespace Game
         public Counter counterScript;
         public Deleter deleterScript;
         public BabushkaMain babushkaMainScript;
+        public GameObject magnetCollider;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -30,6 +31,8 @@ namespace Game
             counterScript = FindObjectOfType<Counter>();
             babushkaMainScript = FindObjectOfType<BabushkaMain>();
             deleterScript = FindObjectOfType<Deleter>();
+            
+            
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -80,6 +83,22 @@ namespace Game
                 
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
                     spawnerScript.CloneBabushkas();
+                }},
+                
+                { "Card - MagnetClaw", () => { //Добавляет магнит клешне. Последующие взятия карточки увеличевают радиус
+                    magnetCollider = GameObject.Find("MagnetCollider");
+                    CircleCollider2D magnetCircleCollider = magnetCollider.GetComponent<CircleCollider2D>();
+
+                    if (magnetCircleCollider.enabled == true)
+                    {
+                        magnetCircleCollider.radius += 0.1f;
+                    }
+                    else
+                    {
+                        magnetCircleCollider.enabled = true; 
+                    }
+                    
+                    
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 

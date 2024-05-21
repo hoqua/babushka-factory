@@ -1,18 +1,20 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI
 {
-    public class Player : MonoBehaviour
+    public class PlayerManager : MonoBehaviour
     {
         public GameManager gameManager;
     
         public int playerLevel = 1;
         private int currentExp = 0;
-        private int requiredExp = 5;    
+        private int requiredExp = 5;
+        public int clawDurability = 100;
 
         public TextMeshProUGUI playerLevelText;
-    
+        public TextMeshProUGUI clawDurabilityText;
         public void GainExp()
         {
             currentExp++;
@@ -34,7 +36,18 @@ namespace Game.UI
                 gameManager.ShowUpgradeOverlay();
             }
         }
-    
+
+        public void CheckDurability()
+        {
+            if (clawDurability <= 0)
+            {
+                gameManager.PauseGame();
+                Debug.Log("Вы проиграли :(");
+            }
+
+            clawDurability--;
+            clawDurabilityText.text = "Прочность клешни " + clawDurability.ToString() + "%";
+        }
     
     }
 }
