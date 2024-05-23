@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,7 +227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &200003999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -241,6 +240,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 301325629}
   - {fileID: 1202938301}
   - {fileID: 1815732253}
   m_Father: {fileID: 1444788031}
@@ -405,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &301325627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,12 +449,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301325626}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 200003999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &343084202
 GameObject:
@@ -1864,11 +1864,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 694756610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195, y: 239.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 390, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1.75, y: 1}
 --- !u!114 &1065192824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,11 +2302,11 @@ RectTransform:
   - {fileID: 716700600}
   m_Father: {fileID: 200003999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 522, y: -182.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 65}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 2, y: -2}
 --- !u!114 &1202938302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,6 +2483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 471723880}
   playerLevel: 1
+  clawDurability: 100
   playerLevelText: {fileID: 383525041}
   clawDurabilityText: {fileID: 1065192824}
 --- !u!1 &1321380818
@@ -2875,7 +2876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
-  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2c1de9a42d6e5244be8a2b3b48837f9, type: 3}
+  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2f3b2dfd1eda0a46bff35610befdc6b, type: 3}
   repairTool: {fileID: 8216340602676571802, guid: e167268cab14e2647829d3f03360035a, type: 3}
   babushkas: []
 --- !u!4 &1688270002
@@ -3266,4 +3267,3 @@ SceneRoots:
   - {fileID: 1444788031}
   - {fileID: 33115337}
   - {fileID: 1688270002}
-  - {fileID: 301325629}
