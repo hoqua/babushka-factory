@@ -86,6 +86,7 @@ namespace Game
 
             if (other.gameObject.CompareTag("Collectable"))
             {
+                
                 var collectable = other.gameObject;
                 collectable.transform.parent = transform;
                 
@@ -93,9 +94,10 @@ namespace Game
                 
                 ifObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 movingDirection = MovingDirection.Up;
+                
             }
 
-            if (other.gameObject.CompareTag("Babushka"))
+            else if (other.gameObject.CompareTag("Babushka"))
             {
                 if (grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
                 
