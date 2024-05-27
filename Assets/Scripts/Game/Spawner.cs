@@ -10,8 +10,10 @@ namespace Game
         private float _timer;
         public float interval;
 
-        private const float MinX = -9f;
-        private const float MaxX = -1f;
+        private const float MinX = -7f;
+        private const float MaxX = 7f;
+        private float minSpeed = 0.5f;
+        private float maxSpeed = 3f;
             
         public GameObject babushkaPurplePrefab;
         public GameObject repairTool;
@@ -41,7 +43,8 @@ namespace Game
                 BabushkaMain babushkaMainScript = newPrefab.GetComponent<BabushkaMain>();
                 if (babushkaMainScript != null && prefabToSpawn == babushkaPurplePrefab)
                 {
-                    babushkaMainScript.walkingSpeed = Random.Range(0.5f, 2.5f);
+                    float normalized = (transform.position.x - MinX) / (MaxX - MinX);
+                    babushkaMainScript.walkingSpeed = Mathf.Lerp(minSpeed, maxSpeed, normalized);
                     babushkas.Add(babushkaMainScript);
                 }
                 
