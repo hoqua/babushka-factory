@@ -17,6 +17,7 @@ namespace Game
             
         public GameObject babushkaPurplePrefab;
         public GameObject repairTool;
+        public GameObject cookieBox;
         public List<BabushkaMain> babushkas = new List<BabushkaMain>();
     
         private void Start()
@@ -56,11 +57,15 @@ namespace Game
         private GameObject GetRandomPrefab()
         {
             var randomValue = Random.value;
-
-            if (randomValue < 0.1f)
+            if (randomValue < 0.05f)
+            {
+                return cookieBox;
+            }
+            else if (randomValue < 0.1f)
             {
                 return repairTool;
             }
+                
             else
             {
                 return babushkaPurplePrefab;

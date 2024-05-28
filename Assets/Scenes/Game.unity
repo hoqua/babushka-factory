@@ -152,6 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1688270002}
   - {fileID: 889237397}
   - {fileID: 617702425}
   - {fileID: 1159710473}
@@ -2978,6 +2979,7 @@ MonoBehaviour:
   interval: 2
   babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2f3b2dfd1eda0a46bff35610befdc6b, type: 3}
   repairTool: {fileID: 8216340602676571802, guid: e167268cab14e2647829d3f03360035a, type: 3}
+  cookieBox: {fileID: 7590434847940535609, guid: ffb27b6ba77c2b54294ff3cdce7222bf, type: 3}
   babushkas: []
 --- !u!4 &1688270002
 Transform:
@@ -2987,12 +2989,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688270000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2381109, y: 6.8308377, z: -0.03127214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 33115337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815732252
 GameObject:
@@ -3412,4 +3414,3 @@ SceneRoots:
   - {fileID: 1895745754}
   - {fileID: 1444788031}
   - {fileID: 33115337}
-  - {fileID: 1688270002}

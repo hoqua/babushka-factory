@@ -42,9 +42,20 @@ namespace Game
             collectablesScript = other.GetComponent<Collectables>();
             if (other.CompareTag("Collectable") && collectablesScript.canBeDeleted)
             {
+                if (other.name == "RepairTool")
+                {
+                    playerManager.clawDurability = 100;
+                    playerManager.clawDurabilityText.text = "Прочность клешни " + playerManager.clawDurability + "%";
+                }
+
+                if (other.name == "CookieBox")
+                {
+                    playerManager.currentExp = playerManager.requiredExp;
+                    playerManager.CheckLevelUp();
+                }
+
                 Destroy(other.GameObject());
-                playerManager.clawDurability = 100;
-                playerManager.clawDurabilityText.text = "Прочность клешни " + playerManager.clawDurability + "%";
+                
             }
         }
         

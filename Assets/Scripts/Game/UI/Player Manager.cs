@@ -9,8 +9,8 @@ namespace Game.UI
         public GameManager gameManager;
     
         public int playerLevel = 1;
-        private int currentExp = 0;
-        private int requiredExp = 5;
+        public int currentExp = 0;
+        public int requiredExp = 5;
         public int clawDurability = 100;
 
         public TextMeshProUGUI playerLevelText;
@@ -22,7 +22,7 @@ namespace Game.UI
             CheckLevelUp();
         }
 
-        private void CheckLevelUp()
+        public void CheckLevelUp()
         {
             if (currentExp >= requiredExp)
             {
