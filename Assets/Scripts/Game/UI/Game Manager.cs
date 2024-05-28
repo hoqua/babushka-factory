@@ -6,6 +6,7 @@ namespace Game.UI
    {
       public GameObject upgradeOverlay;
       public CardManager cardManager;
+      public Claw clawScript;
       public void PauseGame()
       {
          Time.timeScale = 0;
@@ -21,11 +22,18 @@ namespace Game.UI
       {
          upgradeOverlay.SetActive(true);
          cardManager.ShowUpgradeCards();
+         
+         clawScript.isClawSoundPlaying = false;
+         clawScript.StopClawSound();
       }
    
       public void HideUpgradeOverlay()
       {
          upgradeOverlay.SetActive(false);
+         
+         clawScript.isClawSoundPlaying = true;
+         clawScript.PlayClawSound();
+         
       }
    }
 }

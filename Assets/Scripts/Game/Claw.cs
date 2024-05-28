@@ -27,10 +27,14 @@ namespace Game
         private float ifObjectGrabbed;
         private List<GameObject> grabbedBabushkas = new List<GameObject>();
 
+        public ulong clawSound;
+        private AudioSource _audioSource;
+        public bool isClawSoundPlaying = false;
+        
         private void Start()
         {
             initialPosition = transform.position;
-            
+            _audioSource = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -55,6 +59,7 @@ namespace Game
 
             if (movingDirection == MovingDirection.Horizontal)
             {
+                
                 MoveHorizontal();
             }
 
@@ -141,6 +146,8 @@ namespace Game
 
         void MoveHorizontal()
         {
+            if (!isClawSoundPlaying) PlayClawSound();
+            
             var horizontalTarget = new Vector2(targetPosition.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, horizontalTarget, Time.deltaTime * clawSpeed);
 
@@ -171,10 +178,26 @@ namespace Game
           
                 movingDirection = null;
                 clawCollider.enabled = true;
+                StopClawSound();
             }
         }
 
-       
+        public void PlayClawSound()
+        {
+            _audioSource.loop = true;
+            _audioSource.Play(clawSound);
+            isClawSoundPlaying = true;
+
+        }
+
+        public void StopClawSound()
+        {
+            _audioSource.Stop();
+            isClawSoundPlaying = false;
+        }
+
+
+
     }
 
 
