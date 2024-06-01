@@ -35,5 +35,6 @@ namespace Game.UI
          clawScript.PlayClawSound();
          
       }
+      
    }
 }
