@@ -13,17 +13,26 @@ namespace Game
         
         public new Animator animation;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
-        
+      
+
         void Start()
         {
-            animation = GetComponent<Animator>();
-            gameObject.layer = LayerMask.NameToLayer("No Collision");
             spawnerScript = FindObjectOfType<Spawner>();
+            
+            _rigidbody = GetComponent<Rigidbody2D>();
+            gameObject.layer = LayerMask.NameToLayer("No Collision");
+            
+            animation = GetComponent<Animator>();
         }
         
         private void OnDestroy()
         {
             spawnerScript.RemoveBabushka(this);
+        }
+
+        void Update()
+        {
+            _rigidbody.bodyType = transform.parent == null ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере
@@ -53,27 +62,13 @@ namespace Game
                 animation.SetBool(IsPushed, false);
             }
         }
-
-        private void Update()
-        {
-            if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
-            {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-            }
-            else //Если не является дочерним элементом, возвращает физику 
-            {
-                _rigidbody = GetComponent<Rigidbody2D>();
-                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
-            }
-           
-            
-        }
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             
-            if (other.gameObject.CompareTag("Claw"))
+            if (other.gameObject.CompareTag("Claw") && transform.parent == null) 
             {
-                
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
@@ -81,6 +76,7 @@ namespace Game
             }
             else
             {
+                
                 canBeDeleted = false;
             }
         

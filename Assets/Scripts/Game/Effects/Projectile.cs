@@ -31,7 +31,6 @@ namespace Game.Effects
             _rb.velocity = reflectDirection;
 
             _bounceCount++;
-            Debug.Log("Bounce");
             
             if (_bounceCount >= maxBounces)
             {
