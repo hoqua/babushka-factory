@@ -61,15 +61,13 @@ namespace Game
             {
                 return cookieBox;
             }
-            else if (randomValue < 0.1f)
+
+            if (randomValue < 0.1f)
             {
                 return repairTool;
             }
-                
-            else
-            {
-                return babushkaPurplePrefab;
-            }
+
+            return babushkaPurplePrefab;
         }
 
         public void CloneBabushkas()

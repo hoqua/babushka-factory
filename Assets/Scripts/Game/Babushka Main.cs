@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game
@@ -7,21 +6,13 @@ namespace Game
     {
         public Spawner spawnerScript;
         
-        private Rigidbody2D babushka;
-        public bool isMagnetized;
-        private Vector3 targetPosition;
-        public float magneticForce = 1;
+        private Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
         public bool canBeDeleted;
         
         public new Animator animation;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
-        
-        void Awake()
-        {
-            babushka = GetComponent<Rigidbody2D>();
-        }
         
         void Start()
         {
@@ -30,29 +21,6 @@ namespace Game
             spawnerScript = FindObjectOfType<Spawner>();
         }
         
-        private void FixedUpdate()
-        {
-            if (isMagnetized)
-            {
-                Vector2 targetDirection = (targetPosition - transform.position).normalized;
-                babushka.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
-            }
-        }
-
-        public void SetTarget(Vector3 position)
-        {
-            targetPosition = position;
-            isMagnetized = true;
-        }
-
-        public void ClearTarget()
-        {
-            targetPosition = transform.position;
-            isMagnetized = false;
-        }
-        
-       
-
         private void OnDestroy()
         {
             spawnerScript.RemoveBabushka(this);
@@ -90,12 +58,12 @@ namespace Game
         {
             if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
             {
-                babushka.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
             }
             else //Если не является дочерним элементом, возвращает физику 
             {
-                babushka = GetComponent<Rigidbody2D>();
-                babushka.bodyType = RigidbodyType2D.Dynamic;
+                _rigidbody = GetComponent<Rigidbody2D>();
+                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             }
            
             
@@ -106,7 +74,7 @@ namespace Game
             if (other.gameObject.CompareTag("Claw"))
             {
                 
-                babushka.isKinematic = true; 
+                _rigidbody.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
                 canBeDeleted = true;

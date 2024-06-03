@@ -1,10 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.UI;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 namespace Game
 {
@@ -17,7 +15,6 @@ namespace Game
         public Counter counterScript;
         public Deleter deleterScript;
         public BabushkaMain babushkaMainScript;
-        public GameObject magnetCollider;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -38,24 +35,24 @@ namespace Game
             _intervalInitial = spawnerScript.interval;
 
         }
-        
-        Dictionary<BabushkaMain, float> originalSpeed = new Dictionary<BabushkaMain, float>();
-        private readonly Dictionary<string, System.Action> cardActions;
+
+        private readonly Dictionary<BabushkaMain, float> _originalSpeed = new Dictionary<BabushkaMain, float>();
+        private readonly Dictionary<string, Action> _cardActions;
 
         public UpgradeCard()
         {
-            cardActions = new Dictionary<string, System.Action>
+            _cardActions = new Dictionary<string, Action>
             {
                 { "Card - FastClaw", () => { //Ускоряет клешню на 5%
-                    clawScript.clawSpeed += _clawSpeedInitial * 0.05f;
+                    clawScript!.clawSpeed += _clawSpeedInitial * 0.05f;
                 }},
                 
                 { "Card - SpawnRate", () => { //Ускоряет спавн бабушек на 5%
-                    spawnerScript.interval -= _intervalInitial * 0.05f;
+                    spawnerScript!.interval -= _intervalInitial * 0.05f;
                 }},
                
                 { "Card - FreezeConveyor", () => { //Замораживает конвейер на 5 секунд
-                    if (!conveyorScript.IsInvoking(nameof(Conveyor.DisableConveyor)))
+                    if (!conveyorScript!.IsInvoking(nameof(Conveyor.DisableConveyor)))
                     {
                         conveyorScript.enabled = false;
                         conveyorScript.Invoke(nameof(Conveyor.EnableConveyor), 5f);
@@ -71,34 +68,18 @@ namespace Game
                 }},
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
-                    clawScript.clawCollider.size += new Vector2(0.05f, 0);
+                    clawScript!.clawCollider.size += new Vector2(0.05f, 0);
                     
                     Vector3 additionalScale = new Vector3(0.05f, 0.05f, 0.05f);
                     clawScript.clawObject.localScale += additionalScale;
                 }},
                     
                 { "Card - GrabCapacity", () => { //Увеличивает число подбираемых бабушек на один
-                    clawScript.maxGrabbedBabushkas += 1;
+                    clawScript!.maxGrabbedBabushkas += 1;
                 }},
                 
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
-                    spawnerScript.CloneBabushkas();
-                }},
-                
-                { "Card - MagnetClaw", () => { //Добавляет магнит клешне. Последующие взятия карточки увеличевают радиус
-                    magnetCollider = GameObject.Find("MagnetCollider");
-                    CircleCollider2D magnetCircleCollider = magnetCollider.GetComponent<CircleCollider2D>();
-
-                    if (magnetCircleCollider.enabled == true)
-                    {
-                        magnetCircleCollider.radius += 0.1f;
-                    }
-                    else
-                    {
-                        magnetCircleCollider.enabled = true; 
-                    }
-                    
-                    
+                    spawnerScript!.CloneBabushkas();
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
@@ -121,7 +102,7 @@ namespace Game
                     Destroy(babushka);
                     
                     counterScript.currentNumOfBabushkas++;
-                    counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas.ToString();
+                    counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas;
                     
                     deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
                     deleterScript.deletedCounterText.text = "Бабушек было упущено " + deleterScript.deletedBabushkasRatio + "%"; 
@@ -135,7 +116,7 @@ namespace Game
         {
             foreach (BabushkaMain babushka in spawnerScript.babushkas)
             {
-                originalSpeed[babushka] = babushka.walkingSpeed;
+                _originalSpeed[babushka] = babushka.walkingSpeed;
                 babushka.walkingSpeed *= 0.5f;
             }
             
@@ -143,9 +124,9 @@ namespace Game
 
             foreach (BabushkaMain babushka in spawnerScript.babushkas)
             {
-                if (originalSpeed.ContainsKey(babushka))
+                if (_originalSpeed.TryGetValue(babushka, out var value))
                 {
-                    babushka.walkingSpeed = originalSpeed[babushka];
+                    babushka.walkingSpeed = value;
                 }
                 
             }
@@ -154,9 +135,9 @@ namespace Game
         
         private void OnMouseDown()
         {
-            if (cardActions.ContainsKey(gameObject.name))
+            if (_cardActions.ContainsKey(gameObject.name))
             {
-                cardActions[gameObject.name]?.Invoke();
+                _cardActions[gameObject.name]?.Invoke();
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
                 RemoveCards();
