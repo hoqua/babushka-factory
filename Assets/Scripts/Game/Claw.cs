@@ -84,7 +84,7 @@ namespace Game
         {
              
                 
-            if (other.gameObject.CompareTag("Conveyor") || other.gameObject.CompareTag("Claw Stopper"))
+            if (other.gameObject.CompareTag("Conveyor"))
             {
                 movingDirection = MovingDirection.Up;
             }
