@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3418148027718207742}
   - component: {fileID: 5864672332325307619}
   m_Layer: 7
-  m_Name: Babushka Purple
+  m_Name: Babushka Basic
   m_TagString: Babushka
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

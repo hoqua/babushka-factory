@@ -12,6 +12,7 @@ namespace Game
         public bool canBeDeleted;
         
         public new Animator animation;
+        private static readonly int IsFalling = Animator.StringToHash("isFalling");
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
       
 
@@ -33,6 +34,8 @@ namespace Game
         void Update()
         {
             _rigidbody.bodyType = transform.parent == null ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+
+            animation.SetBool(IsFalling, _rigidbody.velocity.y < 0); //Анимация падения
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере

@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 3cdd0fbf18700cf4ebe75408df0ee190
+guid: 7b9116ceae4ba8749804433035e9909d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -106,17 +93,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Babulya running no bg_0
+      name: Babulya Falling_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 1091.8
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 100f73bd749426948b6bdadd49c2c0f9
-      internalID: -387935706
+      spriteID: 0c4113829f012744b99165ee47285290
+      internalID: -1309551726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_1
+      name: Babulya Falling_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 1091
         y: 0
-        width: 32
-        height: 32
+        width: 1091.8
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67f2e649c14021c4eac715234adc6074
-      internalID: 455129696
+      spriteID: 8c2cb63eb73f68f4c829b50386789275
+      internalID: 547187479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_2
+      name: Babulya Falling_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 2182
         y: 0
-        width: 32
-        height: 32
+        width: 1091.8
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91d3b76808831b54e8c830d8b2d37b5e
-      internalID: 1730061032
+      spriteID: a25a26591ad88194888fe1d9c529ae1f
+      internalID: 1362788159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_3
+      name: Babulya Falling_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 3273
         y: 0
-        width: 32
-        height: 32
+        width: 1091.8
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25dd4b31623214149abb47fd726d16ce
-      internalID: 66568726
+      spriteID: cdcb17db74258ba48945111398ec2750
+      internalID: 248958466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_4
+      name: Babulya Falling_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 4364
         y: 0
-        width: 32
-        height: 32
+        width: 1091.8
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,71 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 042881425f6cff34783d73aa70ce1436
-      internalID: 1436232633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya running no bg_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d4acdc167b588741a11a80e4999904f
-      internalID: -10643139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya running no bg_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a50cdd7c1614ea4eae48f1ca0a8cf83
-      internalID: 1899217220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya running no bg_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c50cb8a27a03cb04594536dd82180fea
-      internalID: -813517574
+      spriteID: 89d08903029a327459fa0d6b60c7af41
+      internalID: -1543567153
       vertices: []
       indices: 
       edges: []
@@ -288,14 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Babulya running no bg_0: -387935706
-      Babulya running no bg_1: 455129696
-      Babulya running no bg_2: 1730061032
-      Babulya running no bg_3: 66568726
-      Babulya running no bg_4: 1436232633
-      Babulya running no bg_5: -10643139
-      Babulya running no bg_6: 1899217220
-      Babulya running no bg_7: -813517574
+      Babulya Falling_0: -1309551726
+      Babulya Falling_1: 547187479
+      Babulya Falling_2: 1362788159
+      Babulya Falling_3: 248958466
+      Babulya Falling_4: -1543567153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
