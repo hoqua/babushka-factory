@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Game.Effects;
 using Game.UI;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
+
 
 namespace Game
 {
@@ -66,9 +66,9 @@ namespace Game
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - CollectAll", () => { //Собирает всех бабушек на экране
-                    CollectAllBabushkas();
-                }},
+                { "Card - CollectAll",  //Собирает всех бабушек на экране
+                    CollectAllBabushkas
+                },
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
                     clawScript!.clawCollider.size += new Vector2(0.05f, 0);
@@ -88,7 +88,7 @@ namespace Game
                     if (projectileSpawnerScript.enabled == false)
                     {
                         projectileSpawnerScript.enabled = true;
-                    } ;
+                    } 
 
                 }},
                 
