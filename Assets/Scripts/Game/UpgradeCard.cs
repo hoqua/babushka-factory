@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Effects;
 using Game.UI;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace Game
 {
@@ -14,6 +16,7 @@ namespace Game
         public Spawner spawnerScript;
         public Counter counterScript;
         public Deleter deleterScript;
+        public ProjectileSpawner projectileSpawnerScript;
         public BabushkaMain babushkaMainScript;
     
         private float _clawSpeedInitial;
@@ -28,7 +31,7 @@ namespace Game
             counterScript = FindObjectOfType<Counter>();
             babushkaMainScript = FindObjectOfType<BabushkaMain>();
             deleterScript = FindObjectOfType<Deleter>();
-            
+            projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             
             
             _clawSpeedInitial = clawScript.clawSpeed;
@@ -80,6 +83,13 @@ namespace Game
                 
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
                     spawnerScript!.CloneBabushkas();
+                }},
+                { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её.
+                    if (projectileSpawnerScript.enabled == false)
+                    {
+                        projectileSpawnerScript.enabled = true;
+                    } ;
+
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 

@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4412913694570250714}
   - component: {fileID: 8314119178626417116}
   - component: {fileID: 8687743343880342798}
-  - component: {fileID: -6525687293215898179}
+  - component: {fileID: 5421929542225843740}
   - component: {fileID: 1369808329322391846}
   m_Layer: 11
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-6525687293215898179
+--- !u!58 &5421929542225843740
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,5 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789815f70dc8f2843a751e70d69eab6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  babushkaMainScript: {fileID: 0}
   projectileSpeed: 10
   maxBounces: 5

@@ -6,7 +6,7 @@ namespace Game.Effects
 {
     public class ProjectileSpawner : MonoBehaviour
     {
-        public float spawnInterval = 2f;
+        public float spawnInterval = 10f;
         public GameObject projectilePrefab;
 
         private Camera _mainCamera;

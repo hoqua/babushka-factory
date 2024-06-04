@@ -2814,7 +2814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1644909528
 Transform:
   m_ObjectHideFlags: 0
@@ -2842,9 +2842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d230364dc3a5214ebcbe6da29dbf44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 2
-  projectilePrefab: {fileID: 1027679103986083337, guid: 6a08374ff17a1264cb4ab842ccb19306,
-    type: 3}
+  spawnInterval: 10
+  projectilePrefab: {fileID: 1027679103986083337, guid: 6a08374ff17a1264cb4ab842ccb19306, type: 3}
 --- !u!1 &1681295059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2958,7 @@ GameObject:
   - component: {fileID: 1688270002}
   - component: {fileID: 1688270001}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Collectables Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2978,12 +2977,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 2
-  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2f3b2dfd1eda0a46bff35610befdc6b,
-    type: 3}
-  repairTool: {fileID: 8216340602676571802, guid: e167268cab14e2647829d3f03360035a,
-    type: 3}
-  cookieBox: {fileID: 7590434847940535609, guid: ffb27b6ba77c2b54294ff3cdce7222bf,
-    type: 3}
+  babushkaPurplePrefab: {fileID: 8479414038719990639, guid: e2f3b2dfd1eda0a46bff35610befdc6b, type: 3}
+  repairTool: {fileID: 8216340602676571802, guid: e167268cab14e2647829d3f03360035a, type: 3}
+  cookieBox: {fileID: 7590434847940535609, guid: ffb27b6ba77c2b54294ff3cdce7222bf, type: 3}
   babushkas: []
 --- !u!4 &1688270002
 Transform:
@@ -3295,7 +3291,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: [{fileID: 1644626079}, {fileID: 1236032607}]
+  m_Children:
+  - {fileID: 1644626079}
+  - {fileID: 1236032607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971434989

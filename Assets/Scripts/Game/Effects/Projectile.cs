@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Game.Effects
 {
     public class Projectile : MonoBehaviour
     {
+        public BabushkaMain babushkaMainScript;
+        
         public float projectileSpeed = 5f;
         public int maxBounces = 5;
         private int _bounceCount;
@@ -13,6 +16,8 @@ namespace Game.Effects
         
         private void Start()
         {
+            babushkaMainScript = FindObjectOfType<BabushkaMain>();
+            
             _rb = GetComponent<Rigidbody2D>();
             _rb.velocity = transform.right * projectileSpeed;
         }
@@ -35,6 +40,15 @@ namespace Game.Effects
             if (_bounceCount >= maxBounces)
             {
                 Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
+            {
+                Debug.Log("Hit");
+                babushkaMainScript.walkingSpeed *= 0.5f;
             }
         }
     }
