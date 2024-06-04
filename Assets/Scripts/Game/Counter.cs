@@ -9,8 +9,8 @@ namespace Game
     {
         public Deleter deleterScript;
         
-        private Collectables collectablesScript;
-        private BabushkaMain babushkaMain;
+        private Collectables _collectablesScript;
+        private BabushkaMain _babushkaMain;
         public PlayerManager playerManager;
 
         public TextMeshProUGUI counterText;
@@ -18,12 +18,12 @@ namespace Game
 
         private void Start()
         {
-            collectablesScript = FindObjectOfType<Collectables>();
+            _collectablesScript = FindObjectOfType<Collectables>();
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
-            babushkaMain = other.GetComponent<BabushkaMain>();
-            if (other.CompareTag("Babushka") && babushkaMain.canBeDeleted)
+            _babushkaMain = other.GetComponent<BabushkaMain>();
+            if (other.CompareTag("Babushka") && _babushkaMain.canBeCollected)
             {
                 Destroy(other.GameObject());
                 playerManager.GainExp();
@@ -37,8 +37,8 @@ namespace Game
                 return;
             }
 
-            collectablesScript = other.GetComponent<Collectables>();
-            if (other.CompareTag("Collectable") && collectablesScript.canBeDeleted)
+            _collectablesScript = other.GetComponent<Collectables>();
+            if (other.CompareTag("Collectable") && _collectablesScript.canBeDeleted)
             {
                 if (other.name == "RepairTool")
                 {

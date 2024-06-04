@@ -9,7 +9,7 @@ namespace Game
         private Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
-        public bool canBeDeleted;
+        public bool canBeCollected;
         
         public new Animator animation;
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
@@ -75,12 +75,12 @@ namespace Game
                 _rigidbody.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
-                canBeDeleted = true;
+                canBeCollected = true;
             }
             else
             {
                 
-                canBeDeleted = false;
+                canBeCollected = false;
             }
         
         }
