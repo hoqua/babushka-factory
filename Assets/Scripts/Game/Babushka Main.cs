@@ -4,8 +4,6 @@ namespace Game
 {
     public class BabushkaMain : MonoBehaviour
     {
-        public Spawner spawnerScript;
-        
         private Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
@@ -15,21 +13,14 @@ namespace Game
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         private static readonly int IsGrabbed = Animator.StringToHash("isGrabbed");
-      
+
 
         void Start()
         {
-            spawnerScript = FindObjectOfType<Spawner>();
-            
             _rigidbody = GetComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
-            
+
             animation = GetComponent<Animator>();
-        }
-        
-        private void OnDestroy()
-        {
-            spawnerScript.RemoveBabushka(this);
         }
 
         void Update()

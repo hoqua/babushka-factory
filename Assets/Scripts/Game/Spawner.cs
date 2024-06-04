@@ -72,19 +72,17 @@ namespace Game
 
         public void CloneBabushkas()
         {
-            var newBabushkas = new List<BabushkaMain>();
-            if (newBabushkas == null) throw new ArgumentNullException(nameof(newBabushkas));
-
             foreach (BabushkaMain babushka in babushkas)
             {
+                if (babushka == null) continue;
+                
                 Vector2 spawnPosition = babushka.transform.position;
                 GameObject clonedBabushka = Instantiate(babushkaPurplePrefab, spawnPosition, Quaternion.identity);
-            
+
                 BabushkaMain clonedBabushkaMainScript = clonedBabushka.GetComponent<BabushkaMain>();
                 if (clonedBabushkaMainScript != null)
                 {
                     clonedBabushkaMainScript.walkingSpeed = babushka.walkingSpeed;
-                    newBabushkas.Add(clonedBabushkaMainScript);
                 }
             }
         }

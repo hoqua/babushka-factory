@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2359469423759180353}
   - component: {fileID: 3930586535511787273}
   m_Layer: 5
-  m_Name: Card - GatherAll
+  m_Name: Card - CollectAll
   m_TagString: Upgrade Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

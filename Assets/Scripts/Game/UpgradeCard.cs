@@ -63,8 +63,8 @@ namespace Game
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - GatherAll", () => { //Собирает всех бабушек на экране
-                    GatherAllBabushkas();
+                { "Card - CollectAll", () => { //Собирает всех бабушек на экране
+                    CollectAllBabushkas();
                 }},
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
@@ -91,7 +91,7 @@ namespace Game
         
         
         
-        void GatherAllBabushkas()
+        void CollectAllBabushkas()
         {
             GameObject[] babushkas = GameObject.FindGameObjectsWithTag("Babushka");
 
