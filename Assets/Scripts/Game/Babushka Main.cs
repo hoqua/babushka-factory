@@ -14,6 +14,7 @@ namespace Game
         public new Animator animation;
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
+        private static readonly int IsGrabbed = Animator.StringToHash("isGrabbed");
       
 
         void Start()
@@ -73,13 +74,14 @@ namespace Game
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.isKinematic = true; 
+                
                 animation.SetBool(IsPushed, false);
-            
+                animation.SetBool(IsGrabbed, true);
+                
                 canBeCollected = true;
             }
             else
             {
-                
                 canBeCollected = false;
             }
         
