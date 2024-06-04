@@ -1,9 +1,7 @@
-using System;
 using Game.UI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-
 
 namespace Game
 {
@@ -16,7 +14,7 @@ namespace Game
         public PlayerManager playerManager;
 
         public TextMeshProUGUI counterText;
-        public int currentNumOfBabushkas = 0;
+        public int currentNumOfBabushkas;
 
         private void Start()
         {
@@ -31,7 +29,7 @@ namespace Game
                 playerManager.GainExp();
             
                 currentNumOfBabushkas += 1;
-                counterText.text = "Собрано Бабушек " + currentNumOfBabushkas.ToString();
+                counterText.text = "Собрано Бабушек " + currentNumOfBabushkas;
                 
                 deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
                 if (currentNumOfBabushkas == 0) return;

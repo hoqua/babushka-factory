@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game
@@ -7,55 +6,36 @@ namespace Game
     {
         public Spawner spawnerScript;
         
-        private Rigidbody2D babushka;
-        public bool isMagnetized;
-        private Vector3 targetPosition;
-        public float magneticForce = 1;
+        private Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
         public bool canBeDeleted;
         
         public new Animator animation;
+        private static readonly int IsFalling = Animator.StringToHash("isFalling");
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
-        
-        void Awake()
-        {
-            babushka = GetComponent<Rigidbody2D>();
-        }
-        
+      
+
         void Start()
         {
-            animation = GetComponent<Animator>();
-            gameObject.layer = LayerMask.NameToLayer("No Collision");
             spawnerScript = FindObjectOfType<Spawner>();
+            
+            _rigidbody = GetComponent<Rigidbody2D>();
+            gameObject.layer = LayerMask.NameToLayer("No Collision");
+            
+            animation = GetComponent<Animator>();
         }
         
-        private void FixedUpdate()
-        {
-            if (isMagnetized)
-            {
-                Vector2 targetDirection = (targetPosition - transform.position).normalized;
-                babushka.velocity = new Vector2(targetDirection.x, 0) * magneticForce;
-            }
-        }
-
-        public void SetTarget(Vector3 position)
-        {
-            targetPosition = position;
-            isMagnetized = true;
-        }
-
-        public void ClearTarget()
-        {
-            targetPosition = transform.position;
-            isMagnetized = false;
-        }
-        
-       
-
         private void OnDestroy()
         {
             spawnerScript.RemoveBabushka(this);
+        }
+
+        void Update()
+        {
+            _rigidbody.bodyType = transform.parent == null ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+
+            animation.SetBool(IsFalling, _rigidbody.velocity.y < 0); //Анимация падения
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере
@@ -85,34 +65,21 @@ namespace Game
                 animation.SetBool(IsPushed, false);
             }
         }
-
-        private void Update()
-        {
-            if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
-            {
-                babushka.constraints = RigidbodyConstraints2D.FreezePositionX;
-            }
-            else //Если не является дочерним элементом, возвращает физику 
-            {
-                babushka = GetComponent<Rigidbody2D>();
-                babushka.bodyType = RigidbodyType2D.Dynamic;
-            }
-           
-            
-        }
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             
-            if (other.gameObject.CompareTag("Claw"))
+            if (other.gameObject.CompareTag("Claw") && transform.parent == null) 
             {
-                
-                babushka.isKinematic = true; 
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.isKinematic = true; 
                 animation.SetBool(IsPushed, false);
             
                 canBeDeleted = true;
             }
             else
             {
+                
                 canBeDeleted = false;
             }
         

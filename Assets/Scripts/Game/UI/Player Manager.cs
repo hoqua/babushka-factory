@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.UI
 {
@@ -9,7 +8,7 @@ namespace Game.UI
         public GameManager gameManager;
     
         public int playerLevel = 1;
-        public int currentExp = 0;
+        public int currentExp;
         public int requiredExp = 5;
         public int clawDurability = 100;
 
@@ -30,7 +29,7 @@ namespace Game.UI
                 requiredExp = (int)(requiredExp * 1.5f);
             
                 playerLevel++;
-                playerLevelText.text = "Уровень " + playerLevel.ToString();
+                playerLevelText.text = "Уровень " + playerLevel;
 
                 gameManager.PauseGame();
                 gameManager.ShowUpgradeOverlay();
@@ -46,7 +45,7 @@ namespace Game.UI
             }
 
             clawDurability--;
-            clawDurabilityText.text = "Прочность клешни " + clawDurability.ToString() + "%";
+            clawDurabilityText.text = "Прочность клешни " + clawDurability + "%";
         }
     
     }

@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 3cdd0fbf18700cf4ebe75408df0ee190
+guid: 25068b4d7b1c8c4459dbf4b7bb496455
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -45,10 +45,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -106,17 +93,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Babulya running no bg_0
+      name: Claw_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 117
+        y: 376
+        width: 987
+        height: 6951
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 100f73bd749426948b6bdadd49c2c0f9
-      internalID: -387935706
+      spriteID: 2450305d7f1a8ce4a80b0983c8e0f6d9
+      internalID: -655646997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_1
+      name: Claw_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 7317
+        y: 7317
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67f2e649c14021c4eac715234adc6074
-      internalID: 455129696
+      spriteID: 1b0ee3319c5fd56488659cf3a540eb24
+      internalID: -1207248154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_2
+      name: Claw_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 3307
+        y: 630
+        width: 4
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91d3b76808831b54e8c830d8b2d37b5e
-      internalID: 1730061032
+      spriteID: 1cf80f438f1e6834fbc7f975f99d6f24
+      internalID: -1036433111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_3
+      name: Claw_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 3329
+        y: 372
+        width: 1099
+        height: 6941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25dd4b31623214149abb47fd726d16ce
-      internalID: 66568726
+      spriteID: 825a268f1f7a1d74a8fc7f513563c132
+      internalID: -636512720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_4
+      name: Claw_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
+        x: 6534
+        y: 419
+        width: 1358
+        height: 6894
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 042881425f6cff34783d73aa70ce1436
-      internalID: 1436232633
+      spriteID: 98db3c2c65b1f9e4bbc2ab058ef73961
+      internalID: 1483751716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_5
+      name: Claw_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
+        x: 766
+        y: 374
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d4acdc167b588741a11a80e4999904f
-      internalID: -10643139
+      spriteID: ad21e86f623ac4f4faf859fca6fbf3f6
+      internalID: 1957442149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_6
+      name: Claw_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
+        x: 446
+        y: 348
+        width: 129
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a50cdd7c1614ea4eae48f1ca0a8cf83
-      internalID: 1899217220
+      spriteID: 33e107b864f10e64084348bf70308c70
+      internalID: -1681999618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Babulya running no bg_7
+      name: Claw_7
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
+        x: 642
+        y: 348
+        width: 125
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,8 +284,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50cb8a27a03cb04594536dd82180fea
-      internalID: -813517574
+      spriteID: 092f252614e51ff42a83b72e01b6d806
+      internalID: 1333030755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Claw_8
+      rect:
+        serializedVersion: 2
+        x: 3655
+        y: 348
+        width: 129
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2edba0cd3dec6d04889e7b175b50b844
+      internalID: -33224500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Claw_9
+      rect:
+        serializedVersion: 2
+        x: 3972
+        y: 348
+        width: 133
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aca0dfbe1498be34680067d406797ab0
+      internalID: 169803341
       vertices: []
       indices: 
       edges: []
@@ -288,14 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Babulya running no bg_0: -387935706
-      Babulya running no bg_1: 455129696
-      Babulya running no bg_2: 1730061032
-      Babulya running no bg_3: 66568726
-      Babulya running no bg_4: 1436232633
-      Babulya running no bg_5: -10643139
-      Babulya running no bg_6: 1899217220
-      Babulya running no bg_7: -813517574
+      Claw_0: -655646997
+      Claw_1: -1207248154
+      Claw_2: -1036433111
+      Claw_3: -636512720
+      Claw_4: 1483751716
+      Claw_5: 1957442149
+      Claw_6: -1681999618
+      Claw_7: 1333030755
+      Claw_8: -33224500
+      Claw_9: 169803341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

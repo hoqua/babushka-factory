@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game
@@ -10,7 +9,7 @@ namespace Game
         public Spawner spawnerScript;
         
         public TextMeshProUGUI deletedCounterText;
-        public float deletedBabushkasCount = 0;
+        public float deletedBabushkasCount;
         public float deletedBabushkasRatio;
         private void OnTriggerEnter2D(Collider2D other)
         {
