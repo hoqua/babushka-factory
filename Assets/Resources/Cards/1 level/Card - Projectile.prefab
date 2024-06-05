@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8076966775843223881}
   - component: {fileID: 2787741087846264254}
   m_Layer: 5
-  m_Name: Card - Test
+  m_Name: Card - Projectile
   m_TagString: Upgrade Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0422\u0435\u0441\u0442"
+  m_text: "\u041F\u0440\u043E\u0435\u043A\u0442\u0438\u043B\u044C\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
   m_sharedMaterial: {fileID: 5473222874351798040, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
@@ -388,7 +388,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u0434\u0435\u043B\u0430\u0435\u0442\n"
+  m_text: "\u0421\u043F\u0430\u0432\u043D\u0438\u0442 \"\u0441\u043F\u0443\u0442\u043D\u0438\u043A\"
+    \u043A\u0430\u043A\u0436\u0434\u044B\u0435 10 \u0441\u0435\u043A\u0443\u043D\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
   m_sharedMaterial: {fileID: 5473222874351798040, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
@@ -451,7 +452,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0.185, z: 0, w: 0.01}
+  m_margin: {x: 0, y: 0.19, z: 0, w: 0.01}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
