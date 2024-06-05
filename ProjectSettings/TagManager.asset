@@ -11,6 +11,7 @@ TagManager:
   - Upgrade Card
   - UI
   - Collectable
+  - Projectile
   layers:
   - Default
   - TransparentFX

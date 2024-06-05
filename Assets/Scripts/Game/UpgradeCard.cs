@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Effects;
 using Game.UI;
 using UnityEngine;
+
 
 namespace Game
 {
@@ -14,6 +16,7 @@ namespace Game
         public Spawner spawnerScript;
         public Counter counterScript;
         public Deleter deleterScript;
+        public ProjectileSpawner projectileSpawnerScript;
         public BabushkaMain babushkaMainScript;
     
         private float _clawSpeedInitial;
@@ -28,7 +31,7 @@ namespace Game
             counterScript = FindObjectOfType<Counter>();
             babushkaMainScript = FindObjectOfType<BabushkaMain>();
             deleterScript = FindObjectOfType<Deleter>();
-            
+            projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             
             
             _clawSpeedInitial = clawScript.clawSpeed;
@@ -63,9 +66,9 @@ namespace Game
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - GatherAll", () => { //Собирает всех бабушек на экране
-                    GatherAllBabushkas();
-                }},
+                { "Card - CollectAll",  //Собирает всех бабушек на экране
+                    CollectAllBabushkas
+                },
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
                     clawScript!.clawCollider.size += new Vector2(0.05f, 0);
@@ -81,6 +84,13 @@ namespace Game
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
                     spawnerScript!.CloneBabushkas();
                 }},
+                { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её.
+                    if (projectileSpawnerScript.enabled == false)
+                    {
+                        projectileSpawnerScript.enabled = true;
+                    } 
+
+                }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
                     
@@ -91,7 +101,7 @@ namespace Game
         
         
         
-        void GatherAllBabushkas()
+        void CollectAllBabushkas()
         {
             GameObject[] babushkas = GameObject.FindGameObjectsWithTag("Babushka");
 

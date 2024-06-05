@@ -6,9 +6,12 @@ namespace Game.Effects
 {
     public class ProjectileSpawner : MonoBehaviour
     {
-        public float spawnInterval = 2f;
+        public float spawnInterval = 10f;
         public GameObject projectilePrefab;
 
+        public string obstacleTag = "Claw";
+        public float checkRadius = 0.5f;
+        
         private Camera _mainCamera;
         void Start()
         {
@@ -26,9 +29,28 @@ namespace Game.Effects
 
         void MoveSpawnPoint()
         {
-            var newPosition = GetRandomPositionAlongTopWall();
+            Vector2 newPosition;
+            do
+            {
+                newPosition = GetRandomPositionAlongTopWall();
+            } while (IsPositionOccupied(newPosition));
+            
             transform.position = newPosition;
             AdjustSpawnPointRotation();
+        }
+
+        bool IsPositionOccupied(Vector2 position)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(position, checkRadius);
+            foreach (var collider in colliders)
+            {
+                if (collider.CompareTag(obstacleTag))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void AdjustSpawnPointRotation()

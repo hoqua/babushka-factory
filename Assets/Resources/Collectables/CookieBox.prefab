@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dc2151de9ba9c224a858a4c6bf48573f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -171,6 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5043d895d6c2d449d98b075d492417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMagnetized: 0
-  magneticForce: 2
   canBeDeleted: 0

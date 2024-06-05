@@ -12,9 +12,9 @@ namespace Game
 
         private const float MinX = -7f;
         private const float MaxX = 7f;
-        private float minSpeed = 0.5f;
-        private float maxSpeed = 3f;
-            
+        private const float MinSpeed = 0.5f;
+        private const float MaxSpeed = 3f;
+
         public GameObject babushkaPurplePrefab;
         public GameObject repairTool;
         public GameObject cookieBox;
@@ -45,7 +45,7 @@ namespace Game
                 if (babushkaMainScript != null && prefabToSpawn == babushkaPurplePrefab)
                 {
                     float normalized = (transform.position.x - MinX) / (MaxX - MinX);
-                    babushkaMainScript.walkingSpeed = Mathf.Lerp(minSpeed, maxSpeed, normalized);
+                    babushkaMainScript.walkingSpeed = Mathf.Lerp(MinSpeed, MaxSpeed, normalized);
                     babushkas.Add(babushkaMainScript);
                 }
                 
@@ -72,19 +72,17 @@ namespace Game
 
         public void CloneBabushkas()
         {
-            var newBabushkas = new List<BabushkaMain>();
-            if (newBabushkas == null) throw new ArgumentNullException(nameof(newBabushkas));
-
             foreach (BabushkaMain babushka in babushkas)
             {
+                if (babushka == null) continue;
+                
                 Vector2 spawnPosition = babushka.transform.position;
                 GameObject clonedBabushka = Instantiate(babushkaPurplePrefab, spawnPosition, Quaternion.identity);
-            
+
                 BabushkaMain clonedBabushkaMainScript = clonedBabushka.GetComponent<BabushkaMain>();
                 if (clonedBabushkaMainScript != null)
                 {
                     clonedBabushkaMainScript.walkingSpeed = babushka.walkingSpeed;
-                    newBabushkas.Add(clonedBabushkaMainScript);
                 }
             }
         }
