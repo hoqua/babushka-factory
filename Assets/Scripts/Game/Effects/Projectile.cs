@@ -35,6 +35,9 @@ namespace Game.Effects
             Vector2 reflectDirection = Vector2.Reflect(_lastVelocity, normal);
             _rb.velocity = reflectDirection;
 
+            float angle = Mathf.Atan2(reflectDirection.y, reflectDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+
             _bounceCount++;
             
             if (_bounceCount >= maxBounces)
