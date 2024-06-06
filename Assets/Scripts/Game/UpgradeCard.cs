@@ -84,6 +84,7 @@ namespace Game
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
                     spawnerScript!.CloneBabushkas();
                 }},
+                
                 { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её.
                     if (projectileSpawnerScript.enabled == false)
                     {

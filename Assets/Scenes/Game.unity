@@ -1193,6 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7bc77f7fc0f2541b53f0a891289562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 0}
   speed: 2
 --- !u!70 &889237403
 CapsuleCollider2D:
@@ -2531,7 +2532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1644909528
 Transform:
   m_ObjectHideFlags: 0
@@ -2554,7 +2555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644909527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d230364dc3a5214ebcbe6da29dbf44c, type: 3}
   m_Name: 
