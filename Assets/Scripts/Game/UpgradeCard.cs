@@ -17,7 +17,6 @@ namespace Game
         public Counter counterScript;
         public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
-        public BabushkaMain babushkaMainScript;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -29,10 +28,9 @@ namespace Game
             spawnerScript = FindObjectOfType<Spawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
             counterScript = FindObjectOfType<Counter>();
-            babushkaMainScript = FindObjectOfType<BabushkaMain>();
+           
             deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
-            
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -57,8 +55,8 @@ namespace Game
                 { "Card - FreezeConveyor", () => { //Замораживает конвейер на 5 секунд
                     if (!conveyorScript!.IsInvoking(nameof(Conveyor.DisableConveyor)))
                     {
-                        conveyorScript.enabled = false;
-                        conveyorScript.Invoke(nameof(Conveyor.EnableConveyor), 5f);
+                        conveyorScript.DisableConveyor();
+                        conveyorScript.Invoke(nameof(conveyorScript.EnableConveyor), 5f);
                     }
                 }},
                 

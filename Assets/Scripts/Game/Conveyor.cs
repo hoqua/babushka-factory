@@ -13,6 +13,7 @@ namespace Game
         // Start is called before the first frame update
         void Start()
         {
+            animation.SetBool(IsWorking, true);
             rBody = GetComponent<Rigidbody2D>();
         }
 
@@ -26,14 +27,14 @@ namespace Game
 
         public void DisableConveyor()
         {
-            enabled = false;
             animation.SetBool(IsWorking, false);
+            enabled = false;
         }
 
         public void EnableConveyor()
         {
-            enabled = true;
             animation.SetBool(IsWorking, true);
+            enabled = true;
         }
     }
 }

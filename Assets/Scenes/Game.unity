@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7bc77f7fc0f2541b53f0a891289562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation: {fileID: 0}
+  animation: {fileID: 889237404}
   speed: 2
 --- !u!70 &889237403
 CapsuleCollider2D:
