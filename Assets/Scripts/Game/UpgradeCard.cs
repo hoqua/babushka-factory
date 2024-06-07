@@ -92,7 +92,7 @@ namespace Game
 
                 }},
                     
-                { "Card - Magnet", () => { //Ничего не делает, Duh 
+                { "Card - Magnet", () => { //Добавляет клешне магнит с небольшим радиусом
                     magnetController.ActivateMagnet();
                 }},
                 
