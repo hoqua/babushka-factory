@@ -4,7 +4,7 @@ namespace Game
 {
     public class BabushkaMain : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
+        public Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
         public bool canBeCollected;
