@@ -15,7 +15,7 @@ namespace Game
         public int maxGrabbedBabushkas = 1;
         
         private Vector2 _initialPosition;
-        public  BoxCollider2D clawCollider;
+        public BoxCollider2D clawCollider;
         public Transform clawObject;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
@@ -89,9 +89,7 @@ namespace Game
                 
                 var collectable = other.gameObject;
                 collectable.transform.parent = transform;
-                
-                clawCollider.enabled = false;
-                
+                   
                 _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 _movingDirection = MovingDirection.Up;
                 
@@ -110,7 +108,7 @@ namespace Game
                         babushka.transform.parent = transform;
                         _grabbedBabushkas.Add(babushka);
                     }
-                    clawCollider.enabled = false;
+                    
                     
                     _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                     _movingDirection = MovingDirection.Up;
@@ -180,7 +178,6 @@ namespace Game
             {
           
                 _movingDirection = null;
-                clawCollider.enabled = true;
                 StopClawSound();
             }
         }
