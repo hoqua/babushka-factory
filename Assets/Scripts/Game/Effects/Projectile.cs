@@ -50,7 +50,6 @@ namespace Game.Effects
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
-                Debug.Log("Hit");
                 babushkaMainScript.walkingSpeed *= 0.5f;
             }
         }

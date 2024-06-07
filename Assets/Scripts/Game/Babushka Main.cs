@@ -4,7 +4,7 @@ namespace Game
 {
     public class BabushkaMain : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
+        public Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
         public bool canBeCollected;
@@ -25,19 +25,19 @@ namespace Game
 
         void Update()
         {
-            _rigidbody.bodyType = transform.parent == null ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
-
-            animation.SetBool(IsFalling, _rigidbody.velocity.y < 0); //Анимация падения
+            animation.SetBool(IsFalling, _rigidbody.velocity.y < -1f); //Анимация падения
         }
         
-        //Триггерит анимацию ходьбы пока бабушка на конвейере
+        //Триггерит анимацию ходьбы пока бабушка на конвейере, а также делает их "collectable"
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Conveyor"))
             {
+                animation.Play("Babushka Walking");
                 animation.SetBool(IsPushed, true);
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
-                
+
+                canBeCollected = true;
             }
         }
 
@@ -50,30 +50,18 @@ namespace Game
             
         }
         
-        void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Conveyor"))
-            {
-                animation.SetBool(IsPushed, false);
-            }
-        }
-        
         private void OnCollisionEnter2D(Collision2D other)
         {
             
             if (other.gameObject.CompareTag("Claw") && transform.parent == null) 
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-                _rigidbody.isKinematic = true; 
-                
+                _rigidbody.isKinematic = true;
+
+                animation.Play("Babushka_Grabbed");
                 animation.SetBool(IsPushed, false);
                 animation.SetBool(IsGrabbed, true);
                 
-                canBeCollected = true;
-            }
-            else
-            {
-                canBeCollected = false;
             }
         
         }
@@ -81,11 +69,25 @@ namespace Game
         //Отключает анимацию пока бабушка в клешне
         private void OnCollisionStay2D(Collision2D other)
         {
-            
             if (other.gameObject.CompareTag("Claw"))
             {
                 animation.SetBool(IsPushed, false);
             }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Claw"))
+            {
+               _rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+               _rigidbody.isKinematic = false;
+               
+               animation.Play("Babushka Walking");
+               animation.SetBool(IsPushed, true);
+               animation.SetBool(IsGrabbed, false);
+
+            }
+            
         }
 
     }
