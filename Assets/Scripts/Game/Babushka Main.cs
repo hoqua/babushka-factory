@@ -28,7 +28,7 @@ namespace Game
             animation.SetBool(IsFalling, _rigidbody.velocity.y < -1f); //Анимация падения
         }
         
-        //Триггерит анимацию ходьбы пока бабушка на конвейере
+        //Триггерит анимацию ходьбы пока бабушка на конвейере, а также делает их "collectable"
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Conveyor"))
@@ -48,14 +48,6 @@ namespace Game
                 transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
             }
             
-        }
-        
-        void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Conveyor"))
-            {
-                animation.SetBool(IsPushed, false);
-            }
         }
         
         private void OnCollisionEnter2D(Collision2D other)
