@@ -17,6 +17,7 @@ namespace Game
         public Counter counterScript;
         public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
+        public MagnetController magnetController;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -28,9 +29,9 @@ namespace Game
             spawnerScript = FindObjectOfType<Spawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
             counterScript = FindObjectOfType<Counter>();
-           
             deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
+            magnetController = FindObjectOfType<MagnetController>();
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -89,6 +90,10 @@ namespace Game
                         projectileSpawnerScript.enabled = true;
                     } 
 
+                }},
+                    
+                { "Card - Magnet", () => { //Ничего не делает, Duh 
+                    magnetController.ActivateMagnet();
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
