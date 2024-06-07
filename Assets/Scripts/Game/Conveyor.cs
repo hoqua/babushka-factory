@@ -4,13 +4,16 @@ namespace Game
 {
     public class Conveyor : MonoBehaviour
     {
-
+        public new Animator animation;
+        private static readonly int IsWorking = Animator.StringToHash("isWorking");  
+        
         public float speed;
         Rigidbody2D rBody;
-    
+        
         // Start is called before the first frame update
         void Start()
         {
+            animation.SetBool(IsWorking, true);
             rBody = GetComponent<Rigidbody2D>();
         }
 
@@ -24,11 +27,13 @@ namespace Game
 
         public void DisableConveyor()
         {
+            animation.SetBool(IsWorking, false);
             enabled = false;
         }
 
         public void EnableConveyor()
         {
+            animation.SetBool(IsWorking, true);
             enabled = true;
         }
     }
