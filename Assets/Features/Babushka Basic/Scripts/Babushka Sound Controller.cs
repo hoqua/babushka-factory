@@ -9,10 +9,10 @@ namespace Features.Babushka_Basic.Scripts
         
         private AudioSource _audioSource;
         public AudioClip footstepClip;
-        public AudioClip fallClip;
+        public AudioClip[] fallClips; 
 
         public float footstepVolume = 0.75f;
-        public float fallVolume = 0.15f;
+        public float fallVolume = 0.3f;
 
         private const float MinStepInterval = 0.1f;
         private const float MaxStepInterval = 1f;
@@ -54,13 +54,21 @@ namespace Features.Babushka_Basic.Scripts
 
         public void IsFellSfx()
         {
-            _audioSource.PlayOneShot(fallClip, fallVolume);
+            if (fallClips.Length > 0)
+            {
+                int randomIndex = Random.Range(0, fallClips.Length);
+                AudioClip fallClip = fallClips[randomIndex]; 
+                _audioSource.PlayOneShot(fallClip, fallVolume);
+            }
+            else
+            {
+                Debug.LogWarning("No fall clips assigned!");
+            }
         }
         
         private void PlayFootstep()
         {
             _audioSource.PlayOneShot(footstepClip, footstepVolume);
         }
-
     }
 }

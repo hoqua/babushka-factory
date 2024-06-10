@@ -292,9 +292,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   babushkaMainScript: {fileID: 0}
   footstepClip: {fileID: 8300000, guid: 9df0709066fed8b4bafbe2e0fff701e9, type: 3}
-  fallClip: {fileID: 8300000, guid: bfed47752c4bed041a5a340c0dafe8e2, type: 3}
-  footstepVolume: 0.8
-  fallVolume: 0.2
+  fallClips:
+  - {fileID: 8300000, guid: bfed47752c4bed041a5a340c0dafe8e2, type: 3}
+  - {fileID: 8300000, guid: 7a42ac9410810dd41adc40222616cbd2, type: 3}
+  - {fileID: 8300000, guid: e20b729df1fd39243a7b783dbd9940e9, type: 3}
+  - {fileID: 8300000, guid: 94a8060174cadff41ab803f7cb9e8993, type: 3}
+  - {fileID: 8300000, guid: 7279ec4d4f59dbb4289dfa1b6535cf88, type: 3}
+  - {fileID: 8300000, guid: e02a448ebbfcbf246b91980d9bb5b87e, type: 3}
+  - {fileID: 8300000, guid: 7010905b91666c343a2e439aba819096, type: 3}
+  - {fileID: 8300000, guid: a393871123531814cacfe228ae437372, type: 3}
+  - {fileID: 8300000, guid: c8fc79b9403b8524981f8c839c29553d, type: 3}
+  footstepVolume: 0.75
+  fallVolume: 0.3
 --- !u!82 &-4197963068091011050
 AudioSource:
   m_ObjectHideFlags: 0
