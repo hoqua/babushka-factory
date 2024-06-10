@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f8467144f7f5384f8d1e7a39af06c98
+guid: 6d61fe935323b9143b4ad1c032c49e9c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1000
@@ -123,139 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Babulya Walking_1
-      rect:
-        serializedVersion: 2
-        x: 1086
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ff94ae80dc925c46963487380233ac3
-      internalID: 1419238402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_2
-      rect:
-        serializedVersion: 2
-        x: 2172
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35f85e50e0325ea44ab89335a08de0b5
-      internalID: -1158345273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_3
-      rect:
-        serializedVersion: 2
-        x: 3258
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81ac1b14cc3b71741a244e8bbe260606
-      internalID: -413655190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_4
-      rect:
-        serializedVersion: 2
-        x: 4344
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 397f235d54e75c840a71326784a50348
-      internalID: 66454762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_5
-      rect:
-        serializedVersion: 2
-        x: 5430
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9381ee83485653a4bbf7dc539e278011
-      internalID: 138182071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_6
-      rect:
-        serializedVersion: 2
-        x: 6516
-        y: 95
-        width: 1086
-        height: 815
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70b828776957a6f42b0ac8168dc52d68
-      internalID: 508024391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Babulya Walking_0
+      name: Walking_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 95
-        width: 1086
-        height: 815
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,8 +137,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf995aa515e1de14fbfbc5f101c1176b
-      internalID: -901750036
+      spriteID: d2838bcde0fc105449e05b09fda2319c
+      internalID: 1329892764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4eb2234cd6a02547bff33af204c2fbd
+      internalID: -378519809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_2
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e2ce19d3d558584897dfbac8d89d84a
+      internalID: -1903497338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_3
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f94b3f9f5d96ba478426967e9b9584f
+      internalID: -1811613454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_4
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1725a4854bdd1fc498ac9dd846ad3d8e
+      internalID: -27805016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_5
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64eb7adc5800e14e87b2ba8fe7697b4
+      internalID: -1988568985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_6
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 0
+        width: 1000
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b0940f7b98f264bbc6f95744de9ad4
+      internalID: 1808936175
       vertices: []
       indices: 
       edges: []
@@ -280,13 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Babulya Walking_0: -901750036
-      Babulya Walking_1: 1419238402
-      Babulya Walking_2: -1158345273
-      Babulya Walking_3: -413655190
-      Babulya Walking_4: 66454762
-      Babulya Walking_5: 138182071
-      Babulya Walking_6: 508024391
+      Walking_0: 1329892764
+      Walking_1: -378519809
+      Walking_2: -1903497338
+      Walking_3: -1811613454
+      Walking_4: -27805016
+      Walking_5: -1988568985
+      Walking_6: 1808936175
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,7 +11,7 @@ namespace Features.Babushka_Basic.Scripts
         public AudioClip footstepClip;
         public AudioClip fallClip;
 
-        public float footstepVolume = 0.9f;
+        public float footstepVolume = 0.75f;
         public float fallVolume = 0.15f;
 
         private const float MinStepInterval = 0.1f;
