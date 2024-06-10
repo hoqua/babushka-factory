@@ -9,13 +9,18 @@ namespace Features.Babushka_Basic.Scripts
         
         private AudioSource _audioSource;
         public AudioClip footstepClip;
-       
+        public AudioClip fallClip;
+
+        public float footstepVolume = 0.8f;
+        public float fallVolume = 0.20f;
+        
         public float stepInterval = 1f;
         private float _stepTimer;
 
         private void Start()
         {
             babushkaMainScript = FindObjectOfType<BabushkaMain>();
+           
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = footstepClip;
             _audioSource.volume = 0.2f; 
@@ -23,7 +28,7 @@ namespace Features.Babushka_Basic.Scripts
 
         private void Update()
         {
-            if (IsWalking())
+            if (IsWalkingSfx())
             {
                 _stepTimer -= Time.deltaTime;
                 if (_stepTimer <= 0)
@@ -38,14 +43,19 @@ namespace Features.Babushka_Basic.Scripts
             }
         }
 
-        private bool IsWalking()
+        private bool IsWalkingSfx()
         {
             return babushkaMainScript._rigidbody.velocity.x > 0.1f;
+        }
+
+        public void IsFellSfx()
+        {
+            _audioSource.PlayOneShot(fallClip, fallVolume);
         }
         
         private void PlayFootstep()
         {
-            _audioSource.PlayOneShot(footstepClip);
+            _audioSource.PlayOneShot(footstepClip, footstepVolume);
         }
 
     }

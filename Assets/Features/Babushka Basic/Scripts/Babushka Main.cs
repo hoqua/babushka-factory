@@ -1,9 +1,11 @@
 using UnityEngine;
 
-namespace Game
+namespace Features.Babushka_Basic.Scripts
 {
     public class BabushkaMain : MonoBehaviour
     {
+        public BabushkaSoundController babushkaSoundController;
+        
         public Rigidbody2D _rigidbody;
         
         public float walkingSpeed; 
@@ -17,6 +19,8 @@ namespace Game
 
         void Start()
         {
+            babushkaSoundController = FindObjectOfType<BabushkaSoundController>();
+            
             _rigidbody = GetComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
 
@@ -33,6 +37,8 @@ namespace Game
         {
             if (other.CompareTag("Conveyor"))
             {
+                babushkaSoundController.IsFellSfx(); //Воспроизводит звук падения
+                
                 animation.Play("Babushka Walking");
                 animation.SetBool(IsPushed, true);
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");

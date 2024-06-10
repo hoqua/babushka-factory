@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7ef1660eccf248b7e168012b202ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  babushkaSoundController: {fileID: 0}
   _rigidbody: {fileID: 0}
   walkingSpeed: 1
   canBeCollected: 0
@@ -291,6 +292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   babushkaMainScript: {fileID: 0}
   footstepClip: {fileID: 8300000, guid: 9df0709066fed8b4bafbe2e0fff701e9, type: 3}
+  fallClip: {fileID: 8300000, guid: bfed47752c4bed041a5a340c0dafe8e2, type: 3}
+  footstepVolume: 0.8
+  fallVolume: 0.2
   stepInterval: 0.5
 --- !u!82 &-4197963068091011050
 AudioSource:
@@ -302,9 +306,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d58d18036994efa4f8e60e9f494ce612, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
