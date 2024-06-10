@@ -11,10 +11,12 @@ namespace Features.Babushka_Basic.Scripts
         public AudioClip footstepClip;
         public AudioClip fallClip;
 
-        public float footstepVolume = 0.8f;
-        public float fallVolume = 0.20f;
+        public float footstepVolume = 0.9f;
+        public float fallVolume = 0.15f;
+
+        private const float MinStepInterval = 0.1f;
+        private const float MaxStepInterval = 1f;
         
-        public float stepInterval = 1f;
         private float _stepTimer;
 
         private void Start()
@@ -30,6 +32,8 @@ namespace Features.Babushka_Basic.Scripts
         {
             if (IsWalkingSfx())
             {
+                float stepInterval = Mathf.Clamp(1f / babushkaMainScript.walkingSpeed, MinStepInterval, MaxStepInterval);
+                
                 _stepTimer -= Time.deltaTime;
                 if (_stepTimer <= 0)
                 {
