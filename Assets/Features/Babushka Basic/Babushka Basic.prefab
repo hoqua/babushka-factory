@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babushkaMainScript: {fileID: 0}
-  footstepClip: {fileID: 8300000, guid: d58d18036994efa4f8e60e9f494ce612, type: 3}
-  stepInterval: 1
+  footstepClip: {fileID: 8300000, guid: 9df0709066fed8b4bafbe2e0fff701e9, type: 3}
+  stepInterval: 0.5
 --- !u!82 &-4197963068091011050
 AudioSource:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

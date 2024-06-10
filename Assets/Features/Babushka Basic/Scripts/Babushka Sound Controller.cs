@@ -1,6 +1,7 @@
+using Game;
 using UnityEngine;
 
-namespace Game
+namespace Features.Babushka_Basic.Scripts
 {
     public class BabushkaSoundController : MonoBehaviour
     {
@@ -44,7 +45,7 @@ namespace Game
         
         private void PlayFootstep()
         {
-            _audioSource.Play();
+            _audioSource.PlayOneShot(footstepClip);
         }
 
     }
