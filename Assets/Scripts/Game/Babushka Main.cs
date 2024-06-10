@@ -79,7 +79,8 @@ namespace Game
         {
             if (other.gameObject.CompareTag("Claw"))
             {
-               _rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+               _rigidbody.constraints = RigidbodyConstraints2D.None;
+               _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                _rigidbody.isKinematic = false;
                
                animation.Play("Babushka Walking");
