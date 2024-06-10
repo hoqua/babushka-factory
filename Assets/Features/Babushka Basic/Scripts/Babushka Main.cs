@@ -8,13 +8,16 @@ namespace Features.Babushka_Basic.Scripts
         
         public Rigidbody2D _rigidbody;
         
-        public float walkingSpeed; 
+        public float walkingSpeed;
+        private const float MinWalkingSpeed = 0.75f;
+        private const float MaxWalkingSpeed = 1.25f;
         public bool canBeCollected;
         
         public new Animator animation;
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         private static readonly int IsGrabbed = Animator.StringToHash("isGrabbed");
+        private static readonly int WalkSpeed = Animator.StringToHash("WalkSpeed");
 
 
         void Start()
@@ -30,6 +33,9 @@ namespace Features.Babushka_Basic.Scripts
         void Update()
         {
             animation.SetBool(IsFalling, _rigidbody.velocity.y < -1f); //Анимация падения
+
+            var clampedWalkingSpeed = Mathf.Clamp(walkingSpeed, MinWalkingSpeed, MaxWalkingSpeed);
+            animation.SetFloat(WalkSpeed, clampedWalkingSpeed);
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере, а также делает их "collectable"
