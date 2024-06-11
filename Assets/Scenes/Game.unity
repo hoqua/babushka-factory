@@ -1384,12 +1384,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToIgnoreTag: UI
+  isInputBlocked: 0
   playerManager: {fileID: 1235536085}
   clawSpeed: 5
   maxGrabbedBabushkas: 1
   clawCollider: {fileID: 617702429}
   clawObject: {fileID: 617702425}
-  clawSound: 0
+  clawSound: {fileID: 8300000, guid: 7f064cc9482c45c4cb7952b9daa82e24, type: 3}
   isClawSoundPlaying: 0
 --- !u!61 &617702429
 BoxCollider2D:
@@ -4371,6 +4372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 1235536085}
+  clawScript: {fileID: 617702428}
   cardPrefabs: []
   cardPositions:
   - {fileID: 2033570879}

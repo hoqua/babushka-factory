@@ -23,6 +23,7 @@ namespace Game
       public void ShowUpgradeOverlay()
       {
          upgradeOverlay.SetActive(true);
+         cardManager.BlockClawInput();
          cardManager.ShowUpgradeCards();
          
          clawScript.isClawSoundPlaying = false;
@@ -32,10 +33,10 @@ namespace Game
       public void HideUpgradeOverlay()
       {
          upgradeOverlay.SetActive(false);
-         
-         clawScript.isClawSoundPlaying = true;
+         cardManager.StartCoroutine(cardManager.UnblockClawInput(0.5f));
+
+         clawScript.isClawSoundPlaying = false;
          clawScript.PlayClawSound();
-         
       }
       
    }

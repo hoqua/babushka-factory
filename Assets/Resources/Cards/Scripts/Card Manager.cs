@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Features.Claw.Scripts;
 using Game;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,10 +10,12 @@ namespace Resources.Cards.Scripts
     public class CardManager : MonoBehaviour
     {
         public PlayerManager playerManager;
-    
+        public Claw clawScript;
+        
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;
-
+        
+        
         private void Start()
         {
             GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
@@ -39,6 +43,20 @@ namespace Resources.Cards.Scripts
                 cardInstance.name = cardInstance.name.Replace("(Clone)", ""); //Убирает (Clone) из имени карточки
             }
         }
+
+        public void BlockClawInput()
+        {
+            clawScript.isInputBlocked = true;
+        }
+
+        public IEnumerator UnblockClawInput(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            clawScript.isInputBlocked = false;
+        }
+        
+        
+        
         
         //Перемешивает лист карточек, чтобы они всегда появлялись на разных позициях
         private void ShuffleList(List<int> list)
