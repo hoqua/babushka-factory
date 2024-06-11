@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Features.Conveyor.Scripts
 {
     public class Conveyor : MonoBehaviour
     {

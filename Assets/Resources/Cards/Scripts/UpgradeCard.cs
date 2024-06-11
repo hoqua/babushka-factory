@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Features.Babushka_Basic.Scripts;
-using Game.Effects;
+using Features.Claw.Scripts;
+using Features.Conveyor.Scripts;
+using Game.Level;
 using Game.UI;
+using Resources.Effects.Projectile.Scripts;
 using UnityEngine;
 
-
-namespace Game
+namespace Resources.Cards.Scripts
 {
     public class UpgradeCard : MonoBehaviour
     {

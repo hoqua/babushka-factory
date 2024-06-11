@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Game.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Game.UI
+namespace Resources.Cards.Scripts
 {
     public class CardManager : MonoBehaviour
     {
@@ -13,7 +14,7 @@ namespace Game.UI
 
         private void Start()
         {
-            GameObject[] prefabs = Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
+            GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
             cardPrefabs.AddRange(prefabs);
         }
 
@@ -54,13 +55,13 @@ namespace Game.UI
         {
             if (playerManager.playerLevel == 5)
             {
-                GameObject[] prefabs5 = Resources.LoadAll<GameObject>("Cards/5 level"); //Добавляет в пулл карточки 5 уровня
+                GameObject[] prefabs5 = UnityEngine.Resources.LoadAll<GameObject>("Cards/5 level"); //Добавляет в пулл карточки 5 уровня
                 cardPrefabs.AddRange(prefabs5);
             }
 
             if (playerManager.playerLevel == 10)
             {
-                GameObject[] prefabs10 = Resources.LoadAll<GameObject>("Cards/10 level"); //Добавляет в пулл карточки 10 уровня
+                GameObject[] prefabs10 = UnityEngine.Resources.LoadAll<GameObject>("Cards/10 level"); //Добавляет в пулл карточки 10 уровня
                 cardPrefabs.AddRange(prefabs10);
             }
          

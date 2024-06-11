@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Effects
+namespace Resources.Effects.Projectile.Scripts
 {
     public class CameraBounds : MonoBehaviour
     {

@@ -1,8 +1,6 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-
-namespace Game.Effects
+namespace Resources.Effects.Projectile.Scripts
 {
     public class ProjectileSpawner : MonoBehaviour
     {

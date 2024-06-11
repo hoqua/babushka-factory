@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Game.UI;
 using UnityEngine;
 
-namespace Game
+namespace Features.Claw.Scripts
 {
     public class Claw : MonoBehaviour
     {

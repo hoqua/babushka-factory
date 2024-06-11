@@ -1,10 +1,11 @@
 using Features.Babushka_Basic.Scripts;
 using Game.UI;
+using Resources.Collectables.Scripts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Game
+namespace Game.Level
 {
     public class Counter : MonoBehaviour
     {

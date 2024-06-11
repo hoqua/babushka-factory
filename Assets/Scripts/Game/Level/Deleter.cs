@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Game
+namespace Game.Level
 {
     public class Deleter : MonoBehaviour
     {

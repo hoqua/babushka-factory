@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+namespace MainMenu
 {
-    
-    public void StartGame()
+    public class StartButton : MonoBehaviour
     {
-        SceneManager.LoadScene("Game");
+    
+        public void StartGame()
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Resources.Collectables.Scripts
 {
     public class Collectables : MonoBehaviour
     {

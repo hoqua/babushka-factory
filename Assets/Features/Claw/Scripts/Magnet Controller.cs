@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game
+namespace Features.Claw.Scripts
 {
     public class MagnetController : MonoBehaviour
     {
