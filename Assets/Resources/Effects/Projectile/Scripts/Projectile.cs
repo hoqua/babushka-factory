@@ -7,7 +7,7 @@ namespace Resources.Effects.Projectile.Scripts
     {
         public BabushkaMain babushkaMainScript;
         
-        public float projectileSpeed = 5f;
+        public float projectileSpeed = 10f;
         public int maxBounces = 5;
         private int _bounceCount;
         
