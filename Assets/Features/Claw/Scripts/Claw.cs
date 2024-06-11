@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Game.UI;
+using Game;
 using UnityEngine;
 
 namespace Features.Claw.Scripts

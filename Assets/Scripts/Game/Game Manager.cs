@@ -2,7 +2,7 @@ using Features.Claw.Scripts;
 using Resources.Cards.Scripts;
 using UnityEngine;
 
-namespace Game.UI
+namespace Game
 {
    public class GameManager : MonoBehaviour
    {

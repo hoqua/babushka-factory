@@ -1,10 +1,12 @@
+using Game;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DevMenuController : MonoBehaviour
 {
     public GameObject devMenuPanel; 
     private bool _isDevMenuVisible = false;
+
+    public PlayerManager playerManager;
 
     void Update()
     {
@@ -14,6 +16,12 @@ public class DevMenuController : MonoBehaviour
         }
     }
 
+    public void LevelUp()
+    {
+        playerManager.currentExp = playerManager.requiredExp;
+        playerManager.CheckLevelUp();
+    }
+    
     private void ToggleDevMenu()
     {
         _isDevMenuVisible = !_isDevMenuVisible;

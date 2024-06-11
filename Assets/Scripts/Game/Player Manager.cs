@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Game.UI
+namespace Game
 {
     public class PlayerManager : MonoBehaviour
     {
