@@ -3992,7 +3992,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2096108577}
         m_TargetAssemblyTypeName: DevMenuController, Assembly-CSharp
-        m_MethodName: Options
+        m_MethodName: CardUpgrade
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
