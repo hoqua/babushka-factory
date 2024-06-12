@@ -17,26 +17,15 @@ namespace Resources.Effects.Eater.Script
       }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     void SpawnEater()
     {
       Vector2 spawnPosition = new Vector2(spawnXPosition, transform.position.y);
       GameObject spawnedObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
-      
-      StartCoroutine(MoveEaterLeft(spawnedObject));
-    }
 
-    System.Collections.IEnumerator MoveEaterLeft(GameObject obj)
-    {
-      float elapsedTime = 0f;
-
-      while (elapsedTime < destroyTime)
-      {
-        obj.transform.Translate(Vector2.left * (moveSpeed * Time.deltaTime));
-        elapsedTime += Time.deltaTime;
-        yield return null;
-      }
-      
-      Destroy(obj);
+      EaterObject eaterObjectScript = spawnedObject.AddComponent<EaterObject>();
+      eaterObjectScript.moveSpeed = moveSpeed;
+      eaterObjectScript.destroyTime = destroyTime;
     }
     
   }
