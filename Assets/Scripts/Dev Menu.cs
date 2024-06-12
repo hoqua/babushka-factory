@@ -1,4 +1,5 @@
 using Game;
+using Resources.Effects.Eater.Script;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class DevMenuController : MonoBehaviour
     private bool _isDevMenuVisible = false;
 
     public PlayerManager playerManager;
+    public EaterSpawner eaterSpawnerScript;
     
     private readonly KeyCode[] _konamiCode = {
         KeyCode.UpArrow, KeyCode.UpArrow,
@@ -45,12 +47,19 @@ public class DevMenuController : MonoBehaviour
         
         CheckKonamiCode();
     }
+
+    public void SpawnEater()
+    {
+        eaterSpawnerScript.SpawnEater();
+    }
     
     public void LevelUp()
     {
         playerManager.currentExp = playerManager.requiredExp;
         playerManager.CheckLevelUp();
     }
+    
+    
     
     private void ToggleDevMenu()
     {

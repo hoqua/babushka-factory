@@ -18,7 +18,7 @@ namespace Resources.Effects.Eater.Script
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    void SpawnEater()
+    public void SpawnEater()
     {
       Vector2 spawnPosition = new Vector2(spawnXPosition, transform.position.y);
       GameObject spawnedObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
