@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.195, y: 2}
-  m_SizeDelta: {x: 2.35, y: 0.425}
+  m_SizeDelta: {x: 2.25, y: 0.425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8076966775843223881
 MonoBehaviour:
@@ -58,7 +58,8 @@ MonoBehaviour:
   counterScript: {fileID: 0}
   deleterScript: {fileID: 0}
   projectileSpawnerScript: {fileID: 0}
-  babushkaMainScript: {fileID: 0}
+  magnetController: {fileID: 0}
+  eaterSpawnerScript: {fileID: 0}
 --- !u!61 &2787741087846264254
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.35, y: 0.42}
+  m_Size: {x: 2.25, y: 0.42}
   m_EdgeRadius: 0
 --- !u!1 &1998363858949288280
 GameObject:
