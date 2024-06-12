@@ -6,6 +6,7 @@ using Features.Claw.Scripts;
 using Features.Conveyor.Scripts;
 using Game;
 using Game.Level;
+using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace Resources.Cards.Scripts
         public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
+        public EaterSpawner eaterSpawnerScript;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -35,6 +37,7 @@ namespace Resources.Cards.Scripts
             deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             magnetController = FindObjectOfType<MagnetController>();
+            eaterSpawnerScript = FindObjectOfType<EaterSpawner>();
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -68,9 +71,9 @@ namespace Resources.Cards.Scripts
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - CollectAll",  //Собирает всех бабушек на экране
-                    CollectAllBabushkas
-                },
+                { "Card - CollectAll", () => {  //Собирает всех бабушек на экране
+                    if (eaterSpawnerScript != null) eaterSpawnerScript.SpawnEater();
+                }},
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
                     clawScript!.clawCollider.size += new Vector2(0.05f, 0);
@@ -104,29 +107,6 @@ namespace Resources.Cards.Scripts
                 }},
                 
             };
-        }
-        
-        
-        
-        void CollectAllBabushkas()
-        {
-            GameObject[] babushkas = GameObject.FindGameObjectsWithTag("Babushka");
-
-            foreach (GameObject babushka in babushkas)
-            {
-                if (babushka.activeSelf)
-                {
-                    Destroy(babushka);
-                    
-                    counterScript.currentNumOfBabushkas++;
-                    counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas;
-                    
-                    deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
-                    deleterScript.deletedCounterText.text = "Бабушек было упущено " + deleterScript.deletedBabushkasRatio + "%"; 
-                }
-            }
-                
-            spawnerScript.babushkas.Clear();
         }
         
         private IEnumerator SlowDownBabushkaTemporary(float duration)
