@@ -21,23 +21,6 @@ public class DevMenuController : MonoBehaviour
     };
     private int _konamiIndex = 0;
     
-    public void CardUpgrade(int val)
-    {
-        if (val == 0)
-        {
-            Debug.Log("Опция 1");
-        }
-        
-        if (val == 1)
-        {
-            Debug.Log("Опция 2");
-        }
-        
-        if (val == 2)
-        {
-            Debug.Log("Опция 3");
-        }
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
@@ -48,7 +31,8 @@ public class DevMenuController : MonoBehaviour
         CheckKonamiCode();
     }
 
-    public void SpawnEater()
+    //Функции меню
+    public void SpawnEater() 
     {
         eaterSpawnerScript.SpawnEater();
     }
@@ -58,6 +42,9 @@ public class DevMenuController : MonoBehaviour
         playerManager.currentExp = playerManager.requiredExp;
         playerManager.CheckLevelUp();
     }
+    
+    
+    
     
     
     
