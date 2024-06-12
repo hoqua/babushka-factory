@@ -1,15 +1,21 @@
 using System;
+using Game.Level;
 using UnityEngine;
 
 namespace Resources.Effects.Eater.Script
 {
     public class EaterObject : MonoBehaviour
     {
+        public Counter counterScript;
+        public Deleter deleterScript;
+        
         public float moveSpeed;
         public float destroyTime;
 
         private void Start()
         {
+            counterScript = FindObjectOfType<Counter>();
+            deleterScript = FindObjectOfType<Deleter>();
             Destroy(gameObject, destroyTime);
         }
 
@@ -25,6 +31,12 @@ namespace Resources.Effects.Eater.Script
             if (other.gameObject.CompareTag("Babushka"))
             {
                 Destroy(other.gameObject);
+                
+                counterScript.currentNumOfBabushkas++;
+                counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas;
+                    
+                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
+                deleterScript.deletedCounterText.text = "Упущено бабушек" + deleterScript.deletedBabushkasRatio + "%";
             }
         }
     }
