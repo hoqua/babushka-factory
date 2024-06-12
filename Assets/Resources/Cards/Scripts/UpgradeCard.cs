@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Features.Babushka_Basic.Scripts;
 using Features.Claw.Scripts;
 using Features.Conveyor.Scripts;
+using Game;
 using Game.Level;
-using Game.UI;
 using Resources.Effects.Projectile.Scripts;
 using UnityEngine;
 

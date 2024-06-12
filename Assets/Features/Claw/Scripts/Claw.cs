@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Game.UI;
+using Game;
 using UnityEngine;
 
 namespace Features.Claw.Scripts
@@ -9,6 +9,7 @@ namespace Features.Claw.Scripts
     {
         
         public string objectToIgnoreTag = "UI";
+        public bool isInputBlocked = false;
         public PlayerManager playerManager; 
         
         public float clawSpeed = 5f;
@@ -24,7 +25,7 @@ namespace Features.Claw.Scripts
         private float _isObjectGrabbed;
         private readonly List<GameObject> _grabbedBabushkas = new List<GameObject>();
 
-        public ulong clawSound;
+        public AudioClip clawSound;
         private AudioSource _audioSource;
         public bool isClawSoundPlaying;
         
@@ -33,10 +34,11 @@ namespace Features.Claw.Scripts
             _initialPosition = transform.position;
             _audioSource = GetComponent<AudioSource>();
         }
-
+        
         void Update()
         {
-
+            if (isInputBlocked) return;
+            
             if (Input.GetMouseButtonDown(0) && _movingDirection == null)
             {
                 if (Camera.main != null) _targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -69,9 +71,7 @@ namespace Features.Claw.Scripts
             {
                 MoveUp();
             }
-
             
-
         }
         
         
@@ -184,10 +184,13 @@ namespace Features.Claw.Scripts
 
         public void PlayClawSound()
         {
-            _audioSource.loop = true;
-            _audioSource.Play(clawSound);
-            isClawSoundPlaying = true;
-
+            if (!isInputBlocked)
+            {
+                _audioSource.Stop();
+                _audioSource.PlayOneShot(clawSound);
+                _audioSource.loop = true;
+                isClawSoundPlaying = true;
+            }
         }
 
         public void StopClawSound()
