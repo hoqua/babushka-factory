@@ -8,15 +8,8 @@ namespace Resources.Effects.Eater.Script
     public float spawnXPosition = 10f;
     public float moveSpeed = 5f;
     public float destroyTime = 10f;
-
-    void Update()
-    {
-      if (Input.GetKeyDown(KeyCode.Space))
-      {
-        SpawnEater();
-      }
-    }
-
+    
+    
     // ReSharper disable Unity.PerformanceAnalysis
     public void SpawnEater()
     {
