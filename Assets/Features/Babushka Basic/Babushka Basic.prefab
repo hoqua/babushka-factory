@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5403731815563219988
 Transform:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
+  m_Offset: {x: 0.07, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -238,7 +238,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.55}
+  m_Size: {x: 0.62, y: 1.15}
   m_EdgeRadius: 0
 --- !u!95 &3418148027718207742
 Animator:
@@ -290,8 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ffdfaeb7ce3684daa0d66ab36f7ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  babushkaMainScript: {fileID: 0}
-  footstepClip: {fileID: 8300000, guid: 9df0709066fed8b4bafbe2e0fff701e9, type: 3}
   fallClips:
   - {fileID: 8300000, guid: bfed47752c4bed041a5a340c0dafe8e2, type: 3}
   - {fileID: 8300000, guid: 7a42ac9410810dd41adc40222616cbd2, type: 3}
@@ -302,7 +300,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7010905b91666c343a2e439aba819096, type: 3}
   - {fileID: 8300000, guid: a393871123531814cacfe228ae437372, type: 3}
   - {fileID: 8300000, guid: c8fc79b9403b8524981f8c839c29553d, type: 3}
-  footstepVolume: 0.75
   fallVolume: 0.3
 --- !u!82 &-4197963068091011050
 AudioSource:
