@@ -1,4 +1,5 @@
 using Game;
+using Resources.Effects.Eater.Script;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class DevMenuController : MonoBehaviour
     private bool _isDevMenuVisible = false;
 
     public PlayerManager playerManager;
+    public EaterSpawner eaterSpawnerScript;
     
     private readonly KeyCode[] _konamiCode = {
         KeyCode.UpArrow, KeyCode.UpArrow,
@@ -19,23 +21,6 @@ public class DevMenuController : MonoBehaviour
     };
     private int _konamiIndex = 0;
     
-    public void CardUpgrade(int val)
-    {
-        if (val == 0)
-        {
-            Debug.Log("Опция 1");
-        }
-        
-        if (val == 1)
-        {
-            Debug.Log("Опция 2");
-        }
-        
-        if (val == 2)
-        {
-            Debug.Log("Опция 3");
-        }
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
@@ -45,12 +30,23 @@ public class DevMenuController : MonoBehaviour
         
         CheckKonamiCode();
     }
+
+    //Функции меню
+    public void SpawnEater() 
+    {
+        eaterSpawnerScript.SpawnEater();
+    }
     
     public void LevelUp()
     {
         playerManager.currentExp = playerManager.requiredExp;
         playerManager.CheckLevelUp();
     }
+    
+    
+    
+    
+    
     
     private void ToggleDevMenu()
     {
