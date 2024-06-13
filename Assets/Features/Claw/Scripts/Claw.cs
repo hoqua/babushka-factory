@@ -20,7 +20,7 @@ namespace Features.Claw.Scripts
         public Transform clawObject;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
-        private MovingDirection? _movingDirection;
+        internal MovingDirection? _movingDirection;
         
         private float _isObjectGrabbed;
         private readonly List<GameObject> _grabbedBabushkas = new List<GameObject>();
