@@ -71,8 +71,21 @@ namespace Features.Babushka_Basic.Scripts
             {
                 transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
             }
+
+            if (other.CompareTag("Claw"))
+            {
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+
+                animation.Play("Babushka_Grabbed");
+                animation.SetBool(IsPushed, false);
+                animation.SetBool(IsGrabbed, true);
+            }
             
         }
+        
+        
+        
 
         private void OnTriggerExit2D(Collider2D other)
         {
