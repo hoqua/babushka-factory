@@ -51,19 +51,6 @@ namespace Features.Babushka_Basic.Scripts
 
                 canBeCollected = true;
             }
-        }
-
-        void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag("Conveyor"))
-            {
-                transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
-            }
-            
-        }
-        
-        private void OnCollisionEnter2D(Collision2D other)
-        {
             
             if (other.gameObject.CompareTag("Claw") && transform.parent == null) 
             {
@@ -75,8 +62,17 @@ namespace Features.Babushka_Basic.Scripts
                 animation.SetBool(IsGrabbed, true);
                 
             }
-        
         }
+
+        void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Conveyor"))
+            {
+                transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
+            }
+            
+        }
+        
     
         //Отключает анимацию пока бабушка в клешне
         private void OnCollisionStay2D(Collision2D other)

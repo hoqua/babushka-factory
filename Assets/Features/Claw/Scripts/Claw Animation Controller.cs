@@ -23,6 +23,14 @@ namespace Features.Claw.Scripts
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Babushka"))
+            {
+                _animation.SetBool(IsGrabbing, true);
+            }
+        }
+
         private void Update()
         {
             if (clawScript._movingDirection == null)

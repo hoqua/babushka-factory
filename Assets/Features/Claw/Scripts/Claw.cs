@@ -77,14 +77,17 @@ namespace Features.Claw.Scripts
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-             
-                
+            
             if (other.gameObject.CompareTag("Conveyor"))
             {
                 _movingDirection = MovingDirection.Up;
             }
+            
+        }
 
-            if (other.gameObject.CompareTag("Collectable"))
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Collectable"))
             {
                 
                 var collectable = other.gameObject;
@@ -95,7 +98,7 @@ namespace Features.Claw.Scripts
                 
             }
 
-            else if (other.gameObject.CompareTag("Babushka"))
+            else if (other.CompareTag("Babushka"))
             {
                 if (_grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
                 
@@ -115,9 +118,8 @@ namespace Features.Claw.Scripts
                 }
                 
             }
-       
         }
-        
+
         private void OnTransformChildrenChanged()
         {
             _grabbedBabushkas.RemoveAll(obj => obj == null);
