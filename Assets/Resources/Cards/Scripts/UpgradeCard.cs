@@ -99,7 +99,7 @@ namespace Resources.Cards.Scripts
                 }},
                     
                 { "Card - Magnet", () => { //Добавляет клешне магнит с небольшим радиусом
-                    magnetController.ActivateMagnet();
+                    magnetController.EnableMagnet();
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 

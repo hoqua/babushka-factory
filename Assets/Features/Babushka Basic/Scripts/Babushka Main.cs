@@ -53,7 +53,7 @@ namespace Features.Babushka_Basic.Scripts
                 canBeCollected = true;
             }
             
-            if (other.CompareTag("Claw") && transform.parent == null) 
+            if (other.CompareTag("Claw")) 
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.bodyType = RigidbodyType2D.Kinematic;
