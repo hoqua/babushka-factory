@@ -1,5 +1,4 @@
 
-using System;
 using UnityEngine;
 
 namespace Game
@@ -29,6 +28,11 @@ namespace Game
                 settingsPanel.SetActive(true);
             }
             
+        }
+
+        public void ToggleFullscreen()
+        {
+            Screen.fullScreen = !Screen.fullScreen;
         }
         
     }
