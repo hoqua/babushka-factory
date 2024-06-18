@@ -1,10 +1,12 @@
-
+using UnityEngine.Audio;
 using UnityEngine;
 
 namespace Game
 {
     public class Settings : MonoBehaviour
     {
+        public AudioMixer mixer;
+
         public GameObject settingsPanel;
         private bool _isSettingsActive;
 
@@ -33,6 +35,11 @@ namespace Game
         public void ToggleFullscreen()
         {
             Screen.fullScreen = !Screen.fullScreen;
+        }
+
+        public void SetVolume(float volume)
+        {
+            mixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
         }
         
     }
