@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Features.Babushka_Basic.Scripts
@@ -51,6 +52,17 @@ namespace Features.Babushka_Basic.Scripts
 
                 canBeCollected = true;
             }
+            
+            if (other.CompareTag("Claw")) 
+            {
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+
+                animation.Play("Babushka_Grabbed");
+                animation.SetBool(IsPushed, false);
+                animation.SetBool(IsGrabbed, true);
+                
+            }
         }
 
         void OnTriggerStay2D(Collider2D other)
@@ -59,25 +71,38 @@ namespace Features.Babushka_Basic.Scripts
             {
                 transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
             }
-            
-        }
-        
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            
-            if (other.gameObject.CompareTag("Claw") && transform.parent == null) 
+
+            if (other.CompareTag("Claw"))
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-                _rigidbody.isKinematic = true;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
 
                 animation.Play("Babushka_Grabbed");
                 animation.SetBool(IsPushed, false);
                 animation.SetBool(IsGrabbed, true);
-                
             }
-        
+            
         }
-    
+        
+        
+        
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Claw"))
+            {
+                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                _rigidbody.constraints = RigidbodyConstraints2D.None;
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                
+                animation.Play("Babushka Walking");
+                animation.SetBool(IsPushed, true);
+                animation.SetBool(IsGrabbed, false);
+            }
+            
+        }
+
+
         //Отключает анимацию пока бабушка в клешне
         private void OnCollisionStay2D(Collision2D other)
         {
@@ -85,22 +110,6 @@ namespace Features.Babushka_Basic.Scripts
             {
                 animation.SetBool(IsPushed, false);
             }
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Claw"))
-            {
-               _rigidbody.constraints = RigidbodyConstraints2D.None;
-               _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-               _rigidbody.isKinematic = false;
-               
-               animation.Play("Babushka Walking");
-               animation.SetBool(IsPushed, true);
-               animation.SetBool(IsGrabbed, false);
-
-            }
-            
         }
 
     }

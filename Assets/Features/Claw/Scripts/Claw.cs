@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game;
 using UnityEngine;
@@ -7,10 +8,12 @@ namespace Features.Claw.Scripts
 {
     public class Claw : MonoBehaviour
     {
+        public PlayerManager playerManager;
+        public MagnetController magnetController;
         
         public string objectToIgnoreTag = "UI";
         public bool isInputBlocked = false;
-        public PlayerManager playerManager; 
+        
         
         public float clawSpeed = 5f;
         public int maxGrabbedBabushkas = 1;
@@ -20,7 +23,7 @@ namespace Features.Claw.Scripts
         public Transform clawObject;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
-        private MovingDirection? _movingDirection;
+        internal MovingDirection? _movingDirection;
         
         private float _isObjectGrabbed;
         private readonly List<GameObject> _grabbedBabushkas = new List<GameObject>();
@@ -28,7 +31,7 @@ namespace Features.Claw.Scripts
         public AudioClip clawSound;
         private AudioSource _audioSource;
         public bool isClawSoundPlaying;
-        
+
         private void Start()
         {
             _initialPosition = transform.position;
@@ -77,14 +80,20 @@ namespace Features.Claw.Scripts
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-             
-                
+            
             if (other.gameObject.CompareTag("Conveyor"))
             {
+                magnetController.ActivateMagnet();
                 _movingDirection = MovingDirection.Up;
             }
+            
+        }
 
-            if (other.gameObject.CompareTag("Collectable"))
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            
+            
+            if (other.CompareTag("Collectable"))
             {
                 
                 var collectable = other.gameObject;
@@ -95,8 +104,9 @@ namespace Features.Claw.Scripts
                 
             }
 
-            else if (other.gameObject.CompareTag("Babushka"))
+            else if (other.CompareTag("Babushka"))
             {
+                
                 if (_grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
                 
                 var babushka = other.gameObject;
@@ -115,9 +125,14 @@ namespace Features.Claw.Scripts
                 }
                 
             }
-       
+
+            if (other.CompareTag("Babushka") || other.CompareTag("Collectable"))
+            {
+                magnetController.ActivateMagnet();
+            }
+            
         }
-        
+
         private void OnTransformChildrenChanged()
         {
             _grabbedBabushkas.RemoveAll(obj => obj == null);
