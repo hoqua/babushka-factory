@@ -39,6 +39,16 @@ namespace Features.Babushka_Basic.Scripts
 
             var clampedWalkingSpeed = Mathf.Clamp(walkingSpeed, MinWalkingSpeed, MaxWalkingSpeed);
             animation.SetFloat(WalkSpeed, clampedWalkingSpeed);
+
+            if (transform.parent != null)
+            {
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+
+                animation.Play("Babushka_Grabbed");
+                animation.SetBool(IsPushed, false);
+                animation.SetBool(IsGrabbed, true);
+            }
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере, а также делает их "collectable"
@@ -102,16 +112,6 @@ namespace Features.Babushka_Basic.Scripts
                 animation.SetBool(IsGrabbed, false);
             }
             
-        }
-
-
-        //Отключает анимацию пока бабушка в клешне
-        private void OnCollisionStay2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Claw"))
-            {
-                animation.SetBool(IsPushed, false);
-            }
         }
 
     }

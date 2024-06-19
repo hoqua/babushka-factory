@@ -6,7 +6,7 @@ namespace Resources.Effects.Projectile.Scripts
 {
     public class ProjectileSoundController : MonoBehaviour
     {
-        private BabushkaMain babushkaMainScript;
+        private BabushkaMain _babushkaMainScript;
         
         private AudioSource _audioSource;
         public AudioClip freezeSound;
@@ -22,12 +22,12 @@ namespace Resources.Effects.Projectile.Scripts
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
                 var babushka = other.gameObject;
-                babushkaMainScript = babushka.GetComponent<BabushkaMain>();
+                _babushkaMainScript = babushka.GetComponent<BabushkaMain>();
                 
-                if (babushkaMainScript.isFrozen == false)
+                if (_babushkaMainScript.isFrozen == false)
                 {
                     _audioSource.PlayOneShot(freezeSound);
-                    babushkaMainScript.isFrozen = true;
+                    _babushkaMainScript.isFrozen = true;
                 }
                 
             }

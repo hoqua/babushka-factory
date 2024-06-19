@@ -1,3 +1,4 @@
+using System.Collections;
 using Features.Babushka_Basic.Scripts;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace Resources.Effects.Projectile.Scripts
 {
     public class Projectile : MonoBehaviour
     {
-        private BabushkaMain babushkaMainScript;
+        private BabushkaMain _babushkaMainScript;
         
         public float projectileSpeed = 10f;
         public int maxBounces = 5;
@@ -50,12 +51,32 @@ namespace Resources.Effects.Projectile.Scripts
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
                 var babushka = other.gameObject;
-                babushkaMainScript = babushka.GetComponent<BabushkaMain>();
+                _babushkaMainScript = babushka.GetComponent<BabushkaMain>();
                 
-                babushkaMainScript.walkingSpeed *= 0;
-                babushkaMainScript._rigidbody.bodyType = RigidbodyType2D.Static;
-                babushkaMainScript.animation.SetBool(IsPushed, false);
+                if (_babushkaMainScript != null)
+                {
+                    StartCoroutine(FreezeBabushka(_babushkaMainScript, 5f));
+                }
             }
+        }
+
+        private IEnumerator FreezeBabushka(BabushkaMain babushkaMainScript,float duration)
+        {
+            var originalWalkingSpeed = babushkaMainScript.walkingSpeed;
+            RigidbodyType2D originalBodyType = babushkaMainScript._rigidbody.bodyType;
+            
+            //Изменение состояния
+            babushkaMainScript.walkingSpeed = 0;
+            babushkaMainScript._rigidbody.bodyType = RigidbodyType2D.Static;
+            babushkaMainScript.animation.SetBool(IsPushed, false);
+            
+            yield return new WaitForSeconds(duration);
+            
+            //Возвращение исходного состояния
+            babushkaMainScript.walkingSpeed = originalWalkingSpeed;
+            babushkaMainScript._rigidbody.bodyType = originalBodyType;
+            babushkaMainScript.animation.SetBool(IsPushed, true);
+            babushkaMainScript.isFrozen = false;
         }
     }
 }
