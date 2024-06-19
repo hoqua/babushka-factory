@@ -119,7 +119,6 @@ namespace Features.Claw.Scripts
                         _grabbedBabushkas.Add(babushka);
                     }
                     
-                    
                     _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                     _movingDirection = MovingDirection.Up;
                 }
@@ -191,7 +190,6 @@ namespace Features.Claw.Scripts
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
-          
                 _movingDirection = null;
                 StopClawSound();
             }
@@ -213,9 +211,6 @@ namespace Features.Claw.Scripts
             _audioSource.Stop();
             isClawSoundPlaying = false;
         }
-
-
-
     }
 
 
