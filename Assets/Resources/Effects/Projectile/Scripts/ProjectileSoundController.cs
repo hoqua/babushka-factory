@@ -1,10 +1,13 @@
 
+using Features.Babushka_Basic.Scripts;
 using UnityEngine;
 
 namespace Resources.Effects.Projectile.Scripts
 {
     public class ProjectileSoundController : MonoBehaviour
     {
+        private BabushkaMain babushkaMainScript;
+        
         private AudioSource _audioSource;
         public AudioClip freezeSound;
         
@@ -18,7 +21,15 @@ namespace Resources.Effects.Projectile.Scripts
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
-                _audioSource.PlayOneShot(freezeSound);
+                var babushka = other.gameObject;
+                babushkaMainScript = babushka.GetComponent<BabushkaMain>();
+                
+                if (babushkaMainScript.isFrozen == false)
+                {
+                    _audioSource.PlayOneShot(freezeSound);
+                    babushkaMainScript.isFrozen = true;
+                }
+                
             }
         }
     }

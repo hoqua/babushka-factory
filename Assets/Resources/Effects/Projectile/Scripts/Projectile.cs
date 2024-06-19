@@ -49,15 +49,12 @@ namespace Resources.Effects.Projectile.Scripts
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
-                {
-                    var babushka = other.gameObject;
-                    babushkaMainScript = babushka.GetComponent<BabushkaMain>();
-
-                    babushkaMainScript.walkingSpeed *= 0;
-                    babushkaMainScript._rigidbody.bodyType = RigidbodyType2D.Static;
-                    babushkaMainScript.animation.SetBool(IsPushed, false);
-                }
+                var babushka = other.gameObject;
+                babushkaMainScript = babushka.GetComponent<BabushkaMain>();
                 
+                babushkaMainScript.walkingSpeed *= 0;
+                babushkaMainScript._rigidbody.bodyType = RigidbodyType2D.Static;
+                babushkaMainScript.animation.SetBool(IsPushed, false);
             }
         }
     }

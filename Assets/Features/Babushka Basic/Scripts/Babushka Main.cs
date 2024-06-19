@@ -12,7 +12,9 @@ namespace Features.Babushka_Basic.Scripts
         public float walkingSpeed;
         private const float MinWalkingSpeed = 0.75f;
         private const float MaxWalkingSpeed = 1.25f;
+        
         public bool canBeCollected;
+        public bool isFrozen = false;
         
         public new Animator animation;
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
