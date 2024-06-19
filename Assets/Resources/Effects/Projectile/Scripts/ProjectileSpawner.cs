@@ -18,7 +18,7 @@ namespace Resources.Effects.Projectile.Scripts
             InvokeRepeating(nameof(SpawnProjectile), spawnInterval, spawnInterval);
         }
 
-        void SpawnProjectile()
+        public void SpawnProjectile()
         {
             var spawner = transform;
             Instantiate(projectilePrefab, spawner.position, spawner.rotation);
