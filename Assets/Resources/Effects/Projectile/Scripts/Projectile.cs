@@ -5,7 +5,7 @@ namespace Resources.Effects.Projectile.Scripts
 {
     public class Projectile : MonoBehaviour
     {
-        public BabushkaMain babushkaMainScript;
+        private BabushkaMain babushkaMainScript;
         
         public float projectileSpeed = 10f;
         public int maxBounces = 5;
@@ -13,11 +13,10 @@ namespace Resources.Effects.Projectile.Scripts
         
         private Rigidbody2D _rb;
         private Vector2 _lastVelocity;
-        
+        private static readonly int IsPushed = Animator.StringToHash("isPushed");
+
         private void Start()
         {
-            babushkaMainScript = FindObjectOfType<BabushkaMain>();
-            
             _rb = GetComponent<Rigidbody2D>();
             _rb.velocity = transform.right * projectileSpeed;
         }
@@ -50,7 +49,14 @@ namespace Resources.Effects.Projectile.Scripts
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
-                babushkaMainScript.walkingSpeed *= 0.5f;
+                {
+                    var babushka = other.gameObject;
+                    babushkaMainScript = babushka.GetComponent<BabushkaMain>();
+                   
+                    babushkaMainScript._rigidbody.bodyType = RigidbodyType2D.Static;
+                    babushkaMainScript.animation.SetBool(IsPushed, false);
+                }
+                
             }
         }
     }
