@@ -51,9 +51,19 @@ namespace Features.Babushka_Basic.Scripts
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.bodyType = RigidbodyType2D.Kinematic;
 
-                animation.Play("Babushka_Grabbed");
-                animation.SetBool(IsPushed, false);
-                animation.SetBool(IsGrabbed, true);
+                if (isFrozen)
+                {
+                    animation.Play("Babushka_Idle");
+                    animation.SetBool(IsPushed, false);
+                }
+                
+                else
+                {
+                    animation.Play("Babushka_Grabbed");
+                    animation.SetBool(IsPushed, false);
+                    animation.SetBool(IsGrabbed, true);
+                }
+                
             }
         }
         
@@ -64,7 +74,7 @@ namespace Features.Babushka_Basic.Scripts
             {
                 babushkaSoundController.IsFellSfx(); //Воспроизводит звук падения
                 
-                animation.Play("Babushka Walking");
+                animation.Play("Babushka_Walking");
                 animation.SetBool(IsPushed, true);
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
 
@@ -75,11 +85,19 @@ namespace Features.Babushka_Basic.Scripts
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-
-                animation.Play("Babushka_Grabbed");
-                animation.SetBool(IsPushed, false);
-                animation.SetBool(IsGrabbed, true);
                 
+                if (isFrozen)
+                {
+                    animation.Play("Babushka_Idle");
+                    animation.SetBool(IsPushed, false);
+                }
+                
+                else
+                {
+                    animation.Play("Babushka_Grabbed");
+                    animation.SetBool(IsPushed, false);
+                    animation.SetBool(IsGrabbed, true);
+                }
             }
         }
 
@@ -88,16 +106,6 @@ namespace Features.Babushka_Basic.Scripts
             if (other.CompareTag("Conveyor"))
             {
                 transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
-            }
-
-            if (other.CompareTag("Claw"))
-            {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-
-                animation.Play("Babushka_Grabbed");
-                animation.SetBool(IsPushed, false);
-                animation.SetBool(IsGrabbed, true);
             }
             
         }
@@ -113,7 +121,7 @@ namespace Features.Babushka_Basic.Scripts
                 _rigidbody.constraints = RigidbodyConstraints2D.None;
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 
-                animation.Play("Babushka Walking");
+                animation.Play("Babushka_Walking");
                 animation.SetBool(IsPushed, true);
                 animation.SetBool(IsGrabbed, false);
             }
