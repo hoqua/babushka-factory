@@ -11,7 +11,6 @@ namespace Resources.Effects.Projectile.Scripts
 
         private Rigidbody2D _rb;
         private Vector2 _lastVelocity;
-        private static readonly int IsPushed = Animator.StringToHash("isPushed");
 
         private void Start()
         {
@@ -49,7 +48,10 @@ namespace Resources.Effects.Projectile.Scripts
                 
                 if (babushkaMainScript != null && !babushkaMainScript.isFrozen)
                 {
-                    FreezeManager.Instance.FreezeBabushka(babushkaMainScript, 5f);
+                    if (other.transform.parent == null)
+                    {
+                        FreezeManager.Instance.FreezeBabushka(babushkaMainScript, 5f);
+                    } 
                 }
             }
         }

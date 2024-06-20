@@ -7,7 +7,7 @@ namespace Resources.Effects.Projectile.Scripts
     public class FreezeManager : MonoBehaviour
     {
         public static FreezeManager Instance;
-        public ProjectileSoundController _projectileSoundController;
+        public ProjectileSoundController projectileSoundController;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
 
         private void Awake()
@@ -35,10 +35,10 @@ namespace Resources.Effects.Projectile.Scripts
 
             if (!babushkaMainScript.isFrozen)
             {
-                _projectileSoundController = FindObjectOfType<ProjectileSoundController>();
-                if (_projectileSoundController != null)
+                projectileSoundController = FindObjectOfType<ProjectileSoundController>();
+                if (projectileSoundController != null)
                 {
-                    _projectileSoundController.PlayFreezeSound();
+                    projectileSoundController.PlayFreezeSound();
                 }
             }
             
