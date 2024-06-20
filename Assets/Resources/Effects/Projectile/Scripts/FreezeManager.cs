@@ -52,11 +52,15 @@ namespace Resources.Effects.Projectile.Scripts
             yield return new WaitForSeconds(duration);
 
             //Возвращение исходного состояния
-            babushkaMainScript.walkingSpeed = originalWalkingSpeed;
-            babushkaMainScript._rigidbody.bodyType = originalBodyType;
-            babushkaMainScript.iceBlockSprite.enabled = false;  //Маска ледяной глыбы
-            babushkaMainScript.animation.SetBool(IsPushed, true);
-            babushkaMainScript.isFrozen = false;
+            if (babushkaMainScript != null)
+            {
+                babushkaMainScript.walkingSpeed = originalWalkingSpeed;
+                babushkaMainScript._rigidbody.bodyType = originalBodyType;
+                babushkaMainScript.iceBlockSprite.enabled = false;  //Маска ледяной глыбы
+                babushkaMainScript.animation.SetBool(IsPushed, true);
+                babushkaMainScript.isFrozen = false;
+            }
+            
         }
         
     }
