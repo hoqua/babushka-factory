@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 namespace Features.Babushka_Basic.Scripts
@@ -6,6 +6,8 @@ namespace Features.Babushka_Basic.Scripts
     public class BabushkaMain : MonoBehaviour
     {
         public BabushkaSoundController babushkaSoundController;
+        private Transform _iceBlockObject;
+        public SpriteRenderer iceBlockSprite;
         
         public Rigidbody2D _rigidbody;
         
@@ -26,6 +28,10 @@ namespace Features.Babushka_Basic.Scripts
         void Start()
         {
             babushkaSoundController = FindObjectOfType<BabushkaSoundController>();
+
+            _iceBlockObject = transform.Find("Ice Block");
+            iceBlockSprite = _iceBlockObject.GetComponent<SpriteRenderer>();
+            iceBlockSprite.enabled = false;
             
             _rigidbody = GetComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");

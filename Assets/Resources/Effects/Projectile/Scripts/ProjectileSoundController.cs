@@ -1,4 +1,3 @@
-
 using Features.Babushka_Basic.Scripts;
 using UnityEngine;
 
@@ -14,23 +13,12 @@ namespace Resources.Effects.Projectile.Scripts
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _audioSource.volume = 0.25f;
+            _audioSource.volume = 0.15f;
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        public void PlayFreezeSound()
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
-            {
-                var babushka = other.gameObject;
-                _babushkaMainScript = babushka.GetComponent<BabushkaMain>();
-                
-                if (_babushkaMainScript.isFrozen == false)
-                {
-                    _audioSource.PlayOneShot(freezeSound);
-                    _babushkaMainScript.isFrozen = true;
-                }
-                
-            }
+            _audioSource.PlayOneShot(freezeSound);
         }
     }
 }
