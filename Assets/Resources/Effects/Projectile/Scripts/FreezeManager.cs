@@ -7,7 +7,7 @@ namespace Resources.Effects.Projectile.Scripts
     public class FreezeManager : MonoBehaviour
     {
         public static FreezeManager Instance;
-        public ProjectileSoundController projectileSoundController;
+        public ProjectileSoundController _projectileSoundController;
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
 
         private void Awake()
@@ -27,12 +27,21 @@ namespace Resources.Effects.Projectile.Scripts
             StartCoroutine(FreezeCoroutine(babushkaMainScript, duration));
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator FreezeCoroutine(BabushkaMain babushkaMainScript, float duration)
         {
             var originalWalkingSpeed = babushkaMainScript.walkingSpeed;
             RigidbodyType2D originalBodyType = babushkaMainScript._rigidbody.bodyType;
-            
 
+            if (!babushkaMainScript.isFrozen)
+            {
+                _projectileSoundController = FindObjectOfType<ProjectileSoundController>();
+                if (_projectileSoundController != null)
+                {
+                    _projectileSoundController.PlayFreezeSound();
+                }
+            }
+            
             //Изменение состояния
             babushkaMainScript.isFrozen = true;
             babushkaMainScript.walkingSpeed = 0;
