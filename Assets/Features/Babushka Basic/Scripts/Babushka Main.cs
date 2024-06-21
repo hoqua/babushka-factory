@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 namespace Features.Babushka_Basic.Scripts
@@ -6,13 +6,17 @@ namespace Features.Babushka_Basic.Scripts
     public class BabushkaMain : MonoBehaviour
     {
         public BabushkaSoundController babushkaSoundController;
+        private Transform _iceBlockObject;
+        public SpriteRenderer iceBlockSprite;
         
         public Rigidbody2D _rigidbody;
         
         public float walkingSpeed;
         private const float MinWalkingSpeed = 0.75f;
         private const float MaxWalkingSpeed = 1.25f;
+        
         public bool canBeCollected;
+        public bool isFrozen = false;
         
         public new Animator animation;
         private static readonly int IsFalling = Animator.StringToHash("isFalling");
@@ -24,6 +28,10 @@ namespace Features.Babushka_Basic.Scripts
         void Start()
         {
             babushkaSoundController = FindObjectOfType<BabushkaSoundController>();
+
+            _iceBlockObject = transform.Find("Ice Block");
+            iceBlockSprite = _iceBlockObject.GetComponent<SpriteRenderer>();
+            iceBlockSprite.enabled = false;
             
             _rigidbody = GetComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
@@ -37,6 +45,26 @@ namespace Features.Babushka_Basic.Scripts
 
             var clampedWalkingSpeed = Mathf.Clamp(walkingSpeed, MinWalkingSpeed, MaxWalkingSpeed);
             animation.SetFloat(WalkSpeed, clampedWalkingSpeed);
+
+            if (transform.parent != null)
+            {
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+
+                if (isFrozen)
+                {
+                    animation.Play("Babushka_Idle");
+                    animation.SetBool(IsPushed, false);
+                }
+                
+                else
+                {
+                    animation.Play("Babushka_Grabbed");
+                    animation.SetBool(IsPushed, false);
+                    animation.SetBool(IsGrabbed, true);
+                }
+                
+            }
         }
         
         //Триггерит анимацию ходьбы пока бабушка на конвейере, а также делает их "collectable"
@@ -46,7 +74,7 @@ namespace Features.Babushka_Basic.Scripts
             {
                 babushkaSoundController.IsFellSfx(); //Воспроизводит звук падения
                 
-                animation.Play("Babushka Walking");
+                animation.Play("Babushka_Walking");
                 animation.SetBool(IsPushed, true);
                 gameObject.layer = LayerMask.NameToLayer("Babushkas");
 
@@ -57,11 +85,19 @@ namespace Features.Babushka_Basic.Scripts
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
                 _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-
-                animation.Play("Babushka_Grabbed");
-                animation.SetBool(IsPushed, false);
-                animation.SetBool(IsGrabbed, true);
                 
+                if (isFrozen)
+                {
+                    animation.Play("Babushka_Idle");
+                    animation.SetBool(IsPushed, false);
+                }
+                
+                else
+                {
+                    animation.Play("Babushka_Grabbed");
+                    animation.SetBool(IsPushed, false);
+                    animation.SetBool(IsGrabbed, true);
+                }
             }
         }
 
@@ -70,16 +106,6 @@ namespace Features.Babushka_Basic.Scripts
             if (other.CompareTag("Conveyor"))
             {
                 transform.Translate(Vector2.left * walkingSpeed * Time.deltaTime); //Бабушка ходит влево cо скоростью walkingSpeed
-            }
-
-            if (other.CompareTag("Claw"))
-            {
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-
-                animation.Play("Babushka_Grabbed");
-                animation.SetBool(IsPushed, false);
-                animation.SetBool(IsGrabbed, true);
             }
             
         }
@@ -95,21 +121,11 @@ namespace Features.Babushka_Basic.Scripts
                 _rigidbody.constraints = RigidbodyConstraints2D.None;
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 
-                animation.Play("Babushka Walking");
+                animation.Play("Babushka_Walking");
                 animation.SetBool(IsPushed, true);
                 animation.SetBool(IsGrabbed, false);
             }
             
-        }
-
-
-        //Отключает анимацию пока бабушка в клешне
-        private void OnCollisionStay2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Claw"))
-            {
-                animation.SetBool(IsPushed, false);
-            }
         }
 
     }

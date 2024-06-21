@@ -8,7 +8,7 @@ namespace Resources.Effects.Projectile.Scripts
         public GameObject projectilePrefab;
 
         public string obstacleTag = "Claw";
-        public float checkRadius = 0.5f;
+        public float checkRadius = 1f;
         
         private Camera _mainCamera;
         void Start()
@@ -18,7 +18,7 @@ namespace Resources.Effects.Projectile.Scripts
             InvokeRepeating(nameof(SpawnProjectile), spawnInterval, spawnInterval);
         }
 
-        void SpawnProjectile()
+        public void SpawnProjectile()
         {
             var spawner = transform;
             Instantiate(projectilePrefab, spawner.position, spawner.rotation);

@@ -1,5 +1,6 @@
 using Game;
 using Resources.Effects.Eater.Script;
+using Resources.Effects.Projectile.Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class DevMenuController : MonoBehaviour
     public GameObject devMenuPanel;
     private bool _isDevMenuVisible = false;
 
+    public ProjectileSpawner projectileSpawnerScript;
     public PlayerManager playerManager;
     public EaterSpawner eaterSpawnerScript;
     
@@ -20,6 +22,11 @@ public class DevMenuController : MonoBehaviour
         KeyCode.B, KeyCode.A
     };
     private int _konamiIndex = 0;
+
+    void Start()
+    {
+        devMenuPanel.SetActive(false);
+    }
     
     void Update()
     {
@@ -42,7 +49,11 @@ public class DevMenuController : MonoBehaviour
         playerManager.currentExp = playerManager.requiredExp;
         playerManager.CheckLevelUp();
     }
-    
+
+    public void SpawnSputnik()
+    {
+        projectileSpawnerScript.SpawnProjectile();
+    }
     
     
     

@@ -5,19 +5,15 @@ namespace Resources.Effects.Projectile.Scripts
 {
     public class Projectile : MonoBehaviour
     {
-        public BabushkaMain babushkaMainScript;
-        
         public float projectileSpeed = 10f;
         public int maxBounces = 5;
         private int _bounceCount;
-        
+
         private Rigidbody2D _rb;
         private Vector2 _lastVelocity;
-        
+
         private void Start()
         {
-            babushkaMainScript = FindObjectOfType<BabushkaMain>();
-            
             _rb = GetComponent<Rigidbody2D>();
             _rb.velocity = transform.right * projectileSpeed;
         }
@@ -29,8 +25,6 @@ namespace Resources.Effects.Projectile.Scripts
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            
-            
             Vector2 normal = collision.contacts[0].normal;
             Vector2 reflectDirection = Vector2.Reflect(_lastVelocity, normal);
             _rb.velocity = reflectDirection;
@@ -50,7 +44,15 @@ namespace Resources.Effects.Projectile.Scripts
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Babushkas"))
             {
-                babushkaMainScript.walkingSpeed *= 0.5f;
+                var babushkaMainScript = other.GetComponent<BabushkaMain>();
+                
+                if (babushkaMainScript != null && !babushkaMainScript.isFrozen)
+                {
+                    if (other.transform.parent == null)
+                    {
+                        FreezeManager.Instance.FreezeBabushka(babushkaMainScript, 5f);
+                    } 
+                }
             }
         }
     }
