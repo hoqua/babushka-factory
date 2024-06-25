@@ -15,7 +15,7 @@ namespace Features.Babushka_Basic.Scripts
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _audioSource.volume = 0.2f; 
+            _audioSource.volume = 0.5f; 
         }
         
         public void IsFellSfx()

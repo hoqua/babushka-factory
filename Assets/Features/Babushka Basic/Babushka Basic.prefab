@@ -99,8 +99,6 @@ GameObject:
   - component: {fileID: 4734290774569253900}
   - component: {fileID: 3418148027718207742}
   - component: {fileID: 5864672332325307619}
-  - component: {fileID: -7497083436092545575}
-  - component: {fileID: -4197963068091011050}
   m_Layer: 7
   m_Name: Babushka Basic
   m_TagString: Babushka
@@ -327,128 +325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babushkaSoundController: {fileID: 0}
-  iceBlockObject: {fileID: 0}
+  iceBlockSprite: {fileID: 0}
   _rigidbody: {fileID: 0}
   walkingSpeed: 1
   canBeCollected: 0
   isFrozen: 0
   animation: {fileID: 0}
---- !u!114 &-7497083436092545575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8479414038719990639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ffdfaeb7ce3684daa0d66ab36f7ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallClips:
-  - {fileID: 8300000, guid: bfed47752c4bed041a5a340c0dafe8e2, type: 3}
-  - {fileID: 8300000, guid: 7a42ac9410810dd41adc40222616cbd2, type: 3}
-  - {fileID: 8300000, guid: e20b729df1fd39243a7b783dbd9940e9, type: 3}
-  - {fileID: 8300000, guid: 94a8060174cadff41ab803f7cb9e8993, type: 3}
-  - {fileID: 8300000, guid: 7279ec4d4f59dbb4289dfa1b6535cf88, type: 3}
-  - {fileID: 8300000, guid: e02a448ebbfcbf246b91980d9bb5b87e, type: 3}
-  - {fileID: 8300000, guid: 7010905b91666c343a2e439aba819096, type: 3}
-  - {fileID: 8300000, guid: a393871123531814cacfe228ae437372, type: 3}
-  - {fileID: 8300000, guid: c8fc79b9403b8524981f8c839c29553d, type: 3}
-  fallVolume: 0.3
---- !u!82 &-4197963068091011050
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8479414038719990639}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: ddbd30754d62e594a9274c8078acf130, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 100
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
