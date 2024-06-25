@@ -8,7 +8,10 @@ using Game;
 using Game.Level;
 using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
+using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 namespace Resources.Cards.Scripts
 {
@@ -27,6 +30,7 @@ namespace Resources.Cards.Scripts
         private float _clawSpeedInitial;
         private float _intervalInitial;
         
+        
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
@@ -41,7 +45,8 @@ namespace Resources.Cards.Scripts
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
-
+            
+            UpdateText();
         }
 
         private readonly Dictionary<BabushkaMain, float> _originalSpeed = new Dictionary<BabushkaMain, float>();
@@ -90,11 +95,18 @@ namespace Resources.Cards.Scripts
                     spawnerScript!.CloneBabushkas();
                 }},
                 
-                { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её.
+                { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её. Повторное взяие уменьшает интервал на одну секунду
                     if (projectileSpawnerScript.enabled == false)
                     {
                         projectileSpawnerScript.enabled = true;
-                    } 
+                        projectileSpawnerScript.spawnInterval = 11f;
+                    }
+
+                    if (projectileSpawnerScript.enabled)
+                    {
+                        projectileSpawnerScript.spawnInterval -= 1f;
+                    }
+                    
 
                 }},
                     
@@ -108,7 +120,19 @@ namespace Resources.Cards.Scripts
                 
             };
         }
+
         
+        private void UpdateText()
+        {
+            Transform bodyTransform = transform.Find("Body");
+            TextMeshPro textMeshPro = bodyTransform.GetComponentInChildren<TextMeshPro>();
+
+            if (gameObject.name == "Card - Projectile" && projectileSpawnerScript.enabled)
+            {
+                textMeshPro.text = "Уменьшает интервал появления спутников на 1 секунду";
+            }
+        }
+
         private IEnumerator SlowDownBabushkaTemporary(float duration)
         {
             foreach (BabushkaMain babushka in spawnerScript.babushkas)
@@ -139,7 +163,9 @@ namespace Resources.Cards.Scripts
                 gameManager.HideUpgradeOverlay();
                 RemoveCards();
             }
+            
         }
+        
 
         private void RemoveCards()
         {
