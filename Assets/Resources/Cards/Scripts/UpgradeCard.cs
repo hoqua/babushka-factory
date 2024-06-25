@@ -96,22 +96,28 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её. Повторное взяие уменьшает интервал на одну секунду
-                    if (projectileSpawnerScript.enabled == false)
-                    {
-                        projectileSpawnerScript.enabled = true;
-                        projectileSpawnerScript.spawnInterval = 11f;
-                    }
-
+                    
                     if (projectileSpawnerScript.enabled)
                     {
                         projectileSpawnerScript.spawnInterval -= 1f;
                     }
                     
-
+                    if (projectileSpawnerScript.enabled == false)
+                    {
+                        projectileSpawnerScript.enabled = true;
+                    }
+                    
                 }},
                     
                 { "Card - Magnet", () => { //Добавляет клешне магнит с небольшим радиусом
+                    
+                    if (magnetController.magnetEffect.enabled)
+                    {
+                        magnetController.UpgradeMagnet();
+                    }
+                    
                     magnetController.EnableMagnet();
+                    
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
@@ -130,6 +136,11 @@ namespace Resources.Cards.Scripts
             if (gameObject.name == "Card - Projectile" && projectileSpawnerScript.enabled)
             {
                 textMeshPro.text = "Уменьшает интервал появления спутников на 1 секунду";
+            }
+            
+            if (gameObject.name == "Card - Magnet" && magnetController.magnetEffect.enabled)
+            {
+                textMeshPro.text = "Немного увеличивает радиус и силу магнита";
             }
         }
 

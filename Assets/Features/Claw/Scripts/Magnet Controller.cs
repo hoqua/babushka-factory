@@ -1,29 +1,35 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 namespace Features.Claw.Scripts
 {
     public class MagnetController : MonoBehaviour
     {
-        private PointEffector2D _magnetEffect;
+        public PointEffector2D magnetEffect;
         private CircleCollider2D _magnetCollider;
 
         public float magnetActiveTime = 0.5f;
         
         void Start()
         {
-            _magnetEffect = FindObjectOfType<PointEffector2D>();
+            magnetEffect = FindObjectOfType<PointEffector2D>();
             _magnetCollider = FindObjectOfType<CircleCollider2D>();
            
             _magnetCollider.enabled = false;
-            _magnetEffect.enabled = false;
+            magnetEffect.enabled = false;
         }
         
         public void EnableMagnet()
         {
             _magnetCollider.enabled = false;
-            _magnetEffect.enabled = true;
+            magnetEffect.enabled = true;
+        }
+
+        public void UpgradeMagnet()
+        {
+            _magnetCollider.radius += 0.1f;
+            magnetEffect.forceMagnitude -= 5f;
         }
 
         public void ActivateMagnet()
