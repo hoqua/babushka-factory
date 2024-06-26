@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Features.Claw.Scripts;
 using Game;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,7 +15,7 @@ namespace Resources.Cards.Scripts
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;
         
-        private Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
         
         private void Start()
         {
@@ -59,15 +58,15 @@ namespace Resources.Cards.Scripts
         public void BlockClawInput()
         {
             BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D collider in colliders2D)
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
             {
-                collider.enabled = false;
+                boxCollider2D.enabled = false;
             }
             
             CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D collider in circleColliders2D)
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
             {
-                collider.enabled = false;
+                circleCollider2D.enabled = false;
             }
             
             clawScript.isInputBlocked = true;
@@ -79,15 +78,15 @@ namespace Resources.Cards.Scripts
             yield return new WaitForSeconds(delay);
             
             BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D collider in colliders2D)
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
             {
-                collider.enabled = true;
+                boxCollider2D.enabled = true;
             }
             
             CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D collider in circleColliders2D)
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
             {
-                collider.enabled = true;
+                circleCollider2D.enabled = true;
             }
             
             clawScript.isInputBlocked = false;
