@@ -23,6 +23,13 @@ namespace Resources.Cards.Scripts
             GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
             cardPrefabs.AddRange(prefabs);
         }
+        
+        //Карточки на которые не действуют ограничения и их можно вызывать всегда.
+        public List<string> cardsExemptFromLimit = new List<string>
+        {
+            "Card - Test",
+            "Card - CollectAll"
+        };
 
         public void ShowUpgradeCards()
         {
@@ -125,8 +132,8 @@ namespace Resources.Cards.Scripts
             }
 
             Debug.Log($"Card '{cardName}' clicked {_cardClickCounts[cardName]} times.");
-
-            if (_cardClickCounts[cardName] >= 2)
+            
+            if (_cardClickCounts[cardName] >= 2 && !cardsExemptFromLimit.Contains(cardName))
             {
                 RemoveCardFromPrefabs(cardName);
                 Debug.Log($"Card '{cardName}' removed from prefabs.");
