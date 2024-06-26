@@ -189,7 +189,7 @@ namespace Resources.Cards.Scripts
 
             foreach (UpgradeCard card in allUpgradeCards)
             {
-                if (card != this || cardManager.cardsExemptFromLimit.Contains(card.gameObject.name))
+                if (card != this || cardManager.cardsExemptFromLimit.Contains(card.gameObject.name) || GameObject.Find(card.gameObject.name) != null)
                 {
                     Destroy(card.gameObject);
                 }
