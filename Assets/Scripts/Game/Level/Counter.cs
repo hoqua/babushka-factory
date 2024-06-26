@@ -39,7 +39,7 @@ namespace Game.Level
             }
 
             _collectablesScript = other.GetComponent<Collectables>();
-            if (other.CompareTag("Collectable") && _collectablesScript.canBeDeleted)
+            if (other.CompareTag("Collectable") && _collectablesScript.canBeCollected)
             {
                 if (other.name == "RepairTool")
                 {
