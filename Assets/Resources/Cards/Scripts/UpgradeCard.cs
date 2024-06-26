@@ -185,9 +185,18 @@ namespace Resources.Cards.Scripts
 
         private void HideCardsFromUpgradeMenu()
         {
-            foreach (GameObject card in GameObject.FindGameObjectsWithTag("Upgrade Card"))
+            UpgradeCard[] allUpgradeCards = FindObjectsOfType<UpgradeCard>();
+
+            foreach (UpgradeCard card in allUpgradeCards)
             {
-                card.SetActive(false);
+                if (card != this)
+                {
+                    Destroy(card.gameObject);
+                }
+                else
+                {
+                    card.gameObject.SetActive(false);
+                }
             }
         }
         
