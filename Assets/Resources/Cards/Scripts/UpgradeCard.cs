@@ -177,6 +177,7 @@ namespace Resources.Cards.Scripts
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
                 HideCardsFromUpgradeMenu();
+                
             }
             
         }

@@ -138,6 +138,17 @@ namespace Resources.Cards.Scripts
         {
             Debug.Log($"Removing card '{cardName}' from prefabs.");
             cardPrefabs.RemoveAll(card => card.name == cardName);
+            
+            
+            
+            GameObject[] cardsToRemove = GameObject.FindObjectsOfType<GameObject>(true);
+            foreach (GameObject card in cardsToRemove)
+            {
+                if (card.name == cardName)
+                {
+                    DestroyImmediate(card); 
+                }
+            }
         }
     }
 }
