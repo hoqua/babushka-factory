@@ -18,6 +18,7 @@ namespace Resources.Cards.Scripts
     public class UpgradeCard : MonoBehaviour
     {
         public GameManager gameManager;
+        public CardManager cardManager;
         public Conveyor conveyorScript;
         public Claw clawScript;
         public Spawner spawnerScript;
@@ -34,6 +35,7 @@ namespace Resources.Cards.Scripts
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
+            cardManager = FindObjectOfType<CardManager>();
             clawScript = FindObjectOfType<Claw>();
             spawnerScript = FindObjectOfType<Spawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
@@ -170,19 +172,21 @@ namespace Resources.Cards.Scripts
             if (_cardActions.ContainsKey(gameObject.name))
             {
                 _cardActions[gameObject.name]?.Invoke();
+                cardManager.IncrementCardClickCount(gameObject.name);
+                
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
-                RemoveCards();
+                HideCardsFromUpgradeMenu();
             }
             
         }
         
 
-        private void RemoveCards()
+        private void HideCardsFromUpgradeMenu()
         {
             foreach (GameObject card in GameObject.FindGameObjectsWithTag("Upgrade Card"))
             {
-                Destroy(card);
+                card.SetActive(false);
             }
         }
         

@@ -16,6 +16,7 @@ namespace Resources.Cards.Scripts
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;
         
+        private Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
         
         private void Start()
         {
@@ -111,6 +112,32 @@ namespace Resources.Cards.Scripts
             }
          
         }
-        
+
+        public void IncrementCardClickCount(string cardName)
+        {
+            if (_cardClickCounts.ContainsKey(cardName))
+            {
+                _cardClickCounts[cardName]++;
+            }
+            else
+            {
+                _cardClickCounts[cardName] = 1;
+            }
+
+            Debug.Log($"Card '{cardName}' clicked {_cardClickCounts[cardName]} times.");
+
+            if (_cardClickCounts[cardName] >= 2)
+            {
+                RemoveCardFromPrefabs(cardName);
+                Debug.Log($"Card '{cardName}' removed from prefabs.");
+            }
+            
+        }
+
+        private void RemoveCardFromPrefabs(string cardName)
+        {
+            Debug.Log($"Removing card '{cardName}' from prefabs.");
+            cardPrefabs.RemoveAll(card => card.name == cardName);
+        }
     }
 }
