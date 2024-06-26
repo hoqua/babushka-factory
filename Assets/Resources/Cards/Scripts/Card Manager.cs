@@ -16,6 +16,7 @@ namespace Resources.Cards.Scripts
         public Transform[] cardPositions;
         
         private readonly Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
+        public int maxUpgradesPerCard = 10;
         
         private void Start()
         {
@@ -135,7 +136,7 @@ namespace Resources.Cards.Scripts
 
             Debug.Log($"Card '{cardName}' clicked {_cardClickCounts[cardName]} times.");
             
-            if (_cardClickCounts[cardName] >= 2 && !cardsExemptFromLimit.Contains(cardName))
+            if (_cardClickCounts[cardName] >= maxUpgradesPerCard && !cardsExemptFromLimit.Contains(cardName))
             {
                 RemoveCardFromPrefabs(cardName);
                 Debug.Log($"Card '{cardName}' removed from prefabs.");
