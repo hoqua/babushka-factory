@@ -10,8 +10,6 @@ using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 
 namespace Resources.Cards.Scripts
 {
@@ -169,10 +167,12 @@ namespace Resources.Cards.Scripts
         
         private void OnMouseDown()
         {
-            if (_cardActions.ContainsKey(gameObject.name))
+            var cardName = gameObject.name;
+            
+            if (_cardActions.ContainsKey(cardName))
             {
-                _cardActions[gameObject.name]?.Invoke();
-                cardManager.IncrementCardClickCount(gameObject.name);
+                _cardActions[cardName]?.Invoke();
+                cardManager.IncrementCardClickCount(cardName);
                 
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
