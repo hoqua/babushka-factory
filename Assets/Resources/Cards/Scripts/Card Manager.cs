@@ -27,8 +27,11 @@ namespace Resources.Cards.Scripts
         //Карточки на которые не действуют ограничения и их можно вызывать всегда.
         public List<string> cardsExemptFromLimit = new List<string>
         {
-            "Card - Test",
-            "Card - CollectAll"
+            "Card - CollectAll",
+            "Card - FreezeConveyor",
+            "Card - CloneEveryone",
+            "Card - SlowDownBabushka",
+            "Card - Test"
         };
 
         public void ShowUpgradeCards()
