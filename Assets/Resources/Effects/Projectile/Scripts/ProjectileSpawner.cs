@@ -23,7 +23,6 @@ namespace Resources.Effects.Projectile.Scripts
         void StartSpawningProjectiles()
         {
             InvokeRepeating(nameof(SpawnProjectile), spawnInterval, spawnInterval);
-            _previousSpawnInterval = spawnInterval;
         }
 
         
