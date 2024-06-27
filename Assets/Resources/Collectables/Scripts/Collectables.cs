@@ -7,39 +7,22 @@ namespace Resources.Collectables.Scripts
     
         private Rigidbody2D _rigidbody;
 
-        public bool canBeDeleted;
+        public bool canBeCollected;
         
         private void Start()
         {
+            _rigidbody = GetComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("No Collision");
         }
         
         private void Update()
         {
-            if ( transform.parent != null) //Если бабушка является дочерним элементом (то есть схвачена клешней), блокирует движение по оси X
+            if (transform.parent != null)
             {
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
-            }
-            else //Если не является дочерним элементом, возвращает физику 
-            {
-                _rigidbody = GetComponent<Rigidbody2D>();
-                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
             }
 
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-
-            if (other.gameObject.CompareTag("Claw"))
-            {
-                _rigidbody.isKinematic = true;
-                canBeDeleted = true;
-            }
-            else
-            {
-                canBeDeleted = false;
-            }
         }
         
         void OnTriggerEnter2D(Collider2D other)
@@ -47,6 +30,7 @@ namespace Resources.Collectables.Scripts
             if (other.CompareTag("Conveyor"))
             {
                 gameObject.layer = LayerMask.NameToLayer("Collectables");
+                canBeCollected = true;
             }
         }
 

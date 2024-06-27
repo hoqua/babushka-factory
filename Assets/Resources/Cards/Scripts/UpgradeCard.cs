@@ -10,14 +10,13 @@ using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 
 namespace Resources.Cards.Scripts
 {
     public class UpgradeCard : MonoBehaviour
     {
         public GameManager gameManager;
+        public CardManager cardManager;
         public Conveyor conveyorScript;
         public Claw clawScript;
         public Spawner spawnerScript;
@@ -34,6 +33,7 @@ namespace Resources.Cards.Scripts
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
+            cardManager = FindObjectOfType<CardManager>();
             clawScript = FindObjectOfType<Claw>();
             spawnerScript = FindObjectOfType<Spawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
@@ -167,22 +167,29 @@ namespace Resources.Cards.Scripts
         
         private void OnMouseDown()
         {
-            if (_cardActions.ContainsKey(gameObject.name))
+            var cardName = gameObject.name;
+            
+            if (_cardActions.ContainsKey(cardName))
             {
-                _cardActions[gameObject.name]?.Invoke();
+                _cardActions[cardName]?.Invoke();
+                cardManager.IncrementCardClickCount(cardName);
+                
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
-                RemoveCards();
+                HideCardsFromUpgradeMenu();
+                
             }
             
         }
         
 
-        private void RemoveCards()
+        private void HideCardsFromUpgradeMenu()
         {
-            foreach (GameObject card in GameObject.FindGameObjectsWithTag("Upgrade Card"))
+            UpgradeCard[] allUpgradeCards = FindObjectsOfType<UpgradeCard>();
+
+            foreach (UpgradeCard card in allUpgradeCards)
             {
-                Destroy(card);
+                Destroy(card.gameObject);
             }
         }
         
