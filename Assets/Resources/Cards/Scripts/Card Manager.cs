@@ -30,8 +30,7 @@ namespace Resources.Cards.Scripts
             "Card - CollectAll",
             "Card - FreezeConveyor",
             "Card - CloneEveryone",
-            "Card - SlowDownBabushka",
-            "Card - Test"
+            "Card - SlowDownBabushka"
         };
 
         public void ShowUpgradeCards()
