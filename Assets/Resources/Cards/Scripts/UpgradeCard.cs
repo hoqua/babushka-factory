@@ -100,6 +100,7 @@ namespace Resources.Cards.Scripts
                     if (projectileSpawnerScript.enabled)
                     {
                         projectileSpawnerScript.spawnInterval -= 1f;
+                        projectileSpawnerScript.RestartSpawningProjectiles();
                     }
                     
                     if (projectileSpawnerScript.enabled == false)
