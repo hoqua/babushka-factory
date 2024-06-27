@@ -5658,6 +5658,7 @@ MonoBehaviour:
   - {fileID: 2033570879}
   - {fileID: 713181279}
   - {fileID: 1105641168}
+  maxUpgradesPerCard: 10
   cardsExemptFromLimit:
   - Card - Test
   - Card - CollectAll
@@ -5877,7 +5878,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.5, y: 0.1}
+  m_Size: {x: 12.2, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &2033570878
 GameObject:
