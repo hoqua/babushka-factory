@@ -29,7 +29,7 @@ namespace Resources.Cards.Scripts
         private float _clawSpeedInitial;
         private float _intervalInitial;
         
-        
+        public SpriteRenderer[] squares;
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
@@ -177,10 +177,36 @@ namespace Resources.Cards.Scripts
                 
                 gameManager.ResumeGame();
                 gameManager.HideUpgradeOverlay();
+                
                 HideCardsFromUpgradeMenu();
                 
             }
             
+        }
+        
+        public void UpdateSquaresColor(int cardClicksCount)
+        {
+            Color newColor = GetColorBasedOnClicks(cardClicksCount);
+        
+            for (int i = 0; i < squares.Length; i++)
+            {
+                if (i < cardClicksCount)
+                {
+                    squares[i].color = newColor;
+                }
+                else
+                {
+                    squares[i].color = Color.black; // Исходный цвет квадрата
+                }
+            }
+        }
+
+        private Color GetColorBasedOnClicks(int cardClicksCount)
+        {
+            // Здесь можно задать логику выбора цвета на основе cardClicksCount
+            // Пример: чем больше нажатий, тем краснее квадрат
+            float t = Mathf.Clamp01(cardClicksCount / 10f);
+            return Color.Lerp(Color.green, Color.red, t); // От зеленого к красному
         }
         
 

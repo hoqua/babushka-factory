@@ -36,7 +36,7 @@ namespace Resources.Cards.Scripts
         public void ShowUpgradeCards()
         {
             AddNewCards();  
-            
+    
             List<int> cardIndices = new List<int>();
 
             for (int i = 0;  i < cardPrefabs.Count;  i++)
@@ -52,8 +52,16 @@ namespace Resources.Cards.Scripts
             {
                 GameObject cardInstance = Instantiate(cardPrefabs[selectedIndices[i]], cardPositions[i].position, Quaternion.identity);
                 cardInstance.name = cardInstance.name.Replace("(Clone)", ""); //Убирает (Clone) из имени карточки
+                
+                UpgradeCard upgradeCard = cardInstance.GetComponent<UpgradeCard>();
+                if (upgradeCard != null)
+                {
+                    int clickCount = GetCardClickCount(cardInstance.name);
+                    upgradeCard.UpdateSquaresColor(clickCount);
+                }
             }
         }
+
 
         public void BlockClawInput()
         {
@@ -141,6 +149,15 @@ namespace Resources.Cards.Scripts
                 Debug.Log($"Card '{cardName}' removed from prefabs.");
             }
             
+        }
+        
+        public int GetCardClickCount(string cardName)
+        {
+            if (_cardClickCounts.ContainsKey(cardName))
+            {
+                return _cardClickCounts[cardName];
+            }
+            return 0;
         }
 
         private void RemoveCardFromPrefabs(string cardName)
