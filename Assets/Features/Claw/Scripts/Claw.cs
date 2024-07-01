@@ -41,39 +41,45 @@ namespace Features.Claw.Scripts
         void Update()
         {
             if (isInputBlocked) return;
-            
-            if (Input.GetMouseButtonDown(0) && _movingDirection == null)
-            {
-                if (Camera.main != null) _targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                //Игнорирует нажатия на объекты с тэгом UI (если у них есть коллайдер)
-                RaycastHit2D hit = Physics2D.Raycast(_targetPosition, Vector2.zero);
-                if (hit.collider != null && hit.collider.CompareTag(objectToIgnoreTag))
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_movingDirection != null)
                 {
-                    return;
+                    _movingDirection = MovingDirection.ReturningUp;
                 }
-                
-                _movingDirection = MovingDirection.Horizontal;
+                else
+                {
+                    if (Camera.main != null) _targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    RaycastHit2D hit = Physics2D.Raycast(_targetPosition, Vector2.zero);
+                    if (hit.collider != null && hit.collider.CompareTag(objectToIgnoreTag))
+                    {
+                        return;
+                    }
+                    
+                    _movingDirection = MovingDirection.Horizontal;
+                }
             }
-            
-            if (_movingDirection == MovingDirection.Horizontal)
+
+            switch (_movingDirection)
             {
-                
-                MoveHorizontal();
+                case MovingDirection.Horizontal:
+                    MoveHorizontal();
+                    break;
+                case MovingDirection.Down:
+                    MoveDown();
+                    break;
+                case MovingDirection.Up:
+                    MoveUp();
+                    break;
+                case MovingDirection.ReturningUp:
+                    ReturnUp();
+                    break;
+                case MovingDirection.ReturningHorizontal:
+                    ReturnHorizontal();
+                    break;
             }
-
-            if (_movingDirection == MovingDirection.Down)
-            {
-
-                MoveDown();
-
-            }
-
-            if (_movingDirection == MovingDirection.Up)
-            {
-                MoveUp();
-            }
-            
         }
         
         
@@ -195,6 +201,35 @@ namespace Features.Claw.Scripts
             }
         }
 
+        void ReturnUp()
+        {
+            var clawPosition = transform.position;
+            var verticalTarget = new Vector2(clawPosition.x, _initialPosition.y + _isObjectGrabbed);
+            clawPosition = Vector3.MoveTowards(clawPosition, verticalTarget, Time.deltaTime * clawSpeed);
+            transform.position = clawPosition;
+
+            if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
+            {
+                _movingDirection = MovingDirection.ReturningHorizontal;
+            }
+        }
+
+        void ReturnHorizontal()
+        {
+            if (!isClawSoundPlaying) PlayClawSound();
+
+            var clawPosition = transform.position;
+            var horizontalTarget = _initialPosition;
+            clawPosition = Vector2.MoveTowards(clawPosition, horizontalTarget, Time.deltaTime * clawSpeed);
+            transform.position = clawPosition;
+
+            if (Math.Abs(transform.position.x - horizontalTarget.x) < 0.0001f)
+            {
+                _movingDirection = null;
+                StopClawSound();
+            }
+        }
+
         public void PlayClawSound()
         {
             if (!isInputBlocked)
@@ -218,6 +253,8 @@ namespace Features.Claw.Scripts
     {
         Horizontal, 
         Up,
-        Down
+        Down,
+        ReturningUp,
+        ReturningHorizontal
     }
 }
