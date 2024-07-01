@@ -5,6 +5,7 @@ namespace Resources.Effects.Projectile.Scripts
     public class ProjectileSpawner : MonoBehaviour
     {
         public float spawnInterval = 10f;
+        private float _previousSpawnInterval;
         public GameObject projectilePrefab;
 
         public string obstacleTag = "Claw";
@@ -15,9 +16,22 @@ namespace Resources.Effects.Projectile.Scripts
         {
             _mainCamera = Camera.main;
             MoveSpawnPoint();
+            StartSpawningProjectiles();
+        }
+        
+        
+        void StartSpawningProjectiles()
+        {
             InvokeRepeating(nameof(SpawnProjectile), spawnInterval, spawnInterval);
         }
 
+        
+        public void RestartSpawningProjectiles()
+        {
+            CancelInvoke(nameof(SpawnProjectile));
+            StartSpawningProjectiles();
+        }
+        
         public void SpawnProjectile()
         {
             var spawner = transform;
