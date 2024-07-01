@@ -6,9 +6,9 @@ namespace Game
 {
    public class GameManager : MonoBehaviour
    {
+      public ClawAudioController clawAudioController;
       public GameObject upgradeOverlay;
       public CardManager cardManager;
-      public Claw clawScript;
       public void PauseGame()
       {
          Time.timeScale = 0;
@@ -26,8 +26,8 @@ namespace Game
          cardManager.BlockClawInput();
          cardManager.ShowUpgradeCards();
          
-         clawScript.isClawSoundPlaying = false;
-         clawScript.StopClawSound();
+         clawAudioController.isClawSoundPlaying = false;
+         clawAudioController.StopClawSound();
       }
    
       public void HideUpgradeOverlay()
@@ -35,8 +35,8 @@ namespace Game
          upgradeOverlay.SetActive(false);
          cardManager.StartCoroutine(cardManager.UnblockClawInput(0.5f));
 
-         clawScript.isClawSoundPlaying = false;
-         clawScript.PlayClawSound();
+         clawAudioController.isClawSoundPlaying = false;
+         clawAudioController.PlayClawSound();
       }
       
    }

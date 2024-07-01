@@ -941,9 +941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0994b56a35ee0f5418dc7d0794a253ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clawAudioController: {fileID: 617702435}
   upgradeOverlay: {fileID: 917657805}
   cardManager: {fileID: 1856359552}
-  clawScript: {fileID: 617702428}
 --- !u!1 &537527238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1451,7 @@ GameObject:
   - component: {fileID: 617702427}
   - component: {fileID: 617702428}
   - component: {fileID: 617702433}
+  - component: {fileID: 617702435}
   - component: {fileID: 617702430}
   - component: {fileID: 617702431}
   - component: {fileID: 617702432}
@@ -1553,8 +1554,6 @@ MonoBehaviour:
   maxGrabbedBabushkas: 1
   clawCollider: {fileID: 0}
   clawObject: {fileID: 617702425}
-  clawSound: {fileID: 8300000, guid: 7f064cc9482c45c4cb7952b9daa82e24, type: 3}
-  isClawSoundPlaying: 0
 --- !u!50 &617702430
 Rigidbody2D:
   serializedVersion: 4
@@ -1757,6 +1756,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &617702435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617702424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51c0af8413f56441915a3405be1014f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clawSound: {fileID: 8300000, guid: 7f064cc9482c45c4cb7952b9daa82e24, type: 3}
+  isClawSoundPlaying: 0
 --- !u!1 &655540277
 GameObject:
   m_ObjectHideFlags: 0

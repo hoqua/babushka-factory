@@ -14,7 +14,6 @@ namespace Features.Claw.Scripts
         public string objectToIgnoreTag = "UI";
         public bool isInputBlocked = false;
         
-        
         public float clawSpeed = 5f;
         public int maxGrabbedBabushkas = 1;
         
@@ -28,14 +27,12 @@ namespace Features.Claw.Scripts
         private float _isObjectGrabbed;
         private readonly List<GameObject> _grabbedBabushkas = new List<GameObject>();
 
-        public AudioClip clawSound;
-        private AudioSource _audioSource;
-        public bool isClawSoundPlaying;
+        private ClawAudioController _soundManager;
 
         private void Start()
         {
             _initialPosition = transform.position;
-            _audioSource = GetComponent<AudioSource>();
+            _soundManager = GetComponent<ClawAudioController>();
         }
         
         void Update()
@@ -161,7 +158,7 @@ namespace Features.Claw.Scripts
 
         void MoveHorizontal()
         {
-            if (!isClawSoundPlaying) PlayClawSound();
+            if (!_soundManager.isClawSoundPlaying) _soundManager.PlayClawSound();
 
             var clawPosition = transform.position;
             var horizontalTarget = new Vector2(_targetPosition.x, clawPosition.y);
@@ -198,7 +195,7 @@ namespace Features.Claw.Scripts
             {
                 _movingDirection = null;
                 _initialPosition = transform.position;
-                StopClawSound();
+                _soundManager.StopClawSound();
             }
         }
 
@@ -217,7 +214,7 @@ namespace Features.Claw.Scripts
 
         void ReturnHorizontal()
         {
-            if (!isClawSoundPlaying) PlayClawSound();
+            if (!_soundManager.isClawSoundPlaying) _soundManager.PlayClawSound();
 
             var clawPosition = transform.position;
             var horizontalTarget = _initialPosition;
@@ -227,29 +224,10 @@ namespace Features.Claw.Scripts
             if (Math.Abs(transform.position.x - horizontalTarget.x) < 0.0001f)
             {
                 _movingDirection = null;
-                StopClawSound();
+                _soundManager.StopClawSound();
             }
-        }
-        
-
-        public void PlayClawSound()
-        {
-            if (!isInputBlocked)
-            {
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(clawSound);
-                _audioSource.loop = true;
-                isClawSoundPlaying = true;
-            }
-        }
-
-        public void StopClawSound()
-        {
-            _audioSource.Stop();
-            isClawSoundPlaying = false;
         }
     }
-
 
     enum MovingDirection
     {
