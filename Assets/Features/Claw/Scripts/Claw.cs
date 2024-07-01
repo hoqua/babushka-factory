@@ -197,6 +197,7 @@ namespace Features.Claw.Scripts
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
                 _movingDirection = null;
+                _initialPosition = transform.position;
                 StopClawSound();
             }
         }
