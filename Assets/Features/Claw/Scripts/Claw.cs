@@ -230,35 +230,7 @@ namespace Features.Claw.Scripts
                 StopClawSound();
             }
         }
-
-        void ReturnUp()
-        {
-            var clawPosition = transform.position;
-            var verticalTarget = new Vector2(clawPosition.x, _initialPosition.y + _isObjectGrabbed);
-            clawPosition = Vector3.MoveTowards(clawPosition, verticalTarget, Time.deltaTime * clawSpeed);
-            transform.position = clawPosition;
-
-            if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
-            {
-                _movingDirection = MovingDirection.ReturningHorizontal;
-            }
-        }
-
-        void ReturnHorizontal()
-        {
-            if (!isClawSoundPlaying) PlayClawSound();
-
-            var clawPosition = transform.position;
-            var horizontalTarget = _initialPosition;
-            clawPosition = Vector2.MoveTowards(clawPosition, horizontalTarget, Time.deltaTime * clawSpeed);
-            transform.position = clawPosition;
-
-            if (Math.Abs(transform.position.x - horizontalTarget.x) < 0.0001f)
-            {
-                _movingDirection = null;
-                StopClawSound();
-            }
-        }
+        
 
         public void PlayClawSound()
         {
