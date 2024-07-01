@@ -43,7 +43,7 @@ namespace Game
                 gameManager.PauseGame();
                 Debug.Log("Вы проиграли :(");
             }
-
+            
             clawDurability--;
             clawDurabilityText.text = "Прочность клешни " + clawDurability + "%";
         }

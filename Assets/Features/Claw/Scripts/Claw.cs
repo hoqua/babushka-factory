@@ -53,7 +53,6 @@ namespace Features.Claw.Scripts
                     return;
                 }
                 
-                playerManager.CheckDurability();
                 _movingDirection = MovingDirection.Horizontal;
             }
             
@@ -85,6 +84,7 @@ namespace Features.Claw.Scripts
             {
                 magnetController.ActivateMagnet();
                 _movingDirection = MovingDirection.Up;
+                playerManager.CheckDurability();
             }
             
         }
