@@ -19,6 +19,7 @@ namespace Features.Claw.Scripts
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawCollider;
+        public BoxCollider2D clawGrabTrigger;
         public Transform clawObject;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
@@ -33,14 +34,20 @@ namespace Features.Claw.Scripts
         {
             _initialPosition = transform.position;
             _soundManager = GetComponent<ClawAudioController>();
+            clawGrabTrigger.enabled = false;
         }
         
         void Update()
         {
             if (isInputBlocked) return;
-
+            
             if (Input.GetMouseButtonDown(0))
             {
+                if (_movingDirection == null)
+                {
+                    clawGrabTrigger.enabled = false;
+                }
+                
                 if (_movingDirection != null)
                 {
                     _movingDirection = MovingDirection.ReturningUp;
@@ -57,6 +64,8 @@ namespace Features.Claw.Scripts
                     
                     _movingDirection = MovingDirection.Horizontal;
                 }
+
+                
             }
 
             switch (_movingDirection)
@@ -96,7 +105,7 @@ namespace Features.Claw.Scripts
         {
             
             
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") || other.CompareTag("Babushka"))
             {
                 
                 var collectable = other.gameObject;
@@ -105,31 +114,6 @@ namespace Features.Claw.Scripts
                 _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 _movingDirection = MovingDirection.Up;
                 
-            }
-
-            else if (other.CompareTag("Babushka"))
-            {
-                
-                if (_grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
-                
-                var babushka = other.gameObject;
-                if (!babushka.transform.IsChildOf(transform) && _grabbedBabushkas.Count < maxGrabbedBabushkas) 
-                {
-                    
-                    if (!_grabbedBabushkas.Contains(babushka)) 
-                    {
-                        babushka.transform.parent = transform;
-                        _grabbedBabushkas.Add(babushka);
-                    }
-                    
-                    _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
-                    _movingDirection = MovingDirection.Up;
-                }
-                
-            }
-
-            if (other.CompareTag("Babushka") || other.CompareTag("Collectable"))
-            {
                 magnetController.ActivateMagnet();
             }
             
@@ -137,22 +121,8 @@ namespace Features.Claw.Scripts
 
         private void OnTransformChildrenChanged()
         {
-            _grabbedBabushkas.RemoveAll(obj => obj == null);
-            _grabbedBabushkas.Clear();
-            foreach (Transform child in transform)
-            {
-                if (child.CompareTag("Babushka") && !_grabbedBabushkas.Contains(child.gameObject))
-                {
-                    _grabbedBabushkas.Add(child.gameObject);
-                }
-            }
-
-            if (_grabbedBabushkas.Count == 0)
-            {
-                _isObjectGrabbed = 0;
-                _movingDirection = MovingDirection.Up;
-                MoveUp();
-            }
+            _isObjectGrabbed = 0f;
+            _movingDirection = MovingDirection.Up;
         }
 
 
@@ -201,6 +171,8 @@ namespace Features.Claw.Scripts
 
         void ReturnUp()
         {
+            clawGrabTrigger.enabled = true;
+            
             var clawPosition = transform.position;
             var verticalTarget = new Vector2(clawPosition.x, _initialPosition.y + _isObjectGrabbed);
             clawPosition = Vector3.MoveTowards(clawPosition, verticalTarget, Time.deltaTime * clawSpeed);
@@ -208,6 +180,7 @@ namespace Features.Claw.Scripts
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
+                clawGrabTrigger.enabled = false;
                 _movingDirection = MovingDirection.ReturningHorizontal;
             }
         }

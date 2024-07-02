@@ -5,8 +5,10 @@ using Random = UnityEngine.Random;
 
 namespace Game.Level
 {
-    public class Spawner : MonoBehaviour
+    public class CollectablesSpawner : MonoBehaviour
     {
+        public Deleter deleterScript;
+        
         private float _timer;
         public float interval;
 
@@ -15,10 +17,12 @@ namespace Game.Level
         private const float MinSpeed = 0.5f;
         private const float MaxSpeed = 3f;
 
-        public GameObject babushkaPurplePrefab;
+        public GameObject babushkaPrefab;
         public GameObject repairTool;
         public GameObject cookieBox;
         public List<BabushkaMain> babushkas = new List<BabushkaMain>();
+
+        public int spawnedBabushkas = 0;
     
         private void Start()
         {
@@ -41,8 +45,10 @@ namespace Game.Level
                 GameObject newPrefab = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
                 newPrefab.name = prefabToSpawn.name;
                 
+                
+                
                 BabushkaMain babushkaMainScript = newPrefab.GetComponent<BabushkaMain>();
-                if (babushkaMainScript != null && prefabToSpawn == babushkaPurplePrefab)
+                if (babushkaMainScript != null && prefabToSpawn == babushkaPrefab)
                 {
                     float normalized = (transform.position.x - MinX) / (MaxX - MinX);
                     babushkaMainScript.walkingSpeed = Mathf.Lerp(MinSpeed, MaxSpeed, normalized);
@@ -66,8 +72,13 @@ namespace Game.Level
             {
                 return repairTool;
             }
-
-            return babushkaPurplePrefab;
+            
+            spawnedBabushkas++;
+                
+            deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / spawnedBabushkas) * 100f);
+            deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%";
+                
+            return babushkaPrefab;
         }
 
         public void CloneBabushkas()
@@ -77,7 +88,7 @@ namespace Game.Level
                 if (babushka == null) continue;
                 
                 Vector2 spawnPosition = babushka.transform.position;
-                GameObject clonedBabushka = Instantiate(babushkaPurplePrefab, spawnPosition, Quaternion.identity);
+                GameObject clonedBabushka = Instantiate(babushkaPrefab, spawnPosition, Quaternion.identity);
 
                 BabushkaMain clonedBabushkaMainScript = clonedBabushka.GetComponent<BabushkaMain>();
                 if (clonedBabushkaMainScript != null)

@@ -13,13 +13,16 @@ namespace Game.Level
         private Collectables _collectablesScript;
         private BabushkaMain _babushkaMain;
         public PlayerManager playerManager;
+        public CollectablesSpawner collectablesSpawnerScript;
 
         public TextMeshProUGUI counterText;
-        public int currentNumOfBabushkas;
+        public int collectedBabushkasCount;
+       
 
         private void Start()
         {
             _collectablesScript = FindObjectOfType<Collectables>();
+          
         }
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -29,11 +32,10 @@ namespace Game.Level
                 Destroy(other.GameObject());
                 playerManager.GainExp();
             
-                currentNumOfBabushkas += 1;
-                counterText.text = "Собрано Бабушек " + currentNumOfBabushkas;
+                collectedBabushkasCount += 1;
+                counterText.text = "Собрано Бабушек " + collectedBabushkasCount;
                 
-                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / currentNumOfBabushkas) * 100f);
-                if (currentNumOfBabushkas == 0) return;
+                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / collectablesSpawnerScript.spawnedBabushkas) * 100f);
                 deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%";
                 return;
             }

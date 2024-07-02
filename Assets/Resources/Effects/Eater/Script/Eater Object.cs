@@ -8,6 +8,7 @@ namespace Resources.Effects.Eater.Script
     {
         public Counter counterScript;
         public Deleter deleterScript;
+        public CollectablesSpawner collectablesSpawnerScript;
         
         public float moveSpeed;
         public float destroyTime;
@@ -16,6 +17,7 @@ namespace Resources.Effects.Eater.Script
         {
             counterScript = FindObjectOfType<Counter>();
             deleterScript = FindObjectOfType<Deleter>();
+            collectablesSpawnerScript = FindObjectOfType<CollectablesSpawner>();
             Destroy(gameObject, destroyTime);
         }
 
@@ -32,11 +34,11 @@ namespace Resources.Effects.Eater.Script
             {
                 Destroy(other.gameObject);
                 
-                counterScript.currentNumOfBabushkas++;
-                counterScript.counterText.text = "Собрано Бабушек " + counterScript.currentNumOfBabushkas;
+                counterScript.collectedBabushkasCount++;
+                counterScript.counterText.text = "Собрано Бабушек " + counterScript.collectedBabushkasCount;
                     
-                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
-                deleterScript.deletedCounterText.text = "Упущено бабушек" + deleterScript.deletedBabushkasRatio + "%";
+                deleterScript.deletedBabushkasRatio = (int)((deleterScript.deletedBabushkasCount / collectablesSpawnerScript.spawnedBabushkas) * 100f);
+                deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%";
             }
         }
     }

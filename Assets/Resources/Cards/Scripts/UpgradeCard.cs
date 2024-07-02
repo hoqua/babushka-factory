@@ -19,7 +19,7 @@ namespace Resources.Cards.Scripts
         public CardManager cardManager;
         public Conveyor conveyorScript;
         public Claw clawScript;
-        public Spawner spawnerScript;
+        public CollectablesSpawner spawnerScript;
         public Counter counterScript;
         public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
@@ -35,7 +35,7 @@ namespace Resources.Cards.Scripts
             gameManager = FindObjectOfType<GameManager>();
             cardManager = FindObjectOfType<CardManager>();
             clawScript = FindObjectOfType<Claw>();
-            spawnerScript = FindObjectOfType<Spawner>();
+            spawnerScript = FindObjectOfType<CollectablesSpawner>();
             conveyorScript = FindObjectOfType<Conveyor>();
             counterScript = FindObjectOfType<Counter>();
             deleterScript = FindObjectOfType<Deleter>();

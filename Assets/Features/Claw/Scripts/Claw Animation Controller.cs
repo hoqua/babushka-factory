@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 namespace Features.Claw.Scripts
@@ -25,7 +25,7 @@ namespace Features.Claw.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Babushka"))
+            if (other.CompareTag("Babushka") || other.CompareTag("Collectable"))
             {
                 _animation.SetBool(IsGrabbing, true);
             }
