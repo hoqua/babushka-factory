@@ -6,7 +6,7 @@ namespace Game.Level
     public class Deleter : MonoBehaviour
     {
         public Counter counterScript;
-        public Spawner spawnerScript;
+        public CollectablesSpawner collectablesSpawnerScript;
         
         public TextMeshProUGUI deletedCounterText;
         public float deletedBabushkasCount;
@@ -18,8 +18,8 @@ namespace Game.Level
                 Destroy(other.gameObject);
                 
                 deletedBabushkasCount += 1;
-                deletedBabushkasRatio = (int)((deletedBabushkasCount / counterScript.currentNumOfBabushkas) * 100f);
-                if (counterScript.currentNumOfBabushkas == 0) return;
+                
+                deletedBabushkasRatio = (int)((deletedBabushkasCount / collectablesSpawnerScript.spawnedBabushkas) * 100f);
                 deletedCounterText.text = "Упущено бабушек " + deletedBabushkasRatio + "%"; 
             }
 
