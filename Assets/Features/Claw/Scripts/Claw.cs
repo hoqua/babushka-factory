@@ -105,7 +105,7 @@ namespace Features.Claw.Scripts
         {
             
             
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") || other.CompareTag("Babushka"))
             {
                 
                 var collectable = other.gameObject;
@@ -114,31 +114,6 @@ namespace Features.Claw.Scripts
                 _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 _movingDirection = MovingDirection.Up;
                 
-            }
-
-            else if (other.CompareTag("Babushka"))
-            {
-                
-                if (_grabbedBabushkas.Count >= maxGrabbedBabushkas) return; 
-                
-                var babushka = other.gameObject;
-                if (!babushka.transform.IsChildOf(transform) && _grabbedBabushkas.Count < maxGrabbedBabushkas) 
-                {
-                    
-                    if (!_grabbedBabushkas.Contains(babushka)) 
-                    {
-                        babushka.transform.parent = transform;
-                        _grabbedBabushkas.Add(babushka);
-                    }
-                    
-                    _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
-                    _movingDirection = MovingDirection.Up;
-                }
-                
-            }
-
-            if (other.CompareTag("Babushka") || other.CompareTag("Collectable"))
-            {
                 magnetController.ActivateMagnet();
             }
             
@@ -146,22 +121,8 @@ namespace Features.Claw.Scripts
 
         private void OnTransformChildrenChanged()
         {
-            _grabbedBabushkas.RemoveAll(obj => obj == null);
-            _grabbedBabushkas.Clear();
-            foreach (Transform child in transform)
-            {
-                if (child.CompareTag("Babushka") && !_grabbedBabushkas.Contains(child.gameObject))
-                {
-                    _grabbedBabushkas.Add(child.gameObject);
-                }
-            }
-
-            if (_grabbedBabushkas.Count == 0)
-            {
-                _isObjectGrabbed = 0;
-                _movingDirection = MovingDirection.Up;
-                MoveUp();
-            }
+            _isObjectGrabbed = 0f;
+            _movingDirection = MovingDirection.Up;
         }
 
 
