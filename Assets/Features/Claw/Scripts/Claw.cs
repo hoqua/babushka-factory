@@ -19,6 +19,7 @@ namespace Features.Claw.Scripts
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawCollider;
+        public BoxCollider2D clawGrabTrigger;
         public Transform clawObject;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
@@ -33,14 +34,20 @@ namespace Features.Claw.Scripts
         {
             _initialPosition = transform.position;
             _soundManager = GetComponent<ClawAudioController>();
+            clawGrabTrigger.enabled = false;
         }
         
         void Update()
         {
             if (isInputBlocked) return;
-
+            
             if (Input.GetMouseButtonDown(0))
             {
+                if (_movingDirection == null)
+                {
+                    clawGrabTrigger.enabled = false;
+                }
+                
                 if (_movingDirection != null)
                 {
                     _movingDirection = MovingDirection.ReturningUp;
@@ -57,6 +64,8 @@ namespace Features.Claw.Scripts
                     
                     _movingDirection = MovingDirection.Horizontal;
                 }
+
+                
             }
 
             switch (_movingDirection)
@@ -201,6 +210,8 @@ namespace Features.Claw.Scripts
 
         void ReturnUp()
         {
+            clawGrabTrigger.enabled = true;
+            
             var clawPosition = transform.position;
             var verticalTarget = new Vector2(clawPosition.x, _initialPosition.y + _isObjectGrabbed);
             clawPosition = Vector3.MoveTowards(clawPosition, verticalTarget, Time.deltaTime * clawSpeed);
@@ -208,6 +219,7 @@ namespace Features.Claw.Scripts
 
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
+                clawGrabTrigger.enabled = false;
                 _movingDirection = MovingDirection.ReturningHorizontal;
             }
         }
