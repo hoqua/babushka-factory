@@ -15,7 +15,6 @@ namespace Features.Claw.Scripts
         public bool isInputBlocked = false;
         
         public float clawSpeed = 5f;
-        public int maxGrabbedBabushkas = 1;
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawCollider;

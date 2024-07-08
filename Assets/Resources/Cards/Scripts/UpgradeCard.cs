@@ -81,14 +81,8 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
-                    clawScript!.clawCollider.size += new Vector2(0.05f, 0);
-                    
                     Vector3 additionalScale = new Vector3(0.05f, 0.05f, 0.05f);
                     clawScript.clawObject.localScale += additionalScale;
-                }},
-                    
-                { "Card - GrabCapacity", () => { //Увеличивает число подбираемых бабушек на один
-                    clawScript!.maxGrabbedBabushkas += 1;
                 }},
                 
                 { "Card - CloneEveryone", () => { //Клонирует всех бабушек на экране
