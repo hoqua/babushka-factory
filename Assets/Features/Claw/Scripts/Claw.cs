@@ -17,7 +17,6 @@ namespace Features.Claw.Scripts
         public float clawSpeed = 5f;
         
         private Vector2 _initialPosition;
-        public BoxCollider2D clawCollider;
         public BoxCollider2D clawGrabTrigger;
         public Transform clawObject;
         
