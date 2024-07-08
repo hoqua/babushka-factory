@@ -97,6 +97,7 @@ namespace Features.Claw.Scripts
                 magnetController.ActivateMagnet();
                 _movingDirection = MovingDirection.Up;
                 playerManager.CheckDurability();
+                clawGrabTrigger.enabled = true;
             }
             
         }
