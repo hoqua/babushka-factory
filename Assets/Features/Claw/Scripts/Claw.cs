@@ -111,7 +111,7 @@ namespace Features.Claw.Scripts
                 var collectable = other.gameObject;
                 collectable.transform.parent = transform;
                    
-                _isObjectGrabbed= 5.5f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                _isObjectGrabbed= 6f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 _movingDirection = MovingDirection.Up;
                 
                 magnetController.ActivateMagnet();
@@ -124,7 +124,18 @@ namespace Features.Claw.Scripts
             _isObjectGrabbed = 0f;
             _movingDirection = MovingDirection.Up;
         }
-
+        
+        bool HasChildWithTag(string tag)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag(tag))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         void MoveHorizontal()
         {
@@ -160,12 +171,22 @@ namespace Features.Claw.Scripts
             var verticalTarget = new Vector2(clawPosition.x, _initialPosition.y + _isObjectGrabbed);
             clawPosition = Vector3.MoveTowards(clawPosition, verticalTarget, Time.deltaTime * clawSpeed);
             transform.position = clawPosition;
-
+            
             if (Math.Abs(transform.position.y - verticalTarget.y) < 0.0001f)
             {
-                _movingDirection = null;
-                _initialPosition = transform.position;
-                _soundManager.StopClawSound();
+                if (HasChildWithTag("Babushka") || HasChildWithTag("Collectable"))
+                {
+                    _isObjectGrabbed = 6f;
+                    MoveUp();
+                }
+                else
+                {
+                    _movingDirection = null;
+                    _initialPosition = transform.position;
+                    _soundManager.StopClawSound();
+                }
+                
+                
             }
         }
 
