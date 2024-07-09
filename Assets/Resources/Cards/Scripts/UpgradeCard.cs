@@ -27,6 +27,7 @@ namespace Resources.Cards.Scripts
         public MagnetController magnetController;
         public EaterSpawner eaterSpawnerScript;
         public SpringWallSpawner springWallSpawner;
+        public SpringWallEffect springWallEffectScript;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -45,6 +46,7 @@ namespace Resources.Cards.Scripts
             magnetController = FindObjectOfType<MagnetController>();
             eaterSpawnerScript = FindObjectOfType<EaterSpawner>();
             springWallSpawner = FindObjectOfType<SpringWallSpawner>();
+            springWallEffectScript = FindObjectOfType<SpringWallEffect>();
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -119,10 +121,16 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
+                    if (springWallSpawner.isSpawnCoroutineActive && springWallSpawner.spawnBothSides)
+                    {
+                        springWallEffectScript.springForce += 10f;
+                    }
+                    
                     if (springWallSpawner.isSpawnCoroutineActive)
                     {
                         springWallSpawner.spawnBothSides = true;
                     }
+                    
                     springWallSpawner.ActivateWallSpawn();
                     
                 }},
@@ -159,7 +167,7 @@ namespace Resources.Cards.Scripts
                 if (gameObject.name == "Card - SpringWall" && springWallSpawner.spawnBothSides)
                 {
                     textMeshPro.fontSize = 1f;
-                    textMeshPro.text = "Сила отталкивания увеличевается";
+                    textMeshPro.text = "Увеличивает силу отталкивания";
                 }
                 
         }

@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace Resources.Effects.Spring_Wall.Scripts
 {
-    public class SpringEffect : MonoBehaviour
+    public class SpringWallEffect : MonoBehaviour
     {
    
-        public float springForce = 10f;  // Сила отталкивания
+        public float springForce = 30f;  // Сила отталкивания
 
         void OnCollisionEnter2D(Collision2D collision)
         {

@@ -74,7 +74,7 @@ namespace Resources.Effects.Spring_Wall.Scripts
             Rigidbody2D rigidBody = wall.GetComponent<Rigidbody2D>();
             rigidBody.bodyType = RigidbodyType2D.Kinematic;
 
-            var wallSpringEffect = wall.GetComponent<SpringEffect>();
+            var wallSpringEffect = wall.GetComponent<SpringWallEffect>();
             wallSpringEffect.enabled = false;
             
             while (wall != null && wall.transform.position.y < targetY)
