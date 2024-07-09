@@ -119,7 +119,12 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
+                    if (springWallSpawner.isSpawnCoroutineActive)
+                    {
+                        springWallSpawner.spawnBothSides = true;
+                    }
                     springWallSpawner.ActivateWallSpawn();
+                    
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
@@ -150,6 +155,13 @@ namespace Resources.Cards.Scripts
                 textMeshPro.fontSize = 1f;
                 textMeshPro.text = "Стен становится две";
             }
+            
+                if (gameObject.name == "Card - SpringWall" && springWallSpawner.spawnBothSides)
+                {
+                    textMeshPro.fontSize = 1f;
+                    textMeshPro.text = "Сила отталкивания увеличевается";
+                }
+                
         }
 
         private IEnumerator SlowDownBabushkaTemporary(float duration)
