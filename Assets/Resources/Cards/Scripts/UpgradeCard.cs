@@ -119,7 +119,7 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
-                    springWallSpawner.SpawnSpringWall();
+                    springWallSpawner.SpawnOneSpringWall();
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
