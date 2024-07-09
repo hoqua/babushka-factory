@@ -10,17 +10,19 @@ namespace Resources.Effects.Spring_Wall.Scripts
         public Vector2 spawnPointLeft;
         public Vector2 spawnPointRight;
 
-        private float delayBeforeMoving = 30f;
-        private float spawnInterval = 60f;
+        private readonly float _delayBeforeMoving = 30f;
+        private readonly float _spawnInterval = 60f;
         
-        private float targetHeight = 12f;
-        private float moveSpeed = 2.5f;
+        private readonly float _targetHeight = 12f;
+        private readonly float _moveSpeed = 2.5f;
 
-        private Coroutine spawnCoroutine;
+        private Coroutine _spawnCoroutine;
+        public bool isSpawnCoroutineActive;
 
         public void ActivateWallSpawn()
         {
-            spawnCoroutine ??= StartCoroutine(SpawnWallsRepeatedly());
+            _spawnCoroutine ??= StartCoroutine(SpawnWallsRepeatedly());
+            isSpawnCoroutineActive = true;
         }
 
         private IEnumerator SpawnWallsRepeatedly()
@@ -28,8 +30,9 @@ namespace Resources.Effects.Spring_Wall.Scripts
             while (true)
             {
                 SpawnOneSpringWall();
-                yield return new WaitForSeconds(spawnInterval);
+                yield return new WaitForSeconds(_spawnInterval);
             }
+            
         }
 
         private void SpawnOneSpringWall()
@@ -38,7 +41,7 @@ namespace Resources.Effects.Spring_Wall.Scripts
 
             GameObject spawnedWall = Instantiate(wallPrefab, chosenSpawnPoint, Quaternion.identity);
 
-            StartCoroutine(MoveWallAfterDelay(spawnedWall, delayBeforeMoving, targetHeight, moveSpeed));
+            StartCoroutine(MoveWallAfterDelay(spawnedWall, _delayBeforeMoving, _targetHeight, _moveSpeed));
         }
 
         private IEnumerator MoveWallAfterDelay(GameObject wall, float delay, float targetHeight, float speed)
@@ -47,8 +50,8 @@ namespace Resources.Effects.Spring_Wall.Scripts
 
             float targetY = wall.transform.position.y + targetHeight;
             
-            Rigidbody2D rigidbody = wall.GetComponent<Rigidbody2D>();
-            rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            Rigidbody2D rigidBody = wall.GetComponent<Rigidbody2D>();
+            rigidBody.bodyType = RigidbodyType2D.Kinematic;
 
             var wallSpringEffect = wall.GetComponent<SpringEffect>();
             wallSpringEffect.enabled = false;

@@ -144,6 +144,12 @@ namespace Resources.Cards.Scripts
             {
                 textMeshPro.text = "Немного увеличивает радиус и силу магнита";
             }
+            
+            if (gameObject.name == "Card - SpringWall" && springWallSpawner.isSpawnCoroutineActive)
+            {
+                textMeshPro.fontSize = 1f;
+                textMeshPro.text = "Стен становится две";
+            }
         }
 
         private IEnumerator SlowDownBabushkaTemporary(float duration)
