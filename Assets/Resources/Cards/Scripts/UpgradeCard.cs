@@ -8,6 +8,7 @@ using Game;
 using Game.Level;
 using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
+using Resources.Effects.Spring_Wall.Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace Resources.Cards.Scripts
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
         public EaterSpawner eaterSpawnerScript;
+        public SpringWallSpawner springWallSpawner;
     
         private float _clawSpeedInitial;
         private float _intervalInitial;
@@ -42,6 +44,7 @@ namespace Resources.Cards.Scripts
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             magnetController = FindObjectOfType<MagnetController>();
             eaterSpawnerScript = FindObjectOfType<EaterSpawner>();
+            springWallSpawner = FindObjectOfType<SpringWallSpawner>();
             
             _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
@@ -116,7 +119,7 @@ namespace Resources.Cards.Scripts
                 }},
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
-                    
+                    springWallSpawner.SpawnSpringWall();
                 }},
                 
                 { "Card - Test", () => { //Ничего не делает, Duh 
