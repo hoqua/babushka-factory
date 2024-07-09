@@ -1552,8 +1552,6 @@ MonoBehaviour:
   objectToIgnoreTag: UI
   isInputBlocked: 0
   clawSpeed: 5
-  maxGrabbedBabushkas: 1
-  clawCollider: {fileID: 0}
   clawGrabTrigger: {fileID: 790484934}
   clawObject: {fileID: 617702425}
 --- !u!50 &617702430
