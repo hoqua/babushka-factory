@@ -50,22 +50,6 @@ namespace Resources.Cards.Scripts
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                
-                { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
-                    if (springWallSpawner.isSpawnCoroutineActive && springWallSpawner.spawnBothSides)
-                    {
-                        springWallEffectScript.springForce += 10f;
-                    }
-                    
-                    if (springWallSpawner.isSpawnCoroutineActive)
-                    {
-                        springWallSpawner.spawnBothSides = true;
-                    }
-                    
-                    springWallSpawner.ActivateWallSpawn();
-                    
-                }},
-                
             };
         }
 
