@@ -25,7 +25,6 @@ namespace Resources.Cards.Scripts
         public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
-        public EaterSpawner eaterSpawnerScript;
         public SpringWallSpawner springWallSpawner;
         public SpringWallEffect springWallEffectScript;
     
@@ -44,7 +43,6 @@ namespace Resources.Cards.Scripts
             deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             magnetController = FindObjectOfType<MagnetController>();
-            eaterSpawnerScript = FindObjectOfType<EaterSpawner>();
             springWallSpawner = FindObjectOfType<SpringWallSpawner>();
             springWallEffectScript = FindObjectOfType<SpringWallEffect>();
             
@@ -79,10 +77,6 @@ namespace Resources.Cards.Scripts
                 
                 { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек на 50% в течение 30 секунд
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
-                }},
-                
-                { "Card - CollectAll", () => {  //Собирает всех бабушек на экране
-                    if (eaterSpawnerScript != null) eaterSpawnerScript.SpawnEater();
                 }},
                 
                 { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
@@ -192,23 +186,17 @@ namespace Resources.Cards.Scripts
             }
         }
 
-        
+        //Базовая функция для всех карточек при нажатии на них
         private void OnMouseDown()
         {
             var cardName = gameObject.name;
             
-            if (_cardActions.ContainsKey(cardName))
-            {
-                _cardActions[cardName]?.Invoke();
-                cardManager.IncrementCardClickCount(cardName);
+            cardManager.IncrementCardClickCount(cardName);
                 
-                gameManager.ResumeGame();
-                gameManager.HideUpgradeOverlay();
+            gameManager.ResumeGame();
+            gameManager.HideUpgradeOverlay();
                 
-                HideCardsFromUpgradeMenu();
-                
-            }
-            
+            HideCardsFromUpgradeMenu();
         }
         
         public void UpdateSquaresColor(int cardClicksCount)
