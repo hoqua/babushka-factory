@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Features.Babushka_Basic.Scripts;
 using Features.Claw.Scripts;
-using Features.Conveyor.Scripts;
 using Game;
 using Game.Level;
-using Resources.Effects.Eater.Script;
 using Resources.Effects.Projectile.Scripts;
 using Resources.Effects.Spring_Wall.Scripts;
 using TMPro;
@@ -18,32 +16,24 @@ namespace Resources.Cards.Scripts
     {
         public GameManager gameManager;
         public CardManager cardManager;
-        public Conveyor conveyorScript;
-        public Claw clawScript;
         public CollectablesSpawner spawnerScript;
-        public Counter counterScript;
-        public Deleter deleterScript;
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
         public SpringWallSpawner springWallSpawner;
         public SpringWallEffect springWallEffectScript;
         
-        private float _intervalInitial;
+        
         
         public SpriteRenderer[] squares;
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
             cardManager = FindObjectOfType<CardManager>();
-            clawScript = FindObjectOfType<Claw>();
-            counterScript = FindObjectOfType<Counter>();
-            deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             magnetController = FindObjectOfType<MagnetController>();
             springWallSpawner = FindObjectOfType<SpringWallSpawner>();
             springWallEffectScript = FindObjectOfType<SpringWallEffect>();
             
-            _intervalInitial = spawnerScript.interval;
             
             UpdateText();
         }
@@ -98,10 +88,6 @@ namespace Resources.Cards.Scripts
                     }
                     
                     springWallSpawner.ActivateWallSpawn();
-                    
-                }},
-                
-                { "Card - Test", () => { //Ничего не делает, Duh 
                     
                 }},
                 
