@@ -36,8 +36,6 @@ namespace Resources.Cards.Scripts
             gameManager = FindObjectOfType<GameManager>();
             cardManager = FindObjectOfType<CardManager>();
             clawScript = FindObjectOfType<Claw>();
-            spawnerScript = FindObjectOfType<CollectablesSpawner>();
-            conveyorScript = FindObjectOfType<Conveyor>();
             counterScript = FindObjectOfType<Counter>();
             deleterScript = FindObjectOfType<Deleter>();
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
@@ -60,11 +58,6 @@ namespace Resources.Cards.Scripts
                 
                 { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек на 50% в течение 30 секунд
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
-                }},
-                
-                { "Card - WidenClaw", () => { //Увеличивает область хватания клешни и саму клешню
-                    Vector3 additionalScale = new Vector3(0.05f, 0.05f, 0.05f);
-                    clawScript.clawObject.localScale += additionalScale;
                 }},
                 
                 { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её. Повторное взяие уменьшает интервал на одну секунду

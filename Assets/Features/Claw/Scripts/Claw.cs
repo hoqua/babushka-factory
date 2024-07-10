@@ -13,14 +13,12 @@ namespace Features.Claw.Scripts
         
         public string objectToIgnoreTag = "UI";
         public bool isInputBlocked = false;
-
-        public float _clawSpeedInitial = 5f;
-        public float clawSpeed = 5f;
         
+        public float clawSpeed = 5f;
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawGrabTrigger;
-        public Transform clawObject;
+        public Transform clawTransform;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
         internal MovingDirection? _movingDirection;
