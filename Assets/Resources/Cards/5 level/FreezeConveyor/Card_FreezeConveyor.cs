@@ -8,7 +8,7 @@ namespace Resources.Cards._1_level.FreezeConveyor
     {
         public Conveyor conveyorScript;
 
-        void Start()
+        private void Awake()
         {
             conveyorScript = FindObjectOfType<Conveyor>();
         }

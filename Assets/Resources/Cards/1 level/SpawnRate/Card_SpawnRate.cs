@@ -10,7 +10,7 @@ namespace Resources.Cards._5_level.SpawnRate
         public CollectablesSpawner collectablesSpawnerScript;
         public CardManager cardManager;
         
-        void Start()
+        private void Awake()
         {
             collectablesSpawnerScript = FindObjectOfType<CollectablesSpawner>();
             cardManager = FindObjectOfType<CardManager>();

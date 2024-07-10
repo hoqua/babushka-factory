@@ -7,7 +7,7 @@ namespace Resources.Cards._1_level.CollectAll
     {
         public EaterSpawner eaterSpawnerScript;
 
-        void Start()
+        private void Awake()
         {
             eaterSpawnerScript = FindObjectOfType<EaterSpawner>();
         }

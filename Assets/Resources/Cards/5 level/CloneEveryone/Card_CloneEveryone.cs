@@ -8,7 +8,7 @@ namespace Resources.Cards._5_level.CloneEveryone
 
         public CollectablesSpawner collectablesSpawnerScript;
     
-        void Start()
+        private void Awake()
         {
             collectablesSpawnerScript = FindObjectOfType<CollectablesSpawner>();
         }

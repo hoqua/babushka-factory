@@ -9,7 +9,7 @@ namespace Resources.Cards._1_level.FastClaw
         public Claw clawScript;
         public CardManager cardManager;
         
-        void Start()
+        private void Awake()
         {
             clawScript = FindObjectOfType<Claw>();
             cardManager = FindObjectOfType<CardManager>();
