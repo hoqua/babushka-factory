@@ -12,6 +12,7 @@ TagManager:
   - UI
   - Collectable
   - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX

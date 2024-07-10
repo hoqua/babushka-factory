@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8076966775843223881}
   - component: {fileID: 2787741087846264254}
   m_Layer: 5
-  m_Name: Card - Test
+  m_Name: Card - SpringWall
   m_TagString: Upgrade Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   projectileSpawnerScript: {fileID: 0}
   magnetController: {fileID: 0}
   eaterSpawnerScript: {fileID: 0}
+  springWallSpawner: {fileID: 0}
   squares:
   - {fileID: 174892444136575481}
   - {fileID: 3834942878365076723}
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0422\u0435\u0441\u0442"
+  m_text: "\u041F\u0440\u0443\u0436\u0438\u043D\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
   m_sharedMaterial: {fileID: 5473222874351798040, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
@@ -754,7 +755,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u0434\u0435\u043B\u0430\u0435\u0442\n"
+  m_text: "\u041F\u043E \u043A\u0440\u0430\u044F\u043C \u043A\u043E\u043D\u0432\u0435\u0439\u0435\u0440\u0430
+    \u043F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u0441\u0442\u0435\u043D\u044B,
+    \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043E\u0442\u0442\u0430\u043B\u043A\u0438\u0432\u0430\u044E\u0442
+    \u0431\u0430\u0431\u0443\u0448\u0435\u043A \u0438 \u0434\u0440\u0443\u0433\u0438\u0435
+    \u043E\u0431\u044A\u0435\u043A\u0442\u044B\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
   m_sharedMaterial: {fileID: 5473222874351798040, guid: 31eb8e016d7a4074d870cbe4799b5bb6, type: 2}
@@ -781,8 +786,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.84
+  m_fontSizeBase: 0.84
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1306,7 +1311,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8035930964453772097}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.33333334, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

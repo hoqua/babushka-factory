@@ -150,6 +150,7 @@ MonoBehaviour:
   projectileSpawnerScript: {fileID: 0}
   magnetController: {fileID: 0}
   eaterSpawnerScript: {fileID: 0}
+  springWallSpawner: {fileID: 0}
   squares:
   - {fileID: 2939462237368574811}
   - {fileID: 7858315341308616471}
@@ -1395,7 +1396,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8068795424753132373}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.33333334, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
