@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Features.Claw.Scripts;
 using Game;
+using Game.Level;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,7 @@ namespace Resources.Cards.Scripts
     {
         public PlayerManager playerManager;
         public Claw clawScript;
+        public CollectablesSpawner collectablesSpawnerScript;
         
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;
@@ -19,10 +21,11 @@ namespace Resources.Cards.Scripts
         public int maxUpgradesPerCard = 10;
 
         public float clawSpeedInitial;
-        
+        public float intervalInitial;
         private void Start()
         {
             clawSpeedInitial = clawScript.clawSpeed;
+            intervalInitial = collectablesSpawnerScript.interval;
             
             GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
             cardPrefabs.AddRange(prefabs);
