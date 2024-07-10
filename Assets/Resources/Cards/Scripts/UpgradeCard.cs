@@ -20,7 +20,6 @@ namespace Resources.Cards.Scripts
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
         public SpringWallSpawner springWallSpawner;
-        public SpringWallEffect springWallEffectScript;
         
         
         
@@ -32,8 +31,6 @@ namespace Resources.Cards.Scripts
             projectileSpawnerScript = FindObjectOfType<ProjectileSpawner>();
             magnetController = FindObjectOfType<MagnetController>();
             springWallSpawner = FindObjectOfType<SpringWallSpawner>();
-            springWallEffectScript = FindObjectOfType<SpringWallEffect>();
-            
             
             UpdateText();
         }
@@ -45,10 +42,6 @@ namespace Resources.Cards.Scripts
         {
             _cardActions = new Dictionary<string, Action>
             {
-                
-                { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек на 50% в течение 30 секунд
-                    StartCoroutine(SlowDownBabushkaTemporary(30f));
-                }},
                 
             };
         }
@@ -82,26 +75,7 @@ namespace Resources.Cards.Scripts
                 }
                 
         }
-
-        private IEnumerator SlowDownBabushkaTemporary(float duration)
-        {
-            foreach (BabushkaMain babushka in spawnerScript.babushkas)
-            {
-                _originalSpeed[babushka] = babushka.walkingSpeed;
-                babushka.walkingSpeed *= 0.5f;
-            }
-            
-            yield return new WaitForSeconds(duration);
-
-            foreach (BabushkaMain babushka in spawnerScript.babushkas)
-            {
-                if (_originalSpeed.TryGetValue(babushka, out var value))
-                {
-                    babushka.walkingSpeed = value;
-                }
-                
-            }
-        }
+        
 
         //Базовая функция для всех карточек при нажатии на них
         private void OnMouseDown()
