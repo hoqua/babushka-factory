@@ -16,7 +16,6 @@ namespace Resources.Cards.Scripts
     {
         public GameManager gameManager;
         public CardManager cardManager;
-        public CollectablesSpawner spawnerScript;
         public ProjectileSpawner projectileSpawnerScript;
         public MagnetController magnetController;
         public SpringWallSpawner springWallSpawner;
@@ -34,45 +33,36 @@ namespace Resources.Cards.Scripts
             
             UpdateText();
         }
-
-        private readonly Dictionary<BabushkaMain, float> _originalSpeed = new Dictionary<BabushkaMain, float>();
-        private readonly Dictionary<string, Action> _cardActions;
-
-        public UpgradeCard()
-        {
-            _cardActions = new Dictionary<string, Action>
-            {
-                
-            };
-        }
-
         
         private void UpdateText()
         {
             Transform bodyTransform = transform.Find("Body");
             TextMeshPro textMeshPro = bodyTransform.GetComponentInChildren<TextMeshPro>();
 
+            //Projectile
             if (gameObject.name == "Card - Projectile" && projectileSpawnerScript.enabled)
             {
                 textMeshPro.text = "Уменьшает интервал появления спутников на 1 секунду";
             }
             
+            //Magnet
             if (gameObject.name == "Card - Magnet" && magnetController.magnetEffect.enabled)
             {
                 textMeshPro.text = "Немного увеличивает радиус и силу магнита";
             }
             
+            //SpringWall
             if (gameObject.name == "Card - SpringWall" && springWallSpawner.isSpawnCoroutineActive)
             {
                 textMeshPro.fontSize = 1f;
                 textMeshPro.text = "Стен становится две";
             }
             
-                if (gameObject.name == "Card - SpringWall" && springWallSpawner.spawnBothSides)
-                {
-                    textMeshPro.fontSize = 1f;
-                    textMeshPro.text = "Увеличивает силу отталкивания";
-                }
+            if (gameObject.name == "Card - SpringWall" && springWallSpawner.spawnBothSides)
+            {
+                textMeshPro.fontSize = 1f;
+                textMeshPro.text = "Увеличивает силу отталкивания";
+            }
                 
         }
         
