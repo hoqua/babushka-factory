@@ -60,14 +60,7 @@ namespace Resources.Cards.Scripts
                 { "Card - SpawnRate", () => { //Ускоряет спавн бабушек на 5%
                     spawnerScript!.interval -= _intervalInitial * 0.05f;
                 }},
-               
-                { "Card - FreezeConveyor", () => { //Замораживает конвейер на 5 секунд
-                    if (!conveyorScript!.IsInvoking(nameof(Conveyor.DisableConveyor)))
-                    {
-                        conveyorScript.DisableConveyor();
-                        conveyorScript.Invoke(nameof(conveyorScript.EnableConveyor), 5f);
-                    }
-                }},
+                
                 
                 { "Card - SlowDownBabushka", () => { //Замедляет скорость передвижения бабушек на 50% в течение 30 секунд
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
