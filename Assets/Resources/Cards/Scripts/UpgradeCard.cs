@@ -50,21 +50,6 @@ namespace Resources.Cards.Scripts
                     StartCoroutine(SlowDownBabushkaTemporary(30f));
                 }},
                 
-                { "Card - Projectile", () => { //Спавнит "спутник" каждые 10 секунд. При попадании в бабушку замедляет её. Повторное взяие уменьшает интервал на одну секунду
-                    
-                    if (projectileSpawnerScript.enabled)
-                    {
-                        projectileSpawnerScript.spawnInterval -= 1f;
-                        projectileSpawnerScript.RestartSpawningProjectiles();
-                    }
-                    
-                    if (projectileSpawnerScript.enabled == false)
-                    {
-                        projectileSpawnerScript.enabled = true;
-                    }
-                    
-                }},
-                
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
                     if (springWallSpawner.isSpawnCoroutineActive && springWallSpawner.spawnBothSides)
