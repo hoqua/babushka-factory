@@ -17,9 +17,13 @@ namespace Resources.Cards.Scripts
         
         private readonly Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
         public int maxUpgradesPerCard = 10;
+
+        public float clawSpeedInitial;
         
         private void Start()
         {
+            clawSpeedInitial = clawScript.clawSpeed;
+            
             GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
             cardPrefabs.AddRange(prefabs);
         }

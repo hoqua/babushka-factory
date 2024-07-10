@@ -13,8 +13,10 @@ namespace Features.Claw.Scripts
         
         public string objectToIgnoreTag = "UI";
         public bool isInputBlocked = false;
-        
+
+        public float _clawSpeedInitial = 5f;
         public float clawSpeed = 5f;
+        
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawGrabTrigger;

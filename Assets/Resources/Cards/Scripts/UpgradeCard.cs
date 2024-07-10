@@ -27,8 +27,7 @@ namespace Resources.Cards.Scripts
         public MagnetController magnetController;
         public SpringWallSpawner springWallSpawner;
         public SpringWallEffect springWallEffectScript;
-    
-        private float _clawSpeedInitial;
+        
         private float _intervalInitial;
         
         public SpriteRenderer[] squares;
@@ -46,7 +45,6 @@ namespace Resources.Cards.Scripts
             springWallSpawner = FindObjectOfType<SpringWallSpawner>();
             springWallEffectScript = FindObjectOfType<SpringWallEffect>();
             
-            _clawSpeedInitial = clawScript.clawSpeed;
             _intervalInitial = spawnerScript.interval;
             
             UpdateText();
@@ -59,10 +57,6 @@ namespace Resources.Cards.Scripts
         {
             _cardActions = new Dictionary<string, Action>
             {
-                { "Card - FastClaw", () => { //Ускоряет клешню на 5%
-                    clawScript!.clawSpeed += _clawSpeedInitial * 0.05f;
-                }},
-                
                 { "Card - SpawnRate", () => { //Ускоряет спавн бабушек на 5%
                     spawnerScript!.interval -= _intervalInitial * 0.05f;
                 }},
