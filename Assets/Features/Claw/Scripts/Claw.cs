@@ -38,6 +38,11 @@ namespace Features.Claw.Scripts
         void Update()
         {
             if (isInputBlocked) return;
+
+            if (_movingDirection == null)
+            {
+                magnetController.magnetCollider.enabled = false;
+            }
             
             if (Input.GetMouseButtonDown(0))
             {

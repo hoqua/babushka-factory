@@ -64,17 +64,7 @@ namespace Resources.Cards.Scripts
                     }
                     
                 }},
-                    
-                { "Card - Magnet", () => { //Добавляет клешне магнит с небольшим радиусом
-                    
-                    if (magnetController.magnetEffect.enabled)
-                    {
-                        magnetController.UpgradeMagnet();
-                    }
-                    
-                    magnetController.EnableMagnet();
-                    
-                }},
+                
                 
                 { "Card - SpringWall", () => { //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
                     if (springWallSpawner.isSpawnCoroutineActive && springWallSpawner.spawnBothSides)

@@ -5084,7 +5084,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492135915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -5152,6 +5152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnetEffect: {fileID: 0}
+  magnetCollider: {fileID: 0}
   magnetActiveTime: 0.5
 --- !u!1 &1510210700
 GameObject:
