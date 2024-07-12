@@ -21,7 +21,6 @@ namespace Resources.Cards.Scripts
         public SpringWallSpawner springWallSpawner;
         
         
-        
         public SpriteRenderer[] squares;
         private void Start()
         {
@@ -38,12 +37,6 @@ namespace Resources.Cards.Scripts
         {
             Transform bodyTransform = transform.Find("Body");
             TextMeshPro textMeshPro = bodyTransform.GetComponentInChildren<TextMeshPro>();
-
-            //Projectile
-            if (gameObject.name == "Card - Projectile" && projectileSpawnerScript.enabled)
-            {
-                textMeshPro.text = "Уменьшает интервал появления спутников на 1 секунду";
-            }
             
             //Magnet
             if (gameObject.name == "Card - Magnet" && magnetController.magnetEffect.enabled)

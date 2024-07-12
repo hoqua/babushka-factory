@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Features.Claw.Scripts;
 using Game;
 using Game.Level;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,6 +41,21 @@ namespace Resources.Cards.Scripts
             "Card - SlowDownBabushka"
         };
 
+        //Обновление текста карточек в зависимости от того сколько раз на них нажали
+        private void UpdateCardText(GameObject cardInstance)
+        {
+            string cardName = cardInstance.name;
+            int clickCount = GetCardClickCount(cardName);
+
+            Transform bodyTransform = cardInstance.transform.Find("Body");
+            TextMeshPro cardText = bodyTransform.GetComponentInChildren<TextMeshPro>();
+            
+            if (cardName == "Card - Projectile" && clickCount >= 1)
+            {
+                cardText.text = "Уменьшает интервал появления спутников на 1 секунду";
+            }
+        }
+        
         public void ShowUpgradeCards()
         {
             AddNewCards();  
@@ -60,6 +76,8 @@ namespace Resources.Cards.Scripts
                 GameObject cardInstance = Instantiate(cardPrefabs[selectedIndices[i]], cardPositions[i].position, Quaternion.identity);
                 cardInstance.name = cardInstance.name.Replace("(Clone)", ""); //Убирает (Clone) из имени карточки
                 
+                UpdateCardText(cardInstance);
+                
                 UpgradeCard upgradeCard = cardInstance.GetComponent<UpgradeCard>();
                 if (upgradeCard != null)
                 {
@@ -68,47 +86,6 @@ namespace Resources.Cards.Scripts
                 }
             }
         }
-
-
-        public void BlockClawInput()
-        {
-            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D boxCollider2D in colliders2D)
-            {
-                boxCollider2D.enabled = false;
-            }
-            
-            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
-            {
-                circleCollider2D.enabled = false;
-            }
-            
-            clawScript.isInputBlocked = true;
-        }
-
-        // ReSharper disable Unity.PerformanceAnalysis
-        public IEnumerator UnblockClawInput(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            
-            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D boxCollider2D in colliders2D)
-            {
-                boxCollider2D.enabled = true;
-            }
-            
-            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
-            {
-                circleCollider2D.enabled = true;
-            }
-            
-            clawScript.isInputBlocked = false;
-        }
-        
-        
-        
         
         //Перемешивает лист карточек, чтобы они всегда появлялись на разных позициях
         private void ShuffleList(List<int> list)
@@ -183,5 +160,43 @@ namespace Resources.Cards.Scripts
                 }
             }
         }
+        
+        public void BlockClawInput()
+        {
+            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
+            {
+                boxCollider2D.enabled = false;
+            }
+            
+            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
+            {
+                circleCollider2D.enabled = false;
+            }
+            
+            clawScript.isInputBlocked = true;
+        }
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        public IEnumerator UnblockClawInput(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
+            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
+            {
+                boxCollider2D.enabled = true;
+            }
+            
+            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
+            {
+                circleCollider2D.enabled = true;
+            }
+            
+            clawScript.isInputBlocked = false;
+        }
+
     }
 }
