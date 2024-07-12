@@ -50,10 +50,34 @@ namespace Resources.Cards.Scripts
             Transform bodyTransform = cardInstance.transform.Find("Body");
             TextMeshPro cardText = bodyTransform.GetComponentInChildren<TextMeshPro>();
             
+            //Projectile
             if (cardName == "Card - Projectile" && clickCount >= 1)
             {
                 cardText.text = "Уменьшает интервал появления спутников на 1 секунду";
             }
+
+            //Magnet
+            if (cardName == "Card - Magnet" && clickCount >= 1)
+            {
+                cardText.text = "Немного увеличивает радиус и силу магнита";
+            }
+            
+            //SpringWall
+            if (cardName == "Card - SpringWall")
+            {
+                if (clickCount == 1)
+                {
+                    cardText.text = "Стен становится две";
+                }
+
+                if (clickCount >= 2)
+                {
+                    cardText.text = "Увеличивает силу отталкивания";
+                }
+                
+            }
+            
+            
         }
         
         public void ShowUpgradeCards()
