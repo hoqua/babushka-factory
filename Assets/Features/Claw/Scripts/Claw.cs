@@ -121,7 +121,7 @@ namespace Features.Claw.Scripts
                 var collectable = other.gameObject;
                 collectable.transform.parent = transform;
                    
-                _isObjectGrabbed= 6f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
+                _isObjectGrabbed= 10f;  //Добавляет дополнительное расстояние к цели клешни, чтобы она двигалась вверх
                 _movingDirection = MovingDirection.Up;
                 
                 magnetController.ActivateMagnet();
@@ -186,7 +186,7 @@ namespace Features.Claw.Scripts
             {
                 if (HasChildWithTag("Babushka") || HasChildWithTag("Collectable"))
                 {
-                    _isObjectGrabbed = 6f;
+                    _isObjectGrabbed = 10f;
                     MoveUp();
                 }
                 else
