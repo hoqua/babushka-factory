@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace Features.Claw.Scripts
@@ -7,28 +8,28 @@ namespace Features.Claw.Scripts
     public class MagnetController : MonoBehaviour
     {
         public PointEffector2D magnetEffect;
-        private CircleCollider2D _magnetCollider;
+        public CircleCollider2D magnetCollider;
 
         public float magnetActiveTime = 0.5f;
         
         void Start()
         {
             magnetEffect = FindObjectOfType<PointEffector2D>();
-            _magnetCollider = FindObjectOfType<CircleCollider2D>();
+            magnetCollider = FindObjectOfType<CircleCollider2D>();
            
-            _magnetCollider.enabled = false;
+            magnetCollider.enabled = false;
             magnetEffect.enabled = false;
         }
         
         public void EnableMagnet()
         {
-            _magnetCollider.enabled = false;
+            magnetCollider.enabled = false;
             magnetEffect.enabled = true;
         }
 
         public void UpgradeMagnet()
         {
-            _magnetCollider.radius += 0.1f;
+            magnetCollider.radius += 0.1f;
             magnetEffect.forceMagnitude -= 5f;
         }
 
@@ -39,9 +40,9 @@ namespace Features.Claw.Scripts
         
        private IEnumerator MagnetCoroutine(float duration)
         {
-            _magnetCollider.enabled = true;
+            magnetCollider.enabled = true;
             yield return new WaitForSeconds(duration);
-            _magnetCollider.enabled = false;
+            magnetCollider.enabled = false;
         }
         
     }

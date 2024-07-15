@@ -23,8 +23,7 @@ namespace Features.Babushka_Basic.Scripts
         private static readonly int IsPushed = Animator.StringToHash("isPushed");
         private static readonly int IsGrabbed = Animator.StringToHash("isGrabbed");
         private static readonly int WalkSpeed = Animator.StringToHash("WalkSpeed");
-
-
+        
         void Start()
         {
             babushkaSoundController = FindObjectOfType<BabushkaSoundController>();
@@ -37,6 +36,7 @@ namespace Features.Babushka_Basic.Scripts
             gameObject.layer = LayerMask.NameToLayer("No Collision");
 
             animation = GetComponent<Animator>();
+            
         }
 
         void Update()

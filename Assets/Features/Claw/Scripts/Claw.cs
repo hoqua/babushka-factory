@@ -18,7 +18,7 @@ namespace Features.Claw.Scripts
         
         private Vector2 _initialPosition;
         public BoxCollider2D clawGrabTrigger;
-        public Transform clawObject;
+        public Transform clawTransform;
         
         private Vector2 _targetPosition; // Позиция, к которой объект должен двигаться
         internal MovingDirection? _movingDirection;
@@ -26,21 +26,32 @@ namespace Features.Claw.Scripts
         private float _isObjectGrabbed;
         private readonly List<GameObject> _grabbedBabushkas = new List<GameObject>();
 
-        private ClawAudioController _soundManager;
+        private ClawAudioController _clawAudioController;
 
         private void Start()
         {
             _initialPosition = transform.position;
-            _soundManager = GetComponent<ClawAudioController>();
+            _clawAudioController = GetComponent<ClawAudioController>();
             clawGrabTrigger.enabled = false;
         }
         
         void Update()
         {
-            if (isInputBlocked) return;
+            if (isInputBlocked)
+            {
+                _clawAudioController.StopClawSound();
+                return;
+            }
+            
+            if (_movingDirection == null)
+            {
+                magnetController.magnetCollider.enabled = false;
+            }
             
             if (Input.GetMouseButtonDown(0))
             {
+                
+                
                 if (_movingDirection == null)
                 {
                     clawGrabTrigger.enabled = false;
@@ -138,7 +149,7 @@ namespace Features.Claw.Scripts
 
         void MoveHorizontal()
         {
-            if (!_soundManager.isClawSoundPlaying) _soundManager.PlayClawSound();
+            if (!_clawAudioController.isClawSoundPlaying) _clawAudioController.PlayClawSound();
 
             var clawPosition = transform.position;
             var horizontalTarget = new Vector2(_targetPosition.x, clawPosition.y);
@@ -182,7 +193,7 @@ namespace Features.Claw.Scripts
                 {
                     _movingDirection = null;
                     _initialPosition = transform.position;
-                    _soundManager.StopClawSound();
+                    _clawAudioController.StopClawSound();
                 }
                 
                 
@@ -207,7 +218,7 @@ namespace Features.Claw.Scripts
 
         void ReturnHorizontal()
         {
-            if (!_soundManager.isClawSoundPlaying) _soundManager.PlayClawSound();
+            if (!_clawAudioController.isClawSoundPlaying) _clawAudioController.PlayClawSound();
 
             var clawPosition = transform.position;
             var horizontalTarget = _initialPosition;
@@ -217,7 +228,7 @@ namespace Features.Claw.Scripts
             if (Math.Abs(transform.position.x - horizontalTarget.x) < 0.0001f)
             {
                 _movingDirection = null;
-                _soundManager.StopClawSound();
+                _clawAudioController.StopClawSound();
             }
         }
     }

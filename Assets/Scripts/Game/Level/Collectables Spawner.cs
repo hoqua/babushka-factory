@@ -20,7 +20,10 @@ namespace Game.Level
         public GameObject babushkaPrefab;
         public GameObject repairTool;
         public GameObject cookieBox;
-        public List<BabushkaMain> babushkas = new List<BabushkaMain>();
+        public List<BabushkaMain> babushkas = new();
+        
+        public delegate void BabushkaSpawnedDelegate(BabushkaMain babushka);
+        public event BabushkaSpawnedDelegate OnBabushkaSpawned;
 
         public int spawnedBabushkas = 0;
     
@@ -53,6 +56,8 @@ namespace Game.Level
                     float normalized = (transform.position.x - MinX) / (MaxX - MinX);
                     babushkaMainScript.walkingSpeed = Mathf.Lerp(MinSpeed, MaxSpeed, normalized);
                     babushkas.Add(babushkaMainScript);
+                    
+                    OnBabushkaSpawned?.Invoke(babushkaMainScript);
                 }
                 
                 _timer = 0f;

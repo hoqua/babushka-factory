@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Features.Claw.Scripts;
 using Game;
+using Game.Level;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,15 +13,21 @@ namespace Resources.Cards.Scripts
     {
         public PlayerManager playerManager;
         public Claw clawScript;
+        public CollectablesSpawner collectablesSpawnerScript;
         
         public List<GameObject> cardPrefabs = new List<GameObject>();
         public Transform[] cardPositions;
         
         private readonly Dictionary<string, int> _cardClickCounts = new Dictionary<string, int>();
         public int maxUpgradesPerCard = 10;
-        
+
+        public float clawSpeedInitial;
+        public float intervalInitial;
         private void Start()
         {
+            clawSpeedInitial = clawScript.clawSpeed;
+            intervalInitial = collectablesSpawnerScript.interval;
+            
             GameObject[] prefabs = UnityEngine.Resources.LoadAll<GameObject>("Cards/1 level"); //Добавляет в пулл карточки 1 уровня
             cardPrefabs.AddRange(prefabs);
         }
@@ -33,6 +41,45 @@ namespace Resources.Cards.Scripts
             "Card - SlowDownBabushka"
         };
 
+        //Обновление текста карточек в зависимости от того сколько раз на них нажали
+        private void UpdateCardText(GameObject cardInstance)
+        {
+            string cardName = cardInstance.name;
+            int clickCount = GetCardClickCount(cardName);
+
+            Transform bodyTransform = cardInstance.transform.Find("Body");
+            TextMeshPro cardText = bodyTransform.GetComponentInChildren<TextMeshPro>();
+            
+            //Projectile
+            if (cardName == "Card - Projectile" && clickCount >= 1)
+            {
+                cardText.text = "Уменьшает интервал появления спутников на 1 секунду";
+            }
+
+            //Magnet
+            if (cardName == "Card - Magnet" && clickCount >= 1)
+            {
+                cardText.text = "Немного увеличивает радиус и силу магнита";
+            }
+            
+            //SpringWall
+            if (cardName == "Card - SpringWall")
+            {
+                if (clickCount == 1)
+                {
+                    cardText.text = "Стен становится две";
+                }
+
+                if (clickCount >= 2)
+                {
+                    cardText.text = "Увеличивает силу отталкивания";
+                }
+                
+            }
+            
+            
+        }
+        
         public void ShowUpgradeCards()
         {
             AddNewCards();  
@@ -53,6 +100,8 @@ namespace Resources.Cards.Scripts
                 GameObject cardInstance = Instantiate(cardPrefabs[selectedIndices[i]], cardPositions[i].position, Quaternion.identity);
                 cardInstance.name = cardInstance.name.Replace("(Clone)", ""); //Убирает (Clone) из имени карточки
                 
+                UpdateCardText(cardInstance);
+                
                 UpgradeCard upgradeCard = cardInstance.GetComponent<UpgradeCard>();
                 if (upgradeCard != null)
                 {
@@ -61,47 +110,6 @@ namespace Resources.Cards.Scripts
                 }
             }
         }
-
-
-        public void BlockClawInput()
-        {
-            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D boxCollider2D in colliders2D)
-            {
-                boxCollider2D.enabled = false;
-            }
-            
-            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
-            {
-                circleCollider2D.enabled = false;
-            }
-            
-            clawScript.isInputBlocked = true;
-        }
-
-        // ReSharper disable Unity.PerformanceAnalysis
-        public IEnumerator UnblockClawInput(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            
-            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
-            foreach (BoxCollider2D boxCollider2D in colliders2D)
-            {
-                boxCollider2D.enabled = true;
-            }
-            
-            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
-            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
-            {
-                circleCollider2D.enabled = true;
-            }
-            
-            clawScript.isInputBlocked = false;
-        }
-        
-        
-        
         
         //Перемешивает лист карточек, чтобы они всегда появлялись на разных позициях
         private void ShuffleList(List<int> list)
@@ -176,5 +184,43 @@ namespace Resources.Cards.Scripts
                 }
             }
         }
+        
+        public void BlockClawInput()
+        {
+            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
+            {
+                boxCollider2D.enabled = false;
+            }
+            
+            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
+            {
+                circleCollider2D.enabled = false;
+            }
+            
+            clawScript.isInputBlocked = true;
+        }
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        public IEnumerator UnblockClawInput(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
+            BoxCollider2D[] colliders2D = clawScript.GetComponentsInChildren<BoxCollider2D>();
+            foreach (BoxCollider2D boxCollider2D in colliders2D)
+            {
+                boxCollider2D.enabled = true;
+            }
+            
+            CircleCollider2D[] circleColliders2D = clawScript.GetComponentsInChildren<CircleCollider2D>();
+            foreach (CircleCollider2D circleCollider2D in circleColliders2D)
+            {
+                circleCollider2D.enabled = true;
+            }
+            
+            clawScript.isInputBlocked = false;
+        }
+
     }
 }

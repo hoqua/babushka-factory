@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2040507182974752951}
   - component: {fileID: 8076966775843223881}
+  - component: {fileID: 1709837272722724532}
   - component: {fileID: 2787741087846264254}
   m_Layer: 5
   m_Name: Card - CloneEveryone
@@ -60,8 +61,22 @@ MonoBehaviour:
   deleterScript: {fileID: 0}
   projectileSpawnerScript: {fileID: 0}
   magnetController: {fileID: 0}
-  eaterSpawnerScript: {fileID: 0}
+  springWallSpawner: {fileID: 0}
+  springWallEffectScript: {fileID: 0}
   squares: []
+--- !u!114 &1709837272722724532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672854446069281380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caaef32e8aa15724883055318e9986d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectablesSpawnerScript: {fileID: 0}
 --- !u!61 &2787741087846264254
 BoxCollider2D:
   m_ObjectHideFlags: 0
