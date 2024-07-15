@@ -18,6 +18,10 @@ namespace Resources.Cards._5_level.SpawnRate
 
         private void OnMouseDown()
         {
+            if (collectablesSpawnerScript.interval < 0.25f)
+            {
+                return;
+            }
             collectablesSpawnerScript.interval -= cardManager.intervalInitial * 0.05f;
         }
     }
