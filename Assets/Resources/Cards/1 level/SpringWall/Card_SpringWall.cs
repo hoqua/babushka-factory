@@ -18,6 +18,7 @@ namespace Resources.Cards._1_level.SpringWall
         {
             if (springWallSpawnerScript.springForce > 150)
             {
+                Debug.Log("Upgrade Limit reached " + springWallSpawnerScript.springForce);
                 return; 
             }
             
