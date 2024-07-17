@@ -4,7 +4,7 @@ namespace Resources.Effects.Projectile.Scripts
 {
     public class ProjectileSpawner : MonoBehaviour
     {
-        public float spawnInterval = 10f;
+        public int spawnInterval = 10;
         private float _previousSpawnInterval;
         public GameObject projectilePrefab;
 
