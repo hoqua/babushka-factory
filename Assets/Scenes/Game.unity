@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 5583169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 6358172509168887519, guid: 02b1267ee1dff46469143a73f254338a, type: 3}
-  spawnPointLeft: {x: -8.55, y: 7.5}
-  spawnPointRight: {x: 8.55, y: 7.5}
+  spawnPointLeft: {x: -9.4, y: -2.4}
+  spawnPointRight: {x: 9.4, y: -2.4}
   isSpawnCoroutineActive: 0
   spawnBothSides: 0
 --- !u!1 &33115336
