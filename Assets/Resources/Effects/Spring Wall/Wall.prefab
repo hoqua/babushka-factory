@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c968a83608b70bd4ca2cfad160d1c5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springForce: 30
+  springWallSpawnerScript: {fileID: 0}
 --- !u!61 &2144343848438891391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6358172509168887519}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -171,4 +171,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 6

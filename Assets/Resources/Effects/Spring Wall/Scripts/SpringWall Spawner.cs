@@ -11,11 +11,13 @@ namespace Resources.Effects.Spring_Wall.Scripts
 
         public Vector2 spawnPointLeft;
         public Vector2 spawnPointRight;
-
+        
         private readonly float _spawnInterval = 5f;
         private readonly float _moveSpeed = 5f;
         private readonly float _moveDuration = 0.3f;
         private float _reverseDuration;
+
+        public float springForce = 30f;
         
         public bool isSpawnCoroutineActive;
         public bool spawnBothSides;
@@ -40,6 +42,7 @@ namespace Resources.Effects.Spring_Wall.Scripts
             {
                 if (spawnBothSides)
                 {
+                    
                     DestroyAllWalls();
                     SpawnTwoSpringWalls();
                 }

@@ -8,11 +8,9 @@ namespace Resources.Cards._1_level.SpringWall
     {
 
         public SpringWallSpawner springWallSpawnerScript;
-        public SpringWallEffect springWallEffectScript;
         private void Awake()
         {
             springWallSpawnerScript = FindObjectOfType<SpringWallSpawner>();
-            springWallEffectScript = FindObjectOfType<SpringWallEffect>();
         }
         
         //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
@@ -20,7 +18,7 @@ namespace Resources.Cards._1_level.SpringWall
         {
             if (springWallSpawnerScript.isSpawnCoroutineActive && springWallSpawnerScript.spawnBothSides)
             {
-                springWallEffectScript.springForce += 10f;
+                springWallSpawnerScript.springForce += 10f;
             }
                     
             if (springWallSpawnerScript.isSpawnCoroutineActive)

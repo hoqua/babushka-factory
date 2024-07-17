@@ -167,8 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 6358172509168887519, guid: 02b1267ee1dff46469143a73f254338a, type: 3}
-  spawnPointLeft: {x: -9.4, y: -2.4}
-  spawnPointRight: {x: 9.4, y: -2.4}
+  spawnPointLeft: {x: -9.5, y: -2.4}
+  spawnPointRight: {x: 9.5, y: -2.4}
+  springForce: 30
   isSpawnCoroutineActive: 0
   spawnBothSides: 0
 --- !u!1 &33115336
