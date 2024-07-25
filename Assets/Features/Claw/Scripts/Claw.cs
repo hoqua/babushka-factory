@@ -11,7 +11,7 @@ namespace Features.Claw.Scripts
         public PlayerManager playerManager;
         public MagnetController magnetController;
         
-        public string objectToIgnoreTag = "UI";
+        public string[] objectsToIgnoreTags = { "UI", "Claw" };
         public bool isInputBlocked = false;
         
         public float clawSpeed = 5f;
@@ -66,7 +66,7 @@ namespace Features.Claw.Scripts
                     if (Camera.main != null) _targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                     RaycastHit2D hit = Physics2D.Raycast(_targetPosition, Vector2.zero);
-                    if (hit.collider != null && hit.collider.CompareTag(objectToIgnoreTag))
+                    if (hit.collider != null && Array.Exists(objectsToIgnoreTags, tags => hit.collider.CompareTag(tags)))
                     {
                         return;
                     }
