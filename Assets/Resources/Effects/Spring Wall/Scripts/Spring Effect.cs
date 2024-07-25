@@ -4,9 +4,15 @@ namespace Resources.Effects.Spring_Wall.Scripts
 {
     public class SpringWallEffect : MonoBehaviour
     {
-   
-        public float springForce = 30f;  // Сила отталкивания
 
+        public SpringWallSpawner springWallSpawnerScript;
+        private float _springForce;// Сила отталкивания
+
+        void Awake()
+        {
+            springWallSpawnerScript = FindObjectOfType<SpringWallSpawner>();
+            _springForce = springWallSpawnerScript.springForce;
+        }
         void OnCollisionEnter2D(Collision2D collision)
         {
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
@@ -19,7 +25,7 @@ namespace Resources.Effects.Spring_Wall.Scripts
                 float direction = collisionPoint.x < wallPosition.x ? -1 : 1; 
             
                 Vector2 repelDirection = new Vector2(direction, 0); // Горизонтальное отталкивание
-                rb.AddForce(repelDirection * springForce, ForceMode2D.Impulse);
+                rb.AddForce(repelDirection * _springForce, ForceMode2D.Impulse);
             }
         }
     }

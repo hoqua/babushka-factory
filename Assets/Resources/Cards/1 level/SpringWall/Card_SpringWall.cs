@@ -8,19 +8,23 @@ namespace Resources.Cards._1_level.SpringWall
     {
 
         public SpringWallSpawner springWallSpawnerScript;
-        public SpringWallEffect springWallEffectScript;
         private void Awake()
         {
             springWallSpawnerScript = FindObjectOfType<SpringWallSpawner>();
-            springWallEffectScript = FindObjectOfType<SpringWallEffect>();
         }
         
         //Призывает стену(-ы) по краям конвейера, которая отталкивает объекты
         private void OnMouseDown()
         {
+            if (springWallSpawnerScript.springForce > 150)
+            {
+                Debug.Log("Upgrade Limit reached " + springWallSpawnerScript.springForce);
+                return; 
+            }
+            
             if (springWallSpawnerScript.isSpawnCoroutineActive && springWallSpawnerScript.spawnBothSides)
             {
-                springWallEffectScript.springForce += 10f;
+                springWallSpawnerScript.springForce += 10f;
             }
                     
             if (springWallSpawnerScript.isSpawnCoroutineActive)

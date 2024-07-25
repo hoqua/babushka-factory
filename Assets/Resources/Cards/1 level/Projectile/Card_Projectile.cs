@@ -15,7 +15,11 @@ namespace Resources.Cards._1_level.Projectile
       //Повторное взяие уменьшает интервал на одну секунду.
       private void OnMouseDown()
       {
-         if (projectileSpawnerScript.spawnInterval == 1) {return;}
+         if (projectileSpawnerScript.spawnInterval == 1)
+         {
+            Debug.Log("Upgrade Limit Reached " + projectileSpawnerScript.spawnInterval + " seconds");
+            return;
+         }
          
          if (projectileSpawnerScript.enabled)
          {

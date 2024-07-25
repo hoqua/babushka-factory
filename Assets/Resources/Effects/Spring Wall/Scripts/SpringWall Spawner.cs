@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Resources.Effects.Spring_Wall.Scripts
 {
@@ -9,31 +11,38 @@ namespace Resources.Effects.Spring_Wall.Scripts
 
         public Vector2 spawnPointLeft;
         public Vector2 spawnPointRight;
-
-        private readonly float _delayBeforeMoving = 15f;
-        private readonly float _spawnInterval = 30f;
         
-        private readonly float _targetHeight = 12f;
-        private readonly float _moveSpeed = 2.5f;
+        private readonly float _spawnInterval = 5f;
+        private readonly float _moveSpeed = 5f;
+        private readonly float _moveDuration = 0.3f;
+        private float _reverseDuration;
 
-        private Coroutine _spawnCoroutine;
+        public float springForce = 30f;
         
         public bool isSpawnCoroutineActive;
         public bool spawnBothSides;
 
-        public void ActivateWallSpawn()
+        private void Start()
         {
-            _spawnCoroutine ??= StartCoroutine(SpawnWallsRepeatedly());
-            isSpawnCoroutineActive = true;
+            _reverseDuration = _moveDuration;
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
+        public void ActivateWallSpawn()
+        {
+            if (!isSpawnCoroutineActive)
+            {
+                StartCoroutine(SpawnWallsRepeatedly());
+                isSpawnCoroutineActive = true;
+            }
+        }
+
         private IEnumerator SpawnWallsRepeatedly()
         {
             while (true)
             {
                 if (spawnBothSides)
                 {
+                    
                     DestroyAllWalls();
                     SpawnTwoSpringWalls();
                 }
@@ -44,16 +53,17 @@ namespace Resources.Effects.Spring_Wall.Scripts
                
                 yield return new WaitForSeconds(_spawnInterval);
             }
-            
         }
 
         private void SpawnOneSpringWall()
         {
             Vector2 chosenSpawnPoint = Random.value < 0.5f ? spawnPointLeft : spawnPointRight;
 
-            GameObject spawnedWall = Instantiate(wallPrefab, chosenSpawnPoint, Quaternion.identity);
+            Vector3 initialMoveDirection = chosenSpawnPoint == spawnPointLeft ? Vector3.right : Vector3.left;
+            Vector3 reverseMoveDirection = chosenSpawnPoint == spawnPointLeft ? Vector3.left : Vector3.right;
 
-            StartCoroutine(MoveWallAfterDelay(spawnedWall, _delayBeforeMoving, _targetHeight, _moveSpeed));
+            GameObject spawnedWall = Instantiate(wallPrefab, chosenSpawnPoint, Quaternion.identity);
+            StartCoroutine(MoveWall(spawnedWall, initialMoveDirection, reverseMoveDirection));
         }
 
         private void SpawnTwoSpringWalls()
@@ -61,25 +71,23 @@ namespace Resources.Effects.Spring_Wall.Scripts
             GameObject spawnedWallLeft = Instantiate(wallPrefab, spawnPointLeft, Quaternion.identity);
             GameObject spawnedWallRight = Instantiate(wallPrefab, spawnPointRight, Quaternion.identity);
 
-            StartCoroutine(MoveWallAfterDelay(spawnedWallLeft, _delayBeforeMoving, _targetHeight, _moveSpeed));
-            StartCoroutine(MoveWallAfterDelay(spawnedWallRight, _delayBeforeMoving, _targetHeight, _moveSpeed));
+            StartCoroutine(MoveWall(spawnedWallLeft, Vector3.right, Vector3.left));
+            StartCoroutine(MoveWall(spawnedWallRight, Vector3.left, Vector3.right));
         }
 
-        private IEnumerator MoveWallAfterDelay(GameObject wall, float delay, float targetHeight, float speed)
+        private IEnumerator MoveWall(GameObject wall, Vector3 initialMoveDirection, Vector3 reverseMoveDirection)
         {
-            yield return new WaitForSeconds(delay);
-
-            float targetY = wall.transform.position.y + targetHeight;
-            
-            Rigidbody2D rigidBody = wall.GetComponent<Rigidbody2D>();
-            rigidBody.bodyType = RigidbodyType2D.Kinematic;
-
-            var wallSpringEffect = wall.GetComponent<SpringWallEffect>();
-            wallSpringEffect.enabled = false;
-            
-            while (wall != null && wall.transform.position.y < targetY)
+            float moveEndTime = Time.time + _moveDuration;
+            while (wall != null && Time.time < moveEndTime)
             {
-                wall.transform.position += Vector3.up * (speed * Time.deltaTime);
+                wall.transform.position += initialMoveDirection * (_moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+            
+            moveEndTime = Time.time + _reverseDuration;
+            while (wall != null && Time.time < moveEndTime)
+            {
+                wall.transform.position += reverseMoveDirection * (_moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
