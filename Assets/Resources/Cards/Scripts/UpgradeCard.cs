@@ -1,3 +1,4 @@
+using System.Collections;
 using Game;
 using UnityEngine;
 
@@ -22,10 +23,16 @@ namespace Resources.Cards.Scripts
             var cardName = gameObject.name;
             
             cardManager.IncrementCardClickCount(cardName);
-                
             gameManager.ResumeGame();
+            
+            StartCoroutine(CardClickEffect());
+        }
+
+        private IEnumerator CardClickEffect()
+        {
+            yield return new WaitForSeconds(0.1f);
+            
             gameManager.HideUpgradeOverlay();
-                
             HideCardsFromUpgradeMenu();
         }
         
