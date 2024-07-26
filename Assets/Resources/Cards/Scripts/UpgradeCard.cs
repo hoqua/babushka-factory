@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Game;
 using UnityEngine;
@@ -9,14 +10,21 @@ namespace Resources.Cards.Scripts
         public GameManager gameManager;
         public CardManager cardManager;
         
+        public GameObject outlineObject; // Объект с обводкой
+        
         public SpriteRenderer[] squares;
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
             cardManager = FindObjectOfType<CardManager>();
         }
-        
-        
+
+        private void Awake()
+        {
+            outlineObject = GameObject.Find("9-Sliced");
+            outlineObject.SetActive(false);
+        }
+
         //Базовая функция для всех карточек при нажатии на них
         private void OnMouseDown()
         {
@@ -35,7 +43,12 @@ namespace Resources.Cards.Scripts
             gameManager.HideUpgradeOverlay();
             HideCardsFromUpgradeMenu();
         }
-        
+
+        private void OnMouseEnter()
+        {
+             outlineObject.SetActive(true);
+        }
+
         public void UpdateSquaresColor(int cardClicksCount)
         {
             Color newColor = GetColorBasedOnClicks(cardClicksCount);
