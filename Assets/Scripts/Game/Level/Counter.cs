@@ -46,7 +46,6 @@ namespace Game.Level
                 if (other.name == "RepairTool")
                 {
                     playerManager.clawDurability = 100;
-                    playerManager.clawDurabilityText.text = "Прочность клешни " + playerManager.clawDurability + "%";
                 }
 
                 if (other.name == "CookieBox")

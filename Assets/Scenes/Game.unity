@@ -5787,7 +5787,7 @@ MonoBehaviour:
   requiredExp: 5
   clawDurability: 100
   playerLevelText: {fileID: 383525041}
-  clawDurabilityText: {fileID: 0}
+  slider: {fileID: 451295091}
 --- !u!1 &1236032606
 GameObject:
   m_ObjectHideFlags: 0
