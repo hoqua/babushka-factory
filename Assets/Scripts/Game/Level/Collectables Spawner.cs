@@ -29,12 +29,12 @@ namespace Game.Level
     
         private void Start()
         {
+            InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+            
             _timer = 0f;
             interval = 2f;
-            
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             _timer += Time.deltaTime;
@@ -84,6 +84,16 @@ namespace Game.Level
             deleterScript.deletedCounterText.text = "Упущено бабушек " + deleterScript.deletedBabushkasRatio + "%";
                 
             return babushkaPrefab;
+        }
+        
+        //Увеличивает со временем частоту спавна собираемых объектов (бабушек, гаечных ключей и тд)
+        void IncreaseSpawnRate()
+        {
+            if (interval <= 0.5f)
+            {
+                return;
+            }
+            interval -= 0.05f;
         }
 
         public void CloneBabushkas()
