@@ -9,7 +9,7 @@ namespace Resources.Effects.Projectile.Scripts
         public GameObject projectilePrefab;
 
         public string obstacleTag = "Claw";
-        public float checkRadius = 1f;
+        public float checkRadius = 2f;
         
         private Camera _mainCamera;
         void Start()

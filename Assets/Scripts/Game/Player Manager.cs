@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -11,9 +12,9 @@ namespace Game
         public int currentExp;
         public int requiredExp = 5;
         public int clawDurability = 100;
-
+        
         public TextMeshProUGUI playerLevelText;
-        public TextMeshProUGUI clawDurabilityText;
+        public Slider slider;
         public void GainExp()
         {
             currentExp++;
@@ -45,7 +46,7 @@ namespace Game
             }
             
             clawDurability--;
-            clawDurabilityText.text = "Прочность клешни " + clawDurability + "%";
+            slider.value = clawDurability;
         }
     
     }
