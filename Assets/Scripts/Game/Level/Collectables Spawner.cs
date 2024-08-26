@@ -29,10 +29,10 @@ namespace Game.Level
     
         private void Start()
         {
-            InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+            InvokeRepeating(nameof(IncreaseSpawnRate), 0f, 30f);
             
             _timer = 0f;
-            interval = 2f;
+            interval = 2.05f;
         }
         
         void Update()
@@ -68,7 +68,7 @@ namespace Game.Level
         private GameObject GetRandomPrefab()
         {
             var randomValue = Random.value;
-            if (randomValue < 0.05f)
+            if (randomValue <= 0.051f)
             {
                 return cookieBox;
             }
@@ -94,6 +94,7 @@ namespace Game.Level
                 return;
             }
             interval -= 0.05f;
+            Debug.Log("Interval decreased");
         }
 
         public void CloneBabushkas()
